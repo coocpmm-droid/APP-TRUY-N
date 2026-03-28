@@ -273,7 +273,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const galleryFileInputRef = useRef<HTMLInputElement>(null);
   const globalBgInputRef = useRef<HTMLInputElement>(null);
-  const logoInputRef = useRef<HTMLInputElement>(null);
 
   const [sessions, setSessions] = useState<GameSession[]>([]);
   const [sessionMetas, setSessionMetas] = useState<Record<number, SessionMeta>>({});
@@ -311,10 +310,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
   const [globalBgUrl, setGlobalBgUrl] = useState(localStorage.getItem('td_global_bg_url') || '');
   const [globalBgType, setGlobalBgType] = useState<'image' | 'video'>(
       (localStorage.getItem('td_global_bg_type') as 'image' | 'video') || 'image'
-  );
-  // UPDATED LOGO TO DRAGON
-  const [globalLogoUrl, setGlobalLogoUrl] = useState(
-      localStorage.getItem('td_global_logo_url') || 'https://cdn-icons-png.flaticon.com/512/12336/12336082.png'
   );
 
   // Updates Modal State
@@ -945,16 +940,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       alert("Đã đổi nền Menu Chính!");
   };
 
-  const handleSetGlobalLogo = () => {
-      if(!selectedImage || selectedImage.type !== 'image') {
-          alert("Vui lòng chọn một ảnh để làm Logo.");
-          return;
-      }
-      setGlobalLogoUrl(selectedImage.url);
-      localStorage.setItem('td_global_logo_url', selectedImage.url);
-      alert("Đã đổi Logo ứng dụng!");
-  };
-
   const handleApplyBulkBg = () => {
       if(!selectedImage) return;
       
@@ -1006,21 +991,9 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       }
   };
 
-  const handleLogoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-              setGlobalLogoUrl(reader.result as string);
-          };
-          reader.readAsDataURL(file);
-      }
-  };
-
   const saveGlobalSettings = () => {
       localStorage.setItem('td_global_bg_url', globalBgUrl);
       localStorage.setItem('td_global_bg_type', globalBgType);
-      localStorage.setItem('td_global_logo_url', globalLogoUrl);
       setShowGlobalSettingsModal(false);
       window.location.reload(); 
   };
@@ -1236,19 +1209,8 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
 
       <div className="relative z-10 w-full max-w-5xl px-6 flex flex-col items-center space-y-12 py-10">
         
-        {/* Title Section with DYNAMIC LOGO */}
+        {/* Title Section */}
         <div className="space-y-4 animate-fade-in text-center">
-            <div className="w-32 h-32 mx-auto mb-8 transform hover:scale-110 transition-transform duration-700 relative group cursor-pointer" onClick={() => setShowGlobalSettingsModal(true)} title="Nhấn để đổi Logo">
-               <div className="absolute inset-0 bg-gold-500/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-700 animate-pulse-slow"></div>
-               <img 
-                 src={globalLogoUrl} 
-                 alt="Nhập Vai Logo" 
-                 className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_25px_rgba(234,179,8,0.4)]"
-               />
-               <div className="absolute -bottom-2 right-0 bg-ink-900 text-gold-500 text-[10px] p-1 rounded-full border border-gold-500/50 opacity-0 group-hover:opacity-100 transition-opacity z-20">
-                   <i className="fas fa-pen"></i>
-               </div>
-            </div>
 
             <h1 className="text-5xl md:text-7xl font-serif font-light text-transparent bg-clip-text bg-gradient-to-r from-parchment-100 via-gold-200 to-parchment-100 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] pb-2 tracking-tight">
               The Infinity Tale
@@ -1572,16 +1534,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                              </label>
                         </div>
                      </div>
-                     <div className="bg-ink-950/50 p-4 rounded-lg border border-white/5">
-                        <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider block mb-3 flex items-center gap-2">
-                            <i className="fas fa-crown text-gold-500/50"></i> Logo Ứng Dụng
-                        </label>
-                        <div className="flex gap-2">
-                            <input type="text" value={globalLogoUrl} onChange={(e) => setGlobalLogoUrl(e.target.value)} placeholder="URL..." className="flex-1 w-full bg-ink-900 border border-white/10 rounded-lg p-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all" />
-                            <button onClick={() => logoInputRef.current?.click()} className="bg-ink-800 hover:bg-ink-700 border border-white/10 hover:border-gold-500/50 px-4 rounded-lg transition-colors"><i className="fas fa-upload text-gold-400"></i></button>
-                            <input type="file" ref={logoInputRef} onChange={handleLogoFileChange} accept="image/*" className="hidden" />
-                        </div>
-                     </div>
                  </div>
                  <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
                      <button onClick={() => setShowGlobalSettingsModal(false)} className="px-5 py-2 rounded-lg text-sm font-bold text-parchment-400 hover:text-white hover:bg-ink-800 transition-colors">Hủy</button>
@@ -1862,14 +1814,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                  <i className="fas fa-trash-alt"></i> Xóa
                              </button>
                              <div className="h-10 w-px bg-white/10 mx-1"></div>
-                             
-                             {/* NEW BUTTON: SET LOGO */}
-                             <button 
-                                 onClick={handleSetGlobalLogo} 
-                                 className="px-5 py-2.5 bg-ink-900/50 border border-jade-900/50 text-jade-400 hover:bg-jade-900/20 hover:border-jade-500 hover:text-jade-300 rounded-lg text-sm font-bold transition-all flex items-center gap-2"
-                             >
-                                 <i className="fas fa-dragon"></i> Đặt làm Logo
-                             </button>
 
                              <button 
                                  onClick={handleSetGlobalBg} 

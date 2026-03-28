@@ -271,18 +271,36 @@ const NarrativeDisplay: React.FC<{
 
   const parseText = (content: string) => {
     const parseFormatting = (text: string) => {
-        // Handle bold italics (thoughts) and single italics (dialogue)
-        // Improved regex to handle various markdown italic styles
-        const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|_.*?_)/g);
+        // Replace ".." with "..."
+        let processedText = text.replace(/\.\./g, '...');
+        
+        // Handle thoughts [thought] -> italicized and bracketed
+        processedText = processedText.replace(/\[(.*?)\]/g, '<thought>[$1]</thought>');
+        
+        // Handle dialogue "dialogue" -> italicized
+        processedText = processedText.replace(/"(.*?)"/g, '<dialogue>"$1"</dialogue>');
+
+        // Handle bold italics and single italics
+        const parts = processedText.split(/(<thought>.*?<\/thought>|<dialogue>.*?<\/dialogue>|\*\*.*?\*\*|\*.*?\*|_.*?_)/g);
+        
         return parts.map((part, index) => {
+            if (part.startsWith('<thought>') && part.endsWith('</thought>')) {
+                const innerText = part.slice(9, -10);
+                return <span key={index} className="italic text-spirit-300 drop-shadow-sm">{innerText}</span>;
+            }
+            if (part.startsWith('<dialogue>') && part.endsWith('</dialogue>')) {
+                const innerText = part.slice(10, -11);
+                // Dialogue color: darker amber/parchment, slightly bolder (medium) and more opaque
+                return <span key={index} className="italic font-medium text-amber-200/90 drop-shadow-sm">{innerText}</span>;
+            }
             if (part.startsWith('**') && part.endsWith('**')) {
                 const innerText = part.slice(2, -2);
                 return <span key={index} className="font-bold italic text-spirit-200">{innerText}</span>;
             }
             if ((part.startsWith('*') && part.endsWith('*')) || (part.startsWith('_') && part.endsWith('_'))) {
                 const innerText = part.slice(1, -1);
-                // Dialogue color: soft amber/parchment, slightly bolder (medium) and more opaque
-                return <span key={index} className="italic font-medium text-amber-100/90 drop-shadow-sm">{innerText}</span>;
+                // Dialogue color: darker amber/parchment, slightly bolder (medium) and more opaque
+                return <span key={index} className="italic font-medium text-amber-200/90 drop-shadow-sm">{innerText}</span>;
             }
             return part;
         });
