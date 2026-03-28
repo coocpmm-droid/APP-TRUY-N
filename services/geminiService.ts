@@ -506,13 +506,7 @@ class GeminiService {
 
       PHONG CÁCH VIẾT: ${writingStyle}
       ${nsfwBlock}
-      ĐỘ DÀI: ${lengthMode === 'epic' ? `[CỰC KỲ DÀI VÀ CHI TIẾT - EPIC MODE]
-      - BẮT BUỘC: Viết một câu chuyện dài, sâu sắc và cực kỳ chi tiết.
-      - Chia thành 2 trạng thái rõ rệt :⚠️ TRẠNG THÁI 1: CHẾ ĐỘ CỐT TRUYỆN THUẦN TÚY (TUYỆT ĐỐI KHÔNG SẮC DỤC) và  ⚠️ TRẠNG THÁI 2: EXTREME EROTICA (CHỈ KHI CÓ CẢNH NÓNG-MIÊU TẢ CỰC CHI TIẾT).Đúng Prompt.
-      - Mỗi đoạn văn luôn luôn có 2 câu văn(CỐ ĐỊNH 2 CÂU). Hết 2 câu là PHẢI XUỐNG DÒNG ngay lập tức.
-      - Địt nhau phải giống đời thực hoàn toàn(tuân thủ Prompt,không rên rỉ nhiều ,không nước lồn chảy nhiều, không nói lời dâm ,không cầu xin...)
-      - Mọi cử động nhỏ nhất (hơi thở, ánh mắt, cái nhíu mày, bước chân) đều phải được "zoom cận cảnh" và miêu tả cặn kẽ như một thước phim quay chậm.Đặc biệt khi có cảnh sex,miêu tả rõ Vú,Lồn,Mông,Lông Lồn,Ngoại hình nhân vật nữ,...Chi tiết ,gây nứng.
-      - Show, don't tell. Không được nói "anh ấy rất buồn", phải miêu tả "đôi mắt anh chùng xuống, bàn tay siết chặt đến mức gân xanh nổi lên, hơi thở nghẹn lại trong lồng ngực".` : lengthMode}
+      ĐỘ DÀI: ${lengthMode === 'epic' ? 'Cực Dài (Tối thiểu 1500 chữ,miêu tả chi tiết mọi thứ.Show,dont tell)' : lengthMode}.
       OUTPUT JSON STRUCTURE:⚠️ **CRITICAL NARRATIVE RULE**: The 'narrative' field is for immersive storytelling ONLY. You are STRICTLY PROHIBITED from mentioning the exact numbers from 'PRE-CALCULATED TIME' or 'CURRENT WALLET' inside the 'narrative' text. Keep all exact numbers hidden inside the 'stats' object.
       {
         "thoughtProcess": "Suy nghĩ logic về hướng đi cốt truyện, sử dụng thời gian được cung cấp...",
