@@ -270,29 +270,19 @@ const NarrativeDisplay: React.FC<{
   }, [wikiEntries]);
 
   const parseText = (content: string) => {
-    const parseFormatting = (text: string) => {
+    const parseThoughts = (text: string) => {
         const thoughtParts = text.split(/(\*\*.*?\*\*)/g);
         return thoughtParts.map((tPart, tIndex) => {
             if (tPart.startsWith('**') && tPart.endsWith('**')) {
                 const innerText = tPart.slice(2, -2);
                 return <span key={tIndex} className="font-bold italic text-spirit-200">{innerText}</span>;
             }
-            
-            // Parse dialogue (text inside quotes)
-            const dialogueParts = tPart.split(/(".*?"|“.*?”|«.*?»)/g);
-            return dialogueParts.map((dPart, dIndex) => {
-                if ((dPart.startsWith('"') && dPart.endsWith('"')) ||
-                    (dPart.startsWith('“') && dPart.endsWith('”')) ||
-                    (dPart.startsWith('«') && dPart.endsWith('»'))) {
-                    return <span key={`${tIndex}-${dIndex}`} className="text-yellow-300 font-medium drop-shadow-[0_0_5px_rgba(253,224,71,0.4)]">{dPart}</span>;
-                }
-                return dPart;
-            });
+            return tPart;
         });
     };
 
     if (!content) return content;
-    if (validEntries.length === 0) return parseFormatting(content);
+    if (validEntries.length === 0) return parseThoughts(content);
     
     try {
         const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -320,11 +310,11 @@ const NarrativeDisplay: React.FC<{
                     </span>
                 );
             }
-            return <React.Fragment key={index}>{parseFormatting(part)}</React.Fragment>;
+            return <React.Fragment key={index}>{parseThoughts(part)}</React.Fragment>;
         });
     } catch (e) {
         console.warn("Narrative parse failed, rendering raw text", e);
-        return parseFormatting(content);
+        return parseThoughts(content);
     }
   };
 
