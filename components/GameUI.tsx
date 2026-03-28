@@ -272,16 +272,17 @@ const NarrativeDisplay: React.FC<{
   const parseText = (content: string) => {
     const parseFormatting = (text: string) => {
         // Handle bold italics (thoughts) and single italics (dialogue)
-        const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+        // Improved regex to handle various markdown italic styles
+        const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|_.*?_)/g);
         return parts.map((part, index) => {
             if (part.startsWith('**') && part.endsWith('**')) {
                 const innerText = part.slice(2, -2);
                 return <span key={index} className="font-bold italic text-spirit-200">{innerText}</span>;
             }
-            if (part.startsWith('*') && part.endsWith('*')) {
+            if ((part.startsWith('*') && part.endsWith('*')) || (part.startsWith('_') && part.endsWith('_'))) {
                 const innerText = part.slice(1, -1);
-                // Dialogue color: soft amber/gold for spoken words
-                return <span key={index} className="italic text-gold-300/90 drop-shadow-[0_0_1px_rgba(234,179,8,0.2)]">{innerText}</span>;
+                // Dialogue color: soft amber/parchment for a "gentle" feel
+                return <span key={index} className="italic text-amber-100/70 drop-shadow-sm">{innerText}</span>;
             }
             return part;
         });
