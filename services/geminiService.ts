@@ -354,8 +354,7 @@ class GeminiService {
     currentCurrency?: string,
     // preCalculatedTime là thời gian đã được Chronos tính xong
     preCalculatedTime?: string,
-    abilities?: Ability[],
-    dialogueStyle?: string
+    abilities?: Ability[]
   ): Promise<{ parsed: AIResponseSchema; raw: string; thoughtSignature?: string; isCutOff?: boolean }> {
     
     let nsfwBlock = "";
@@ -495,11 +494,8 @@ class GeminiService {
       3. **MIÊU TẢ TỰ NHIÊN**: Chỉ được phép miêu tả thời gian thông qua bối cảnh môi trường (Ví dụ: "Mặt trời đã lên cao", "Sương đêm lạnh lẽo", "Bóng tối bao trùm"). Mọi con số về thời gian phải được giữ kín trong đối tượng 'stats'.
 
       === [FORMATTING PROTOCOL] ===
-      1. **DIALOGUE**: ${dialogueStyle === 'brackets' ? 'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc vuông ([...]). KHÔNG dùng dấu ngoặc kép ("...").' : 
-                          dialogueStyle === 'parentheses' ? 'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc đơn ((...)). KHÔNG dùng dấu ngoặc kép ("...").' :
-                          dialogueStyle === 'asterisks' ? 'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu sao (*...*). KHÔNG dùng dấu ngoặc kép ("...").' :
-                          'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép ("..."). KHÔNG dùng dấu ngoặc kép đơn (\'...\').'}
-      2. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
+      1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép ("..."). KHÔNG dùng dấu ngoặc kép đơn ('...').
+      2. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật (dù dùng ngoặc kép "" hay nháy đơn '') đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
       3. **PARAGRAPHS (QUAN TRỌNG)**: BẮT BUỘC phải chia nhỏ văn bản thành nhiều đoạn ngắn (paragraphs) bằng cách xuống dòng (sử dụng ký tự \`\\n\\n\`). 
          - TUYỆT ĐỐI KHÔNG viết một cục văn bản dài liền mạch gây khó đọc. Phải làm cho văn bản thật THOÁNG.
          - Mỗi đoạn văn luôn luôn có 2 câu văn(CỐ ĐỊNH 2 CÂU). Hết 2 câu là PHẢI XUỐNG DÒNG ngay lập tức.
