@@ -67,7 +67,6 @@ const UPDATE_LOGS = [
         author: "Nguyễn Hoàng",
         details: [
             "PRONOUN MIRRORING (Giao Thức Soi Gương): AI hiện tại sẽ tự động 'soi gương' cách xưng hô của người chơi ngay lập tức. Nếu bạn xưng 'Tớ/Cậu', AI sẽ dùng lại 'Tớ/Cậu'. Nếu bạn dùng 'Mẹ/Con' hay 'Chị/Em', AI cũng sẽ tuân theo thay vì dùng từ mặc định.",
-            "CUSTOM LOGO: Thêm nút 'Đặt Logo' trong Kho Ảnh (Gallery). Giờ đây bạn có thể đổi biểu tượng Rồng mặc định thành bất kỳ ảnh nào bạn thích.",
             "WIKI DETAIL BOOST: Cải thiện logic lưu trữ Wiki, đảm bảo thông tin được ghi chép cực kỳ chi tiết (500 chữ) để phục vụ cốt truyện lâu dài."
         ]
     },
@@ -305,7 +304,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
   const [gallerySearch, setGallerySearch] = useState(''); // Tags or URL search
   const [inputTags, setInputTags] = useState('');
 
-  // Global Interface State (Background + Logo)
+  // Global Interface State (Background)
   const [showGlobalSettingsModal, setShowGlobalSettingsModal] = useState(false);
   const [globalBgUrl, setGlobalBgUrl] = useState(localStorage.getItem('td_global_bg_url') || '');
   const [globalBgType, setGlobalBgType] = useState<'image' | 'video'>(
@@ -1201,7 +1200,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           <button 
             onClick={() => setShowGlobalSettingsModal(true)}
             className="text-ink-500 hover:text-gold-400 p-2 rounded-full border border-transparent hover:border-gold-500/30 hover:bg-ink-900/50 transition-all"
-            title="Cài đặt Giao Diện (Logo & Background)"
+            title="Cài đặt Giao Diện (Background)"
           >
               <i className="fas fa-cog text-xl"></i>
           </button>
@@ -1241,7 +1240,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             <div className="absolute inset-0 bg-gradient-to-r from-gold-500/0 via-gold-500/5 to-gold-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
             <div className="flex items-center justify-center gap-4">
                <i className="fas fa-scroll text-gold-500/70 group-hover:text-gold-400 transition-colors text-lg"></i>
-               <span className="text-lg font-light text-parchment-200 group-hover:text-white tracking-widest font-serif uppercase">Khởi Tạo Thế Giới Mới</span>
+               <span className="text-lg font-light text-parchment-200 group-hover:text-white tracking-widest font-serif">Khởi Tạo Thế Giới Mới</span>
             </div>
           </button>
 
@@ -1254,7 +1253,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
              <div className="flex items-center justify-center gap-4">
                <i className="fas fa-book-journal-whills text-parchment-400 group-hover:text-parchment-200 transition-colors text-lg"></i>
                <div className="flex flex-col items-start">
-                   <span className="text-base font-light text-parchment-200 group-hover:text-white tracking-widest font-serif uppercase">Thư Viện Thiên Mệnh</span>
+                   <span className="text-base font-light text-parchment-200 group-hover:text-white tracking-widest font-serif">Thư Viện Thiên Mệnh</span>
                    <span className="text-[10px] text-ink-400 uppercase tracking-[0.2em] group-hover:text-parchment-400 transition-colors mt-1 font-sans">Tiếp tục hành trình ({sessions.length})</span>
                </div>
             </div>
@@ -1267,7 +1266,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               >
                 <div className="flex items-center justify-center gap-3">
                    <i className="fas fa-file-import text-parchment-400 group-hover:text-parchment-200 transition-colors text-sm"></i>
-                   <span className="text-xs font-light text-parchment-300 group-hover:text-white tracking-widest font-serif uppercase">Nhập Save</span>
+                   <span className="text-xs font-light text-parchment-300 group-hover:text-white tracking-widest font-serif">Nhập Save</span>
                 </div>
               </button>
 
@@ -1277,7 +1276,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               >
                 <div className="flex items-center justify-center gap-3">
                    <i className="fas fa-images text-parchment-400 group-hover:text-parchment-200 transition-colors text-sm"></i>
-                   <span className="text-xs font-light text-parchment-300 group-hover:text-white tracking-widest font-serif uppercase">Kho Ảnh</span>
+                   <span className="text-xs font-light text-parchment-300 group-hover:text-white tracking-widest font-serif">Kho Ảnh</span>
                 </div>
               </button>
           </div>

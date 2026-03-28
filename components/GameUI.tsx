@@ -271,8 +271,11 @@ const NarrativeDisplay: React.FC<{
 
   const parseText = (content: string) => {
     const parseFormatting = (text: string) => {
+        // Strip "Dialogue:" or "Dialogue :" (case insensitive)
+        let processedText = text.replace(/Dialogue\s*:\s*/gi, '');
+
         // Replace ".." with "..."
-        let processedText = text.replace(/\.\./g, '...');
+        processedText = processedText.replace(/\.\./g, '...');
         
         // Handle thoughts [thought] -> italicized and bracketed
         processedText = processedText.replace(/\[(.*?)\]/g, '<thought>[$1]</thought>');
@@ -286,12 +289,12 @@ const NarrativeDisplay: React.FC<{
         return parts.map((part, index) => {
             if (part.startsWith('<thought>') && part.endsWith('</thought>')) {
                 const innerText = part.slice(9, -10);
-                return <span key={index} className="italic text-spirit-300 drop-shadow-sm">{innerText}</span>;
+                return <span key={index} className="italic text-spirit-300 drop-shadow-sm font-medium">{innerText}</span>;
             }
             if (part.startsWith('<dialogue>') && part.endsWith('</dialogue>')) {
                 const innerText = part.slice(10, -11);
-                // Dialogue color: darker amber/parchment, slightly bolder (medium) and more opaque
-                return <span key={index} className="italic font-medium text-amber-200/90 drop-shadow-sm">{innerText}</span>;
+                // Dialogue color: more intense amber, medium font weight, italic
+                return <span key={index} className="italic font-medium text-amber-200 drop-shadow-md">{innerText}</span>;
             }
             if (part.startsWith('**') && part.endsWith('**')) {
                 const innerText = part.slice(2, -2);
@@ -299,8 +302,8 @@ const NarrativeDisplay: React.FC<{
             }
             if ((part.startsWith('*') && part.endsWith('*')) || (part.startsWith('_') && part.endsWith('_'))) {
                 const innerText = part.slice(1, -1);
-                // Dialogue color: darker amber/parchment, slightly bolder (medium) and more opaque
-                return <span key={index} className="italic font-medium text-amber-200/90 drop-shadow-sm">{innerText}</span>;
+                // Dialogue color: more intense amber, medium font weight, italic
+                return <span key={index} className="italic font-medium text-amber-200 drop-shadow-md">{innerText}</span>;
             }
             return part;
         });
