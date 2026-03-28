@@ -281,8 +281,8 @@ const NarrativeDisplay: React.FC<{
             }
             if ((part.startsWith('*') && part.endsWith('*')) || (part.startsWith('_') && part.endsWith('_'))) {
                 const innerText = part.slice(1, -1);
-                // Dialogue color: soft amber/parchment for a "gentle" feel
-                return <span key={index} className="italic text-amber-100/70 drop-shadow-sm">{innerText}</span>;
+                // Dialogue color: soft amber/parchment, slightly bolder (medium) and more opaque
+                return <span key={index} className="italic font-medium text-amber-100/90 drop-shadow-sm">{innerText}</span>;
             }
             return part;
         });
@@ -329,7 +329,7 @@ const NarrativeDisplay: React.FC<{
   const paragraphs = cleanText.split(/\n+/).map(p => p.trim()).filter(p => p);
   return (
     <div className={`prose-content text-justify ${fontSize || 'text-lg'} ${lineHeight || 'leading-loose'}`} style={style}>
-      {paragraphs.map((p, idx) => <p key={idx} className="mb-4 animate-fade-in drop-shadow-sm">{parseText(p)}</p>)}
+      {paragraphs.map((p, idx) => <p key={idx} className="mb-4 drop-shadow-sm">{parseText(p)}</p>)}
       
       {isLivingWorldEnabled && Array.isArray(worldEvents) && worldEvents.length > 0 && (
           <div className="mt-8 mb-4 bg-ink-950/60 border-l-4 border-arcane-500 rounded-r-lg shadow-lg relative overflow-hidden transition-all group">
