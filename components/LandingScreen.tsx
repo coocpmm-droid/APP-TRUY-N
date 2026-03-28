@@ -1274,11 +1274,21 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
         <div className="w-full max-w-lg space-y-4 animate-slide-up" style={{animationDelay: '0.2s'}}>
           <button 
             onClick={onNewGame}
-            className="group w-full relative py-4 px-6 bg-ink-900/60 hover:bg-gold-900/20 border border-gold-500/40 hover:border-gold-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-[0_0_20px_rgba(234,179,8,0.1)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)]"
+            className="group w-full relative py-4 px-6 bg-ink-950 hover:bg-ink-900 rounded-xl backdrop-blur-md transition-all duration-300 border border-gold-500/30 hover:border-gold-400 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-gold-500/0 via-gold-500/10 to-gold-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            <div className="flex items-center justify-center gap-4">
-               <i className="fas fa-scroll text-gold-400 group-hover:scale-110 transition-transform text-xl"></i>
+            {/* Viền Gradient tĩnh */}
+            <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-gold-500/50 via-arcane-400/50 to-gold-500/50 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+            
+            {/* Viền Gradient sáng lên khi hover */}
+            <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-gold-400 via-arcane-300 to-gold-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+            
+            {/* Luồng sáng chạy ngang khi hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-arcane-400/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
+
+            <div className="relative z-10 flex items-center justify-center gap-4">
+               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500/20 to-arcane-500/20 border border-gold-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                   <i className="fas fa-scroll text-gold-400 group-hover:text-gold-300 text-xl"></i>
+               </div>
                <span className="text-xl font-bold text-parchment-100 group-hover:text-white tracking-wide font-display">Khởi Tạo Thế Giới Mới</span>
             </div>
           </button>
@@ -1286,14 +1296,24 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           {/* CONTINUE / LIBRARY BUTTON */}
           <button 
             onClick={() => setShowLibrary(true)}
-            className="group w-full relative py-4 px-6 bg-ink-900/60 hover:bg-arcane-900/20 border border-arcane-500/30 hover:border-arcane-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+            className="group w-full relative py-4 px-6 bg-ink-950 hover:bg-ink-900 rounded-xl backdrop-blur-md transition-all duration-300 border border-arcane-500/30 hover:border-arcane-400 shadow-[0_0_15px_rgba(234,179,8,0.15)] hover:shadow-[0_0_25px_rgba(234,179,8,0.4)] overflow-hidden"
           >
-             <div className="absolute inset-0 bg-gradient-to-r from-arcane-500/0 via-arcane-500/10 to-arcane-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-             <div className="flex items-center justify-center gap-4">
-               <i className="fas fa-book-journal-whills text-arcane-400 group-hover:scale-110 transition-transform text-xl"></i>
+             {/* Viền Gradient tĩnh */}
+             <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-arcane-500/50 via-gold-400/50 to-arcane-500/50 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+             
+             {/* Viền Gradient sáng lên khi hover */}
+             <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-arcane-400 via-gold-300 to-arcane-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+             
+             {/* Luồng sáng chạy ngang khi hover */}
+             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-400/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
+
+             <div className="relative z-10 flex items-center justify-center gap-4">
+               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-arcane-500/20 to-gold-500/20 border border-arcane-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                   <i className="fas fa-book-journal-whills text-arcane-400 group-hover:text-arcane-300 text-xl"></i>
+               </div>
                <div className="flex flex-col items-start">
                    <span className="text-lg font-bold text-parchment-100 group-hover:text-white tracking-wide font-display">Thư Viện Thiên Mệnh</span>
-                   <span className="text-[10px] text-ink-400 uppercase tracking-widest group-hover:text-arcane-300 transition-colors">Tiếp tục hành trình ({sessions.length})</span>
+                   <span className="text-[10px] text-ink-400 uppercase tracking-widest group-hover:text-gold-300 transition-colors">Tiếp tục hành trình ({sessions.length})</span>
                </div>
             </div>
           </button>
@@ -1301,22 +1321,32 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           <div className="flex gap-2">
               <button 
                 onClick={handleLoadClick}
-                className="flex-1 group relative py-3 px-6 bg-ink-900/60 hover:bg-spirit-900/20 border border-spirit-500/30 hover:border-spirit-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+                className="flex-1 group relative py-3 px-6 bg-ink-950 hover:bg-ink-900 rounded-xl backdrop-blur-md transition-all duration-300 border border-gold-500/30 hover:border-gold-400 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-spirit-500/0 via-spirit-500/10 to-spirit-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <div className="flex items-center justify-center gap-2">
-                   <i className="fas fa-file-import text-spirit-400 group-hover:scale-110 transition-transform"></i>
+                {/* Viền Gradient tĩnh */}
+                <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-gold-500/40 via-arcane-400/40 to-gold-500/40 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+                
+                {/* Viền Gradient sáng lên khi hover */}
+                <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-gold-400 via-arcane-300 to-gold-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+
+                <div className="relative z-10 flex items-center justify-center gap-2">
+                   <i className="fas fa-file-import text-gold-400 group-hover:text-gold-300 group-hover:scale-110 transition-transform"></i>
                    <span className="text-xs font-bold text-parchment-300 group-hover:text-white tracking-wide">Nhập Save</span>
                 </div>
               </button>
 
               <button 
                 onClick={() => setShowGalleryModal(true)}
-                className="flex-1 group relative py-3 px-6 bg-ink-900/60 hover:bg-pink-900/20 border border-pink-500/30 hover:border-pink-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_20px_rgba(244,114,182,0.2)]"
+                className="flex-1 group relative py-3 px-6 bg-ink-950 hover:bg-ink-900 rounded-xl backdrop-blur-md transition-all duration-300 border border-arcane-500/30 hover:border-arcane-400 shadow-[0_0_10px_rgba(234,179,8,0.1)] hover:shadow-[0_0_20px_rgba(234,179,8,0.3)] overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-pink-500/10 to-pink-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <div className="flex items-center justify-center gap-2">
-                   <i className="fas fa-images text-pink-400 group-hover:scale-110 transition-transform"></i>
+                {/* Viền Gradient tĩnh */}
+                <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-arcane-500/40 via-gold-400/40 to-arcane-500/40 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+                
+                {/* Viền Gradient sáng lên khi hover */}
+                <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-arcane-400 via-gold-300 to-arcane-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] pointer-events-none"></div>
+
+                <div className="relative z-10 flex items-center justify-center gap-2">
+                   <i className="fas fa-images text-arcane-400 group-hover:text-arcane-300 group-hover:scale-110 transition-transform"></i>
                    <span className="text-xs font-bold text-parchment-300 group-hover:text-white tracking-wide">Kho Ảnh</span>
                 </div>
               </button>

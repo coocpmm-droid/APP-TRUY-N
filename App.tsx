@@ -308,10 +308,14 @@ function App() {
         const wiki = await db.encyclopedia.where('sessionId').equals(sessionId).toArray();
         
         // Identify what needs work (Local Embedding uses 384 dimensions)
-        const toMigrateTurns = turns.filter(t => t.embedding && t.embedding.length === 768);
+        const toMigrateTurns = turns.filter(t => t.role === 'model' && t.embedding && t.embedding.length === 768);
         const toMigrateWiki = wiki.filter(w => w.embedding && w.embedding.length === 768);
         
-        const toRecoverTurns = turns.filter(t => !t.embedding || (t.embedding.length !== 384 && t.embedding.length !== 768));
+        const toRecoverTurns = turns.filter(t => 
+            t.role === 'model' && 
+            (t.narrative || t.rawResponseJSON) && 
+            (!t.embedding || (t.embedding.length !== 384 && t.embedding.length !== 768))
+        );
         const toRecoverWiki = wiki.filter(w => !w.embedding || (w.embedding.length !== 384 && w.embedding.length !== 768));
 
         const totalItems = toMigrateTurns.length + toMigrateWiki.length + toRecoverTurns.length + toRecoverWiki.length;
