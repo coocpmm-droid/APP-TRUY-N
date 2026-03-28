@@ -811,18 +811,18 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
     <div className="min-h-screen bg-transparent text-parchment-100 font-serif flex flex-col selection:bg-gold-500/30 selection:text-gold-200">
       
       {/* HEADER - Keep existing */}
-      <header className="border-b border-white/5 bg-ink-950/80 backdrop-blur-md p-4 sticky top-0 z-30 shadow-2xl">
+      <header className="border-b border-white/10 bg-ink-900/60 backdrop-blur-xl p-4 sticky top-0 z-30 shadow-lg">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
-             <button onClick={onBack} className="text-ink-400 hover:text-white transition-colors">
+             <button onClick={onBack} className="text-parchment-400 hover:text-white transition-colors">
                 <i className="fas fa-arrow-left text-lg"></i>
              </button>
              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold-400 to-amber-600 flex items-center justify-center text-ink-950 shadow-[0_0_20px_rgba(234,179,8,0.4)] ring-2 ring-gold-500/20">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-ink-950 shadow-[0_0_15px_rgba(212,175,55,0.3)] ring-1 ring-gold-500/30">
                   <i className="fas fa-yin-yang fa-spin-slow text-lg"></i>
                 </div>
-                <h1 className="text-xl md:text-2xl font-display font-bold text-parchment-100 tracking-wide hidden md:block">
-                  Kiến Tạo <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 to-amber-500">Nhân Vật</span>
+                <h1 className="text-xl md:text-2xl font-serif font-light text-parchment-100 tracking-wide hidden md:block">
+                  Kiến Tạo <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 to-gold-500">Nhân Vật</span>
                 </h1>
              </div>
           </div>
@@ -830,7 +830,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
              <div className="flex gap-2">
                  <button 
                     onClick={handleSaveDraft} 
-                    className="text-xs text-ink-400 hover:text-jade-400 border border-ink-700 hover:border-jade-500/50 w-9 h-9 md:w-auto md:h-auto md:px-3 md:py-2 rounded-full transition-all flex items-center justify-center relative" 
+                    className="text-xs text-parchment-400 hover:text-jade-400 border border-white/10 hover:border-jade-500/50 w-9 h-9 md:w-auto md:h-auto md:px-3 md:py-2 rounded-full transition-all flex items-center justify-center relative bg-ink-900/40" 
                     title="Lưu Nháp Trình Duyệt (Save Local)"
                  >
                     {showSaveToast && (
@@ -844,7 +844,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
 
                  <button 
                     onClick={handleExportTemplate} 
-                    className="text-xs text-ink-400 hover:text-gold-400 border border-ink-700 hover:border-gold-500/50 w-9 h-9 md:w-auto md:h-auto md:px-3 md:py-2 rounded-full transition-all flex items-center justify-center" 
+                    className="text-xs text-parchment-400 hover:text-gold-400 border border-white/10 hover:border-gold-500/50 w-9 h-9 md:w-auto md:h-auto md:px-3 md:py-2 rounded-full transition-all flex items-center justify-center bg-ink-900/40" 
                     title="Xuất File Temp (.json)"
                  >
                     <i className="fas fa-file-export md:mr-1"></i> 
@@ -853,7 +853,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                  <input type="file" ref={importInputRef} onChange={handleImportFile} accept=".json" className="hidden" />
                  <button 
                     onClick={handleImportClick} 
-                    className="text-xs text-ink-400 hover:text-spirit-400 border border-ink-700 hover:border-spirit-500/50 w-9 h-9 md:w-auto md:h-auto md:px-3 md:py-2 rounded-full transition-all flex items-center justify-center" 
+                    className="text-xs text-parchment-400 hover:text-spirit-400 border border-white/10 hover:border-spirit-500/50 w-9 h-9 md:w-auto md:h-auto md:px-3 md:py-2 rounded-full transition-all flex items-center justify-center bg-ink-900/40" 
                     title="Nhập File Temp (.json)"
                  >
                     <i className="fas fa-file-import md:mr-1"></i> 
@@ -863,9 +863,9 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
 
              <button
                 onClick={handleStart}
-                className="group bg-gradient-to-r from-gold-600 to-amber-600 hover:from-gold-500 hover:to-amber-500 text-white font-bold py-2 px-6 rounded-full shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all transform hover:scale-105 flex items-center gap-2 border border-gold-400/50"
+                className="group bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-ink-950 font-medium py-2 px-6 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all transform hover:scale-105 flex items-center gap-2 border border-gold-400/50"
              >
-                <span className="text-sm tracking-wide">Bắt Đầu</span>
+                <span className="text-sm tracking-wide uppercase font-sans">Bắt Đầu</span>
                 <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
              </button>
           </div>
@@ -876,10 +876,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
         
         {/* SECTION 1: IDENTITY */}
         {/* ... (Giữ nguyên Section 1) ... */}
-        <section className="glass-panel rounded-2xl p-6 md:p-10 shadow-xl relative overflow-hidden border-t border-white/5">
+        <section className="glass-panel rounded-2xl p-6 md:p-10 shadow-2xl relative overflow-hidden border-t border-white/10">
            <div className="absolute top-0 right-0 p-40 bg-gold-500/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
            
-           <h2 className="text-xl font-display font-bold text-parchment-100 mb-8 border-b border-white/5 pb-4 flex items-center gap-3">
+           <h2 className="text-xl font-serif font-light text-parchment-100 mb-8 border-b border-white/10 pb-4 flex items-center gap-3 tracking-wide">
               <i className="fas fa-user-astronaut text-gold-400"></i>
               Hồ Sơ Luân Hồi
            </h2>
@@ -901,13 +901,13 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                             </div>
                          </div>
                          <div className="space-y-2">
-                            <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider">Tên File Save (Tùy chọn)</label>
+                            <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider">Tên File Save (Tùy chọn)</label>
                             <div className="relative">
                                 <input
                                 type="text"
                                 value={customTitle}
                                 onChange={(e) => setCustomTitle(e.target.value)}
-                                className="w-full bg-ink-950/40 border border-ink-700 rounded-lg pl-3 pr-3 py-3 text-parchment-100 focus:border-gold-500 focus:bg-ink-950/60 outline-none transition-all placeholder-ink-600 font-display shadow-inner"
+                                className="w-full bg-ink-900/40 border border-white/10 rounded-lg pl-3 pr-3 py-3 text-parchment-100 focus:border-gold-500 focus:bg-ink-900/60 outline-none transition-all placeholder-ink-600 font-serif shadow-inner"
                                 placeholder="Vd: Thế giới One Piece..."
                                 />
                             </div>
@@ -915,16 +915,16 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                      </div>
 
                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider">Giới Tính</label>
-                        <div className="flex bg-ink-950/40 p-1 rounded-lg border border-ink-700 shadow-inner">
+                        <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider">Giới Tính</label>
+                        <div className="flex bg-ink-900/40 p-1 rounded-lg border border-white/10 shadow-inner">
                           {['Nam', 'Nữ'].map((g) => (
                             <button
                               key={g}
                               onClick={() => setGender(g)}
                               className={`flex-1 py-2 rounded-md text-sm font-bold transition-all ${
                                 gender === g 
-                                  ? 'bg-ink-800 text-gold-400 shadow-sm border border-ink-600' 
-                                  : 'text-ink-600 hover:text-ink-300'
+                                  ? 'bg-ink-800/60 text-gold-400 shadow-sm border border-gold-500/30' 
+                                  : 'text-parchment-500 hover:text-parchment-300'
                               }`}
                             >
                               {g}
@@ -934,7 +934,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                      </div>
 
                      <div className="space-y-2">
-                         <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-1">Hình Nền / Video (Tùy chọn)</label>
+                         <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider block mb-1">Hình Nền / Video (Tùy chọn)</label>
                          <div className="flex gap-2">
                             <div className="flex-1 relative">
                                 <input 
@@ -942,12 +942,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                     placeholder="URL Ảnh/Video..." 
                                     value={backgroundImageUrl}
                                     onChange={(e) => setBackgroundImageUrl(e.target.value)}
-                                    className="w-full bg-ink-950 border border-ink-700 rounded-lg px-3 py-2 text-xs text-parchment-200 outline-none focus:border-gold-500 pr-12"
+                                    className="w-full bg-ink-900/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-parchment-200 outline-none focus:border-gold-500 pr-12 font-serif"
                                 />
                                 <div className="absolute right-0 top-0 h-full flex items-center pr-1">
                                     <button 
                                         onClick={() => setBackgroundType(prev => prev === 'image' ? 'video' : 'image')}
-                                        className={`text-[8px] font-bold px-1 py-0.5 rounded ${backgroundType === 'video' ? 'bg-crimson-500/20 text-crimson-400 border border-crimson-500/50' : 'bg-ink-800 text-ink-500 border border-ink-700'}`}
+                                        className={`text-[8px] font-bold px-1 py-0.5 rounded ${backgroundType === 'video' ? 'bg-crimson-500/20 text-crimson-400 border border-crimson-500/50' : 'bg-ink-800/60 text-parchment-500 border border-white/10'}`}
                                         title={backgroundType === 'video' ? "Đang chọn chế độ Video" : "Đang chọn chế độ Ảnh"}
                                     >
                                         {backgroundType === 'video' ? 'VID' : 'IMG'}
@@ -956,7 +956,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                             </div>
                             <button 
                                 onClick={handleBgClick}
-                                className="bg-ink-800 border border-ink-700 text-ink-400 px-3 rounded-lg hover:text-gold-400 hover:border-gold-500 transition-colors"
+                                className="bg-ink-800/60 border border-white/10 text-parchment-400 px-3 rounded-lg hover:text-gold-400 hover:border-gold-500 transition-colors"
                             >
                                 <i className="fas fa-upload text-xs"></i>
                             </button>
@@ -966,13 +966,13 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
 
                       {/* --- FONT SELECTION --- */}
                      <div className="space-y-2">
-                         <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-1">Font Chữ Hiển Thị</label>
+                         <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider block mb-1">Font Chữ Hiển Thị</label>
                          <div className="grid grid-cols-2 gap-2">
                              {FONTS.map(f => (
                                  <button 
                                      key={f.value} 
                                      onClick={() => setFontFamily(f.value)} 
-                                     className={`p-2 rounded-lg border text-xs text-left transition-all ${fontFamily === f.value ? 'bg-ink-800 border-gold-500 text-gold-400 shadow-sm' : 'bg-ink-950/40 border-ink-700 text-ink-400 hover:border-ink-500'} ${f.class}`} 
+                                     className={`p-2 rounded-lg border text-xs text-left transition-all ${fontFamily === f.value ? 'bg-ink-800/60 border-gold-500 text-gold-400 shadow-sm' : 'bg-ink-900/40 border-white/10 text-parchment-400 hover:border-parchment-500/30'} ${f.class}`} 
                                      style={{ fontFamily: f.value }}
                                  >
                                      {f.name}
@@ -983,16 +983,16 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
 
                       {/* --- MEMORY SELECTION --- */}
                      <div className="space-y-2 mt-2">
-                         <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-1">Cấu Hình AI</label>
+                         <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider block mb-1">Cấu Hình AI</label>
 
                          {/* SUPER MEMORY TOGGLE */}
-                         <div className={`mt-3 flex items-center justify-between p-3 rounded-lg border transition-all duration-300 ${memoryDepth === 'high' ? 'bg-jade-900/30 border-jade-500/50 shadow-[0_0_15px_rgba(34,197,94,0.15)]' : 'bg-ink-950/40 border-ink-700'}`}>
+                         <div className={`mt-3 flex items-center justify-between p-3 rounded-lg border transition-all duration-300 ${memoryDepth === 'high' ? 'bg-jade-900/20 border-jade-500/50 shadow-[0_0_15px_rgba(34,197,94,0.1)]' : 'bg-ink-900/40 border-white/10'}`}>
                              <div>
                                  <div className={`text-xs font-bold flex items-center gap-2 transition-colors ${memoryDepth === 'high' ? 'text-jade-400' : 'text-parchment-200'}`}>
                                      <i className="fas fa-microchip"></i> 
                                      SIÊU TRÍ NHỚ (SUPER MEMORY)
                                  </div>
-                                 <div className="text-[9px] text-ink-500 mt-1 leading-relaxed">
+                                 <div className="text-[9px] text-parchment-500 mt-1 leading-relaxed">
                                      {memoryDepth === 'high' 
                                         ? "AI sẽ nhớ lại chi tiết từ quá khứ rất xa (tăng độ chính xác & nhất quán)." 
                                         : "Chế độ tiêu chuẩn. AI chỉ nhớ các sự kiện gần đây."}
@@ -1000,7 +1000,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                              </div>
                              <button
                                  onClick={() => setMemoryDepth(prev => prev === 'standard' ? 'high' : 'standard')}
-                                 className={`w-10 h-5 rounded-full relative transition-colors ${memoryDepth === 'high' ? 'bg-jade-500' : 'bg-ink-700'}`}
+                                 className={`w-10 h-5 rounded-full relative transition-colors ${memoryDepth === 'high' ? 'bg-jade-500' : 'bg-ink-700/60'}`}
                              >
                                  <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-transform ${memoryDepth === 'high' ? 'translate-x-5' : 'translate-x-0.5'}`}></div>
                              </button>
@@ -1012,20 +1012,20 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                  {/* ... (rest of the file remains similar) */}
                  <div className="space-y-6">
                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider flex justify-between">
+                        <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider flex justify-between">
                             <span>Thế Giới Khởi Đầu / Thể Loại</span>
-                            <span className="text-[8px] italic text-ink-500">Cuộn để xem thêm</span>
+                            <span className="text-[8px] italic text-parchment-500">Cuộn để xem thêm</span>
                         </label>
                         {/* Compact Scrollable List */}
-                        <div className="flex overflow-x-auto gap-2.5 pb-2 scrollbar-thin scrollbar-thumb-ink-700 scrollbar-track-transparent">
+                        <div className="flex overflow-x-auto gap-2.5 pb-2 scrollbar-thin scrollbar-thumb-ink-700/60 scrollbar-track-transparent">
                           {Object.values(GameGenre).map(g => (
                              <button
                                key={g}
                                onClick={() => handleGenreChange(g)}
                                className={`px-4 py-2 rounded-lg text-[11px] font-bold border transition-all whitespace-nowrap flex-shrink-0 ${
                                  genre === g && !isCustomGenre
-                                 ? 'border-gold-500/50 bg-gold-500/10 text-gold-300 shadow-[0_0_15px_rgba(234,179,8,0.1)]' 
-                                 : 'border-ink-800 bg-ink-950/40 text-ink-500 hover:border-ink-600 hover:text-ink-300'
+                                 ? 'border-gold-500/50 bg-gold-500/10 text-gold-300 shadow-[0_0_15px_rgba(212,175,55,0.15)]' 
+                                 : 'border-white/5 bg-ink-900/40 text-parchment-500 hover:border-white/20 hover:text-parchment-300'
                                }`}
                              >
                                {g}
@@ -1037,7 +1037,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                className={`px-4 py-2 rounded-lg text-[11px] font-bold border transition-all whitespace-nowrap flex-shrink-0 flex items-center gap-2 ${
                                  isCustomGenre
                                  ? 'border-arcane-500/50 bg-arcane-500/10 text-arcane-300 shadow-[0_0_15px_rgba(168,85,247,0.1)]' 
-                                 : 'border-ink-800 bg-ink-950/40 text-ink-500 hover:border-arcane-600 hover:text-arcane-300'
+                                 : 'border-white/5 bg-ink-900/40 text-parchment-500 hover:border-arcane-600/50 hover:text-arcane-300'
                                }`}
                              >
                                <i className="fas fa-edit"></i> Tùy Chỉnh
@@ -1052,10 +1052,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                     value={customGenreName}
                                     onChange={(e) => setCustomGenreName(e.target.value)}
                                     placeholder="Nhập tên thể loại mong muốn... (Vd: Cyberpunk x Tu Tiên, Harry Potter...)"
-                                    className="w-full bg-ink-950/40 border border-arcane-500/50 rounded-lg px-4 py-2 text-sm text-parchment-100 focus:bg-ink-950/60 outline-none placeholder-ink-600 font-serif"
+                                    className="w-full bg-ink-900/40 border border-arcane-500/50 rounded-lg px-4 py-2 text-sm text-parchment-100 focus:bg-ink-900/60 outline-none placeholder-ink-600 font-serif"
                                     autoFocus
                                  />
-                                 <p className="text-[9px] text-ink-500 mt-1 italic">
+                                 <p className="text-[9px] text-parchment-500 mt-1 italic">
                                      *Hệ thống dữ liệu (Căn cơ, Thiên phú) sẽ dựa trên Preset: <span className="text-gold-500 font-bold">{genre}</span>. Hãy chọn Preset gần giống nhất trước khi Tùy Chỉnh.
                                  </p>
                              </div>
@@ -1064,8 +1064,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                      
                      {/* COMPACT WRITING STYLE SELECTION */}
                      <div className="space-y-2">
-                         <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider">Phong Cách Viết</label>
-                         <div className="flex bg-ink-950/40 p-1 rounded-lg border border-ink-700 shadow-inner">
+                         <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider">Phong Cách Viết</label>
+                         <div className="flex bg-ink-900/40 p-1 rounded-lg border border-white/10 shadow-inner">
                              {[
                                  { id: 'convert', label: 'Convert (Hán Việt)' },
                                  { id: 'smooth', label: 'Văn Dịch' },
@@ -1076,8 +1076,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                      onClick={() => setWritingStyle(s.id as WritingStyle)}
                                      className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${
                                          writingStyle === s.id 
-                                         ? 'bg-ink-800 text-gold-400 shadow-sm border border-ink-600' 
-                                         : 'text-ink-600 hover:text-ink-300'
+                                         ? 'bg-ink-800/60 text-gold-400 shadow-sm border border-gold-500/30' 
+                                         : 'text-parchment-500 hover:text-parchment-300'
                                      }`}
                                  >
                                      {s.label}
@@ -1088,17 +1088,17 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
 
                      {/* PRONOUN RULES TOGGLE */}
                      <div className="space-y-2">
-                         <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider flex justify-between items-center">
+                         <label className="text-[10px] font-bold text-parchment-500 uppercase tracking-wider flex justify-between items-center">
                              <span>Thống Nhất Xưng Hô (AI Tự Động)</span>
                          </label>
-                         <div className="flex items-center justify-between bg-ink-950/40 p-3 rounded-lg border border-ink-700">
-                             <div className="text-xs text-ink-400 italic">
+                         <div className="flex items-center justify-between bg-ink-900/40 p-3 rounded-lg border border-white/10">
+                             <div className="text-xs text-parchment-400 italic">
                                  {autoPronouns ? "AI sẽ tự xác định xưng hô dựa trên ngữ cảnh và quan hệ." : "Sử dụng xưng hô mặc định của hệ thống."}
                              </div>
                              <button 
                                  onClick={() => setAutoPronouns(!autoPronouns)}
                                  className={`w-12 h-6 rounded-full border transition-all relative flex-shrink-0 ${
-                                     autoPronouns ? 'bg-gold-600 border-gold-400' : 'bg-ink-900 border-ink-600'
+                                     autoPronouns ? 'bg-gold-600 border-gold-400' : 'bg-ink-900 border-white/20'
                                  }`}
                              >
                                  <div className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-all ${
@@ -1110,27 +1110,27 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                  </div>
 
                  {/* NSFW Toggle (Full Width) */}
-                 <div className="md:col-span-2 pt-4 border-t border-white/5">
+                 <div className="md:col-span-2 pt-4 border-t border-white/10">
                      <div className="flex items-center justify-between">
                         <div className="flex flex-col">
                             <span className="text-sm font-bold text-crimson-400 flex items-center gap-2">
                                 <i className="fas fa-exclamation-triangle"></i>
                                 Chế độ 18+ (NSFW)
                             </span>
-                            <span className="text-[10px] text-ink-500">Bật nội dung người lớn, ngôn từ thô tục và cảnh nóng.</span>
+                            <span className="text-[10px] text-parchment-500">Bật nội dung người lớn, ngôn từ thô tục và cảnh nóng.</span>
                         </div>
                         <button
                             onClick={() => setIsNSFW(!isNSFW)}
                             className={`w-14 h-8 rounded-full border transition-all relative ${
                                 isNSFW 
                                 ? 'bg-crimson-900 border-crimson-500' 
-                                : 'bg-ink-950 border-ink-700'
+                                : 'bg-ink-900 border-white/20'
                             }`}
                         >
                             <div className={`w-6 h-6 rounded-full absolute top-1 transition-all ${
                                 isNSFW 
                                 ? 'left-7 bg-crimson-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]' 
-                                : 'left-1 bg-ink-600'
+                                : 'left-1 bg-ink-600/60'
                             }`}></div>
                         </button>
                      </div>
@@ -1145,7 +1145,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                      className={`py-2 px-3 rounded text-xs font-bold transition-all flex items-center justify-center gap-2 border ${
                                          nsfwIntensity === 'soft' 
                                          ? 'bg-crimson-500/20 text-crimson-200 border-crimson-500/50' 
-                                         : 'bg-ink-900/50 text-ink-500 border-transparent hover:text-crimson-300'
+                                         : 'bg-ink-900/40 text-parchment-500 border-transparent hover:text-crimson-300'
                                      }`}
                                  >
                                      <i className="fas fa-feather-alt"></i> Vừa phải (Romantic)
@@ -1155,7 +1155,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                      className={`py-2 px-3 rounded text-xs font-bold transition-all flex items-center justify-center gap-2 border ${
                                          nsfwIntensity === 'extreme' 
                                          ? 'bg-crimson-600 text-white border-crimson-400 shadow-[0_0_10px_rgba(220,38,38,0.4)]' 
-                                         : 'bg-ink-900/50 text-ink-500 border-transparent hover:text-crimson-300'
+                                         : 'bg-ink-900/40 text-parchment-500 border-transparent hover:text-crimson-300'
                                      }`}
                                  >
                                      <i className="fas fa-fire"></i> Cực hạn (Hardcore)
@@ -1182,7 +1182,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                                     cursor-pointer p-2 rounded border text-xs font-bold flex items-center justify-center gap-2 transition-all
                                                     ${nsfwFocus.includes(item.id as NSFWFocus) 
                                                         ? 'bg-crimson-500/30 border-crimson-400 text-crimson-100' 
-                                                        : 'bg-ink-900/50 border-ink-800 text-ink-500 hover:text-crimson-300'}
+                                                        : 'bg-ink-900/40 border-white/5 text-parchment-500 hover:text-crimson-300'}
                                                 `}
                                             >
                                                 <i className={`fas ${item.icon}`}></i>
@@ -1190,7 +1190,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="mt-2 text-[10px] text-ink-500 italic text-center">
+                                    <div className="mt-2 text-[10px] text-parchment-500 italic text-center">
                                        *Chọn "Giữ Đúng Tính Cách" để AI không biến nhân vật thành bạo dâm/tàn nhẫn vô lý.
                                     </div>
                                 </div>
@@ -1210,9 +1210,9 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
         {/* SECTION 2 & 3 (Attributes & World - Same as before) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-4 space-y-6">
-               <div className="glass-panel rounded-2xl p-6 shadow-xl sticky top-24 border-t border-white/5">
-                  <div className="flex justify-between items-center mb-6 pb-4 border-b border-white/5">
-                     <h2 className="text-lg font-display font-bold text-parchment-200">
+               <div className="glass-panel rounded-2xl p-6 shadow-2xl sticky top-24 border-t border-white/10">
+                  <div className="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+                     <h2 className="text-lg font-serif font-light text-parchment-200 tracking-wide">
                         Thiên Phú & Tính Cách
                      </h2>
                      <div className="flex gap-2">
@@ -1231,19 +1231,19 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                      {/* Personality Card */}
                      <div className={`
                         p-6 rounded-xl border relative overflow-hidden group transition-all shadow-lg
-                        bg-gradient-to-br from-ink-900 to-ink-950 border-ink-800 hover:border-crimson-500/40
+                        bg-ink-900/40 border-white/5 hover:border-crimson-500/40
                      `}>
-                        <div className="text-[9px] text-ink-500 uppercase tracking-widest mb-2 font-bold">Tính Cách</div>
+                        <div className="text-[9px] text-parchment-500 uppercase tracking-widest mb-2 font-bold">Tính Cách</div>
                         
                         {isEditingAttributes ? (
                              <input 
                                value={currentPersonality}
                                onChange={(e) => setCurrentPersonality(e.target.value)}
-                               className="w-full bg-ink-950/50 border border-ink-700 rounded p-2 text-center font-bold font-display text-lg text-crimson-400 focus:border-crimson-500 outline-none placeholder-ink-700 relative z-20"
+                               className="w-full bg-ink-900/30 border border-white/10 rounded p-2 text-center font-bold font-serif text-lg text-crimson-400 focus:border-crimson-500 outline-none placeholder-ink-700 relative z-20"
                                placeholder="Nhập tính cách..."
                             />
                         ) : (
-                            <div className="text-lg font-bold font-display text-crimson-400 transition-all leading-tight">
+                            <div className="text-lg font-bold font-serif text-crimson-400 transition-all leading-tight">
                                {currentPersonality}
                             </div>
                         )}
@@ -1252,25 +1252,25 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                      {/* Talents Card */}
                      <div className={`
                         p-6 rounded-xl border relative overflow-hidden group transition-all shadow-lg
-                        bg-gradient-to-br from-ink-900 to-ink-950 border-ink-800 hover:border-arcane-500/40
+                        bg-ink-900/40 border-white/5 hover:border-arcane-500/40
                      `}>
                         <div className="absolute top-0 right-0 p-2 opacity-5 group-hover:opacity-10 transition-opacity">
                             <i className="fas fa-star text-6xl text-arcane-500"></i>
                         </div>
 
-                        <div className="text-[9px] text-ink-500 uppercase tracking-widest mb-4 font-bold">{currentData.talentLabel}</div>
+                        <div className="text-[9px] text-parchment-500 uppercase tracking-widest mb-4 font-bold">{currentData.talentLabel}</div>
                         
                         {isEditingAttributes ? (
                              <textarea 
                                value={currentTalents.join(", ")}
                                onChange={(e) => setCurrentTalents(e.target.value.split(",").map(t => t.trim()))}
-                               className="w-full h-24 bg-ink-950/50 border border-ink-700 rounded p-2 text-sm text-arcane-300 focus:border-arcane-500 outline-none placeholder-ink-700 resize-none relative z-20 font-medium leading-relaxed"
+                               className="w-full h-24 bg-ink-900/30 border border-white/10 rounded p-2 text-sm text-arcane-300 focus:border-arcane-500 outline-none placeholder-ink-700 resize-none relative z-20 font-medium leading-relaxed font-serif"
                                placeholder="Nhập các thiên phú, cách nhau bởi dấu phẩy..."
                             />
                         ) : (
                             <div className="flex flex-wrap gap-2">
                                {currentTalents.map((t, i) => (
-                                  <span key={i} className="text-[10px] px-2.5 py-1.5 bg-ink-950 border border-ink-700 rounded text-arcane-300 font-medium">
+                                  <span key={i} className="text-[10px] px-2.5 py-1.5 bg-ink-900/60 border border-white/10 rounded text-arcane-300 font-medium">
                                      {t}
                                   </span>
                                ))}
@@ -1282,16 +1282,16 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
             </div>
 
             <div className="lg:col-span-8 space-y-6">
-               <div className="glass-panel rounded-2xl p-6 shadow-xl border-t border-white/5">
-                   <div className="mb-6 pb-4 border-b border-white/5">
-                       <h2 className="text-xl font-display font-bold text-parchment-200">
+               <div className="glass-panel rounded-2xl p-6 shadow-2xl border-t border-white/10">
+                   <div className="mb-6 pb-4 border-b border-white/10">
+                       <h2 className="text-xl font-serif font-light text-parchment-200 tracking-wide">
                           <i className="fas fa-globe-asia text-gold-500 mr-3"></i> Kiến Tạo Thế Giới
                        </h2>
-                       <p className="text-xs text-ink-500 mt-1 pl-8">Thiết lập bối cảnh cho hành trình của bạn.</p>
+                       <p className="text-xs text-parchment-500 mt-1 pl-8">Thiết lập bối cảnh cho hành trình của bạn.</p>
                    </div>
 
                    {/* NEW: DEEP TRAINING MODULE */}
-                   <div className="bg-ink-950/60 border border-arcane-500/30 rounded-xl p-5 mb-8 relative overflow-hidden group shadow-lg">
+                   <div className="bg-ink-900/40 border border-arcane-500/20 rounded-xl p-5 mb-8 relative overflow-hidden group shadow-lg">
                       <div className="absolute top-0 right-0 p-20 bg-arcane-500/5 rounded-full blur-2xl pointer-events-none"></div>
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-arcane-400 to-spirit-400"></div>
                       
@@ -1300,19 +1300,19 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                               <h3 className="text-sm font-bold text-arcane-300 uppercase tracking-widest flex items-center gap-2">
                                   <i className="fas fa-brain animate-pulse"></i> Module Train AI Chuyên Sâu
                               </h3>
-                              <p className="text-[10px] text-ink-400 mt-1 max-w-md">
+                              <p className="text-[10px] text-parchment-400 mt-1 max-w-md">
                                   Nạp dữ liệu văn bản lớn (Lore, Truyện mẫu, Bối cảnh chi tiết...) để AI học theo phong cách viết và ghi nhớ thông tin thế giới.
                               </p>
                           </div>
                           
                           {settings.referenceContext && (
-                              <span className="bg-arcane-500/20 text-arcane-300 px-2 py-1 rounded text-[9px] font-bold border border-arcane-500/30 flex items-center gap-1">
+                              <span className="bg-arcane-500/10 text-arcane-300 px-2 py-1 rounded text-[9px] font-bold border border-arcane-500/20 flex items-center gap-1">
                                   <i className="fas fa-check-circle"></i> Đã Nạp
                               </span>
                           )}
                       </div>
 
-                      <div className="bg-ink-900/50 rounded-lg p-3 border border-white/5 flex flex-col gap-3">
+                      <div className="bg-ink-900/30 rounded-lg p-3 border border-white/5 flex flex-col gap-3">
                           <div className="flex items-center gap-3">
                              <input 
                                 type="file" 
@@ -1323,7 +1323,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                              />
                              <button 
                                 onClick={() => refFileInputRef.current?.click()}
-                                className="bg-arcane-900/50 hover:bg-arcane-800 text-arcane-200 px-4 py-2 rounded border border-arcane-700 hover:border-arcane-500 font-bold transition-all flex items-center gap-2 text-xs shadow-md group-hover:shadow-arcane-500/10"
+                                className="bg-arcane-900/30 hover:bg-arcane-800/50 text-arcane-200 px-4 py-2 rounded border border-arcane-700/50 hover:border-arcane-500/50 font-bold transition-all flex items-center gap-2 text-xs shadow-md group-hover:shadow-arcane-500/10"
                              >
                                 <i className="fas fa-file-upload"></i>
                                 {settings.referenceContext ? "Chọn File Khác" : "Tải File .txt (Max 60k ký tự)"}
@@ -1337,13 +1337,13 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                           </div>
 
                           {/* Data Usage Bar */}
-                          <div className="w-full bg-ink-800 rounded-full h-1.5 mt-1 overflow-hidden relative">
+                          <div className="w-full bg-ink-800/50 rounded-full h-1.5 mt-1 overflow-hidden relative">
                               <div 
                                   className={`h-full transition-all duration-500 ${trainingDataSize > 50000 ? 'bg-crimson-500' : 'bg-arcane-500'}`} 
                                   style={{ width: `${Math.min((trainingDataSize / 60000) * 100, 100)}%` }}
                               ></div>
                           </div>
-                          <div className="flex justify-between text-[8px] text-ink-500 font-bold uppercase tracking-wider">
+                          <div className="flex justify-between text-[8px] text-parchment-500 font-bold uppercase tracking-wider">
                               <span>Dữ liệu: {trainingDataSize.toLocaleString()} / 60,000 ký tự</span>
                               <span>{trainingDataSize > 0 ? "Sẵn sàng train" : "Chưa có dữ liệu"}</span>
                           </div>
@@ -1351,7 +1351,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                    </div>
                    
                    {/* NEW: Work Title Assist */}
-                   <div className="bg-ink-950/40 border border-spirit-500/30 rounded-xl p-5 mb-8 relative overflow-hidden">
+                   <div className="bg-ink-900/30 border border-spirit-500/20 rounded-xl p-5 mb-8 relative overflow-hidden">
                       <div className="absolute top-0 left-0 w-1 h-full bg-spirit-500/50"></div>
                       <label className="block text-[10px] font-bold text-spirit-400 uppercase tracking-wider mb-3">
                          <i className="fas fa-film mr-2"></i> Nhập Tên Tác Phẩm / Anime / Game (+ Ý tưởng)
@@ -1363,12 +1363,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                             onChange={(e) => setWorkTitlePrompt(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleWorkTitleAssist()}
                             placeholder="Vd: Naruto (Main là thành viên Akatsuki), Harry Potter, One Piece..."
-                            className="flex-1 bg-ink-900/80 border border-ink-700 rounded-lg px-4 py-2 text-sm focus:border-spirit-500/50 outline-none text-parchment-200 placeholder-ink-600 transition-colors font-serif shadow-inner"
+                            className="flex-1 bg-ink-900/40 border border-white/10 rounded-lg px-4 py-2 text-sm focus:border-spirit-500/50 outline-none text-parchment-200 placeholder-ink-600 transition-colors font-serif shadow-inner"
                          />
                          <button 
                             onClick={handleWorkTitleAssist}
                             disabled={loadingField === 'workTitle'}
-                            className="bg-ink-800 hover:bg-spirit-900/30 text-parchment-200 px-5 rounded-lg border border-ink-700 font-bold transition-colors disabled:opacity-50 min-w-[100px] flex items-center justify-center gap-2"
+                            className="bg-ink-800/50 hover:bg-spirit-900/30 text-parchment-200 px-5 rounded-lg border border-white/10 font-bold transition-colors disabled:opacity-50 min-w-[100px] flex items-center justify-center gap-2"
                          >
                             {loadingField === 'workTitle' ? <i className="fas fa-spinner fa-spin text-spirit-400"></i> : <i className="fas fa-robot text-spirit-400"></i>}
                             <span className="hidden md:inline text-xs">AI Tái Hiện</span>
@@ -1389,7 +1389,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
 
                        {renderWorldField('openingStory', 'Cốt Truyện Khởi Đầu', 'Mô tả cụ thể hoàn cảnh bắt đầu của nhân vật (Ví dụ: Tỉnh dậy trong một ngôi miếu hoang...)', 
                            <div className="flex flex-wrap items-center gap-2 mt-2">
-                               <span className="text-[10px] font-bold text-ink-500 uppercase mr-2">Độ dài mở đầu:</span>
+                               <span className="text-[10px] font-bold text-parchment-500 uppercase mr-2">Độ dài mở đầu:</span>
                                {[
                                    { val: 0, label: 'Mặc định' },
                                    { val: 400, label: '400 chữ' },
@@ -1401,8 +1401,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                        onClick={() => setOpeningLength(opt.val)}
                                        className={`text-[9px] px-2 py-1 rounded border transition-all font-bold ${
                                            openingLength === opt.val 
-                                           ? 'bg-gold-500 text-black border-gold-500' 
-                                           : 'bg-ink-900 text-ink-400 border-ink-700 hover:text-gold-400'
+                                           ? 'bg-gold-500 text-ink-950 border-gold-500' 
+                                           : 'bg-ink-900/40 text-parchment-400 border-white/10 hover:text-gold-400'
                                        }`}
                                    >
                                        {opt.label}
@@ -1418,29 +1418,29 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
 
 
                    {/* --- NEW SECTION: AUTO CODEX TOGGLE ONLY --- */}
-                   <div className="mt-8 pt-6 border-t border-white/5 space-y-4">
-                        <div className="bg-ink-900/30 border border-ink-700/50 rounded-xl p-5 flex items-center justify-between">
+                   <div className="mt-8 pt-6 border-t border-white/10 space-y-4">
+                        <div className="bg-ink-900/30 border border-white/10 rounded-xl p-5 flex items-center justify-between shadow-inner">
                             <div>
                                 <div className="text-sm font-bold text-parchment-200 flex items-center gap-2">
                                     <i className="fas fa-book-open text-gold-500"></i> Tự động ghi Wiki (Auto Codex)
                                 </div>
-                                <div className="text-[10px] text-ink-500 mt-1">
+                                <div className="text-[10px] text-parchment-500 mt-1">
                                     Hệ thống sẽ tự động phát hiện NPC/Địa danh mới và lưu vào Bách khoa toàn thư.
                                 </div>
                             </div>
                             <button
                                 onClick={() => setAutoCodex(!autoCodex)}
-                                className={`w-12 h-6 rounded-full relative transition-colors ${autoCodex ? 'bg-gold-500' : 'bg-ink-700'}`}
+                                className={`w-12 h-6 rounded-full relative transition-colors ${autoCodex ? 'bg-gold-500' : 'bg-ink-700/60'}`}
                             >
                                 <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${autoCodex ? 'translate-x-7' : 'translate-x-1'}`}></div>
                             </button>
                         </div>
 
-                        <div className="bg-ink-900/30 border border-ink-700/50 rounded-xl p-5">
+                        <div className="bg-ink-900/30 border border-white/10 rounded-xl p-5 shadow-inner">
                             <div className="text-sm font-bold text-parchment-200 flex items-center gap-2 mb-2">
                                 <i className="fas fa-comments text-gold-500"></i> Quy Tắc Xưng Hô
                             </div>
-                            <div className="text-[10px] text-ink-500 mb-3">
+                            <div className="text-[10px] text-parchment-500 mb-3">
                                 Tùy chỉnh cách nhân vật xưng hô (Ví dụ: Tu tiên: Tại hạ/Đạo hữu, Anime: Cậu/Tớ, Cổ trang: Tại hạ/Cô nương...). Để trống để AI tự quyết định.
                             </div>
                             <textarea
@@ -1450,13 +1450,13 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                                     setSettings({...settings, customPronouns: e.target.value} as any);
                                 }}
                                 placeholder="Nhập quy tắc xưng hô tùy chỉnh..."
-                                className="w-full bg-ink-900/50 border border-ink-800 rounded-lg p-3 text-sm text-parchment-200 focus:outline-none focus:border-gold-500/50 min-h-[80px]"
+                                className="w-full bg-ink-900/40 border border-white/10 rounded-lg p-3 text-sm text-parchment-200 focus:outline-none focus:border-gold-500/50 min-h-[80px] font-serif"
                             />
                             <div className="flex items-center gap-2 mt-3 cursor-pointer" onClick={() => setAutoPronouns(!autoPronouns)}>
-                                <div className={`w-4 h-4 rounded border flex items-center justify-center ${autoPronouns ? 'bg-gold-500 border-gold-500' : 'border-ink-600'}`}>
-                                    {autoPronouns && <i className="fas fa-check text-black text-[10px]"></i>}
+                                <div className={`w-4 h-4 rounded border flex items-center justify-center ${autoPronouns ? 'bg-gold-500 border-gold-500' : 'border-white/20'}`}>
+                                    {autoPronouns && <i className="fas fa-check text-ink-950 text-[10px]"></i>}
                                 </div>
-                                <span className="text-xs text-ink-400">Để AI tự động quyết định xưng hô (Khuyên dùng)</span>
+                                <span className="text-xs text-parchment-400">Để AI tự động quyết định xưng hô (Khuyên dùng)</span>
                             </div>
                         </div>
                    </div>

@@ -860,30 +860,32 @@ function App() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-md flex items-center justify-center p-6"
           >
-            <div className="max-w-md w-full bg-zinc-900 border border-indigo-500/30 p-8 rounded-3xl shadow-2xl text-center">
-              <div className="w-20 h-20 bg-indigo-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-indigo-400">
+            <div className="max-w-md w-full bg-ink-900 border border-gold-500/30 p-8 rounded-2xl shadow-2xl text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(212,175,55,0.1)_0%,_transparent_70%)] pointer-events-none"></div>
+              
+              <div className="w-20 h-20 bg-gold-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-gold-400 border border-gold-500/20 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
                 <RefreshCw className="w-10 h-10 animate-spin" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Đang tải "Bộ Não" AI</h2>
-              <p className="text-zinc-400 text-sm mb-8">
+              <h2 className="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-gold-600 mb-2">Đang tải "Bộ Não" AI</h2>
+              <p className="text-parchment-400 text-sm mb-8 leading-relaxed">
                 Hệ thống đang tải mô hình ngôn ngữ cục bộ để giúp nhân vật có trí nhớ lâu dài. 
                 Quá trình này chỉ diễn ra một lần duy nhất.
               </p>
               
-              <div className="space-y-4">
+              <div className="space-y-4 relative z-10">
                 <div className="flex justify-between text-xs font-bold uppercase tracking-widest">
-                  <span className="text-indigo-400">{modelLoadingStatus}</span>
-                  <span className="text-white">{Math.round(totalModelProgress)}%</span>
+                  <span className="text-gold-400">{modelLoadingStatus}</span>
+                  <span className="text-parchment-200">{Math.round(totalModelProgress)}%</span>
                 </div>
-                <div className="w-full h-3 bg-zinc-800 rounded-full overflow-hidden border border-white/5">
+                <div className="w-full h-3 bg-ink-950 rounded-full overflow-hidden border border-white/10 shadow-inner">
                   <motion.div 
-                    className="h-full bg-gradient-to-r from-indigo-600 to-violet-500"
+                    className="h-full bg-gradient-to-r from-gold-600 via-gold-500 to-yellow-400 shadow-[0_0_10px_rgba(212,175,55,0.5)]"
                     initial={{ width: 0 }}
                     animate={{ width: `${totalModelProgress}%` }}
                     transition={{ duration: 0.3 }}
                   />
                 </div>
-                <p className="text-[10px] text-zinc-500 italic">
+                <p className="text-[10px] text-ink-500 italic uppercase tracking-wider">
                   Dung lượng khoảng 50MB. Vui lòng không đóng trình duyệt.
                 </p>
               </div>
@@ -896,15 +898,15 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-[100] bg-zinc-900/95 border border-indigo-500/30 p-5 rounded-2xl shadow-2xl backdrop-blur-xl w-80 shadow-indigo-500/10"
+            className="fixed bottom-6 right-6 z-[100] bg-ink-900/95 border border-gold-500/30 p-5 rounded-2xl shadow-2xl backdrop-blur-xl w-80 shadow-gold-900/20"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+              <div className="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 shadow-[0_0_10px_rgba(212,175,55,0.1)]">
                 <RefreshCw className="w-6 h-6 animate-spin" />
               </div>
               <div className="flex-1">
-                <h3 className="text-sm font-bold text-white tracking-tight">Hệ Thống Siêu Trí Nhớ</h3>
-                <p className="text-[10px] text-indigo-400/80 uppercase font-bold tracking-widest mt-0.5">
+                <h3 className="text-sm font-display font-bold text-gold-400 tracking-tight">Hệ Thống Siêu Trí Nhớ</h3>
+                <p className="text-[10px] text-parchment-400 uppercase font-bold tracking-widest mt-0.5">
                   {memoryStatus}
                 </p>
               </div>
@@ -912,14 +914,14 @@ function App() {
             
             <div className="space-y-2.5">
               <div className="flex justify-between items-end">
-                <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Tiến trình xử lý</span>
-                <span className="text-xs font-mono text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/20">
+                <span className="text-[10px] text-ink-500 font-bold uppercase tracking-wider">Tiến trình xử lý</span>
+                <span className="text-xs font-mono text-gold-300 bg-gold-500/10 px-2 py-0.5 rounded-md border border-gold-500/20">
                   {memoryProgress} / {memoryTotal}
                 </span>
               </div>
-              <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+              <div className="h-2 w-full bg-ink-950 rounded-full overflow-hidden border border-white/10 shadow-inner">
                 <motion.div 
-                  className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                  className="h-full bg-gradient-to-r from-gold-600 via-gold-500 to-yellow-400 shadow-[0_0_10px_rgba(212,175,55,0.5)]"
                   initial={{ width: 0 }}
                   animate={{ width: `${Math.max(5, (memoryProgress / memoryTotal) * 100)}%` }}
                   transition={{ type: "spring", bounce: 0, duration: 0.5 }}
@@ -928,7 +930,7 @@ function App() {
             </div>
 
             {memoryError && (
-              <div className="mt-4 p-2 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-2 text-red-400 text-[10px]">
+              <div className="mt-4 p-2 bg-crimson-900/20 border border-crimson-500/30 rounded-lg flex items-center gap-2 text-crimson-400 text-[10px]">
                 <AlertCircle className="w-3 h-3 flex-shrink-0" />
                 <span className="leading-tight">{memoryError}</span>
               </div>

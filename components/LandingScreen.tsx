@@ -1250,74 +1250,72 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-parchment-100 to-spirit-300 drop-shadow-[0_0_25px_rgba(234,179,8,0.3)] pb-2">
+            <h1 className="text-5xl md:text-7xl font-serif font-light text-transparent bg-clip-text bg-gradient-to-r from-parchment-100 via-gold-200 to-parchment-100 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] pb-2 tracking-tight">
               The Infinity Tale
             </h1>
-            <h2 className="text-2xl md:text-3xl font-display text-gold-500/80 tracking-[0.4em] uppercase font-light border-t border-b border-gold-500/30 py-3 relative inline-block">
-              <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gold-500 rotate-45"></span>
+            <h2 className="text-sm md:text-base font-sans text-gold-500/70 tracking-[0.5em] uppercase font-light border-t border-b border-gold-500/20 py-2 relative inline-block">
+              <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-gold-500/50 rotate-45"></span>
               Simulator
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gold-500 rotate-45"></span>
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-gold-500/50 rotate-45"></span>
             </h2>
 
             {/* VERSION DISPLAY */}
-            <div className="text-3xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-jade-400 via-spirit-400 to-arcane-400 mt-2 mb-4 drop-shadow-lg animate-pulse-slow tracking-wider cursor-pointer hover:scale-105 transition-transform" onClick={() => setShowUpdatesModal(true)}>
-                v5.1 - Có Bản Mới Rồi Đấy
+            <div className="text-sm md:text-base font-sans font-medium text-parchment-300 mt-4 mb-4 tracking-widest cursor-pointer hover:text-gold-400 transition-colors" onClick={() => setShowUpdatesModal(true)}>
+                v5.1 — Có Bản Mới Rồi Đấy
             </div>
 
             {/* NEW CREDIT LINE */}
-            <div className="mt-2 text-xl md:text-3xl font-bold text-gold-400 font-display drop-shadow-[0_0_15px_rgba(234,179,8,0.6)] animate-pulse">
-                Cre:Zesty - Phát Triển Thêm: Nguyễn Hoàng
+            <div className="mt-2 text-xs md:text-sm font-light text-parchment-500 font-sans tracking-wider">
+                Cre: Zesty <span className="mx-2 opacity-50">|</span> Phát Triển Thêm: Nguyễn Hoàng
             </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="w-full max-w-lg space-y-4 animate-slide-up" style={{animationDelay: '0.2s'}}>
+        <div className="w-full max-w-md space-y-4 animate-slide-up" style={{animationDelay: '0.2s'}}>
           <button 
             onClick={onNewGame}
-            className="group w-full relative py-4 px-6 bg-ink-900/60 hover:bg-gold-900/20 border border-gold-500/40 hover:border-gold-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-[0_0_20px_rgba(234,179,8,0.1)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)]"
+            className="group w-full relative py-4 px-6 bg-ink-900/40 hover:bg-ink-800/60 border border-white/10 hover:border-gold-500/50 rounded-lg backdrop-blur-xl transition-all duration-500 overflow-hidden shadow-lg"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-gold-500/0 via-gold-500/10 to-gold-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-gold-500/0 via-gold-500/5 to-gold-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
             <div className="flex items-center justify-center gap-4">
-               <i className="fas fa-scroll text-gold-400 group-hover:scale-110 transition-transform text-xl"></i>
-               <span className="text-xl font-bold text-parchment-100 group-hover:text-white tracking-wide font-display">Khởi Tạo Thế Giới Mới</span>
+               <i className="fas fa-scroll text-gold-500/70 group-hover:text-gold-400 transition-colors text-lg"></i>
+               <span className="text-lg font-light text-parchment-200 group-hover:text-white tracking-widest font-serif uppercase">Khởi Tạo Thế Giới Mới</span>
             </div>
           </button>
 
           {/* CONTINUE / LIBRARY BUTTON */}
           <button 
             onClick={() => setShowLibrary(true)}
-            className="group w-full relative py-4 px-6 bg-ink-900/60 hover:bg-arcane-900/20 border border-arcane-500/30 hover:border-arcane-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+            className="group w-full relative py-4 px-6 bg-ink-900/40 hover:bg-ink-800/60 border border-white/10 hover:border-white/30 rounded-lg backdrop-blur-xl transition-all duration-500 overflow-hidden shadow-lg"
           >
-             <div className="absolute inset-0 bg-gradient-to-r from-arcane-500/0 via-arcane-500/10 to-arcane-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
              <div className="flex items-center justify-center gap-4">
-               <i className="fas fa-book-journal-whills text-arcane-400 group-hover:scale-110 transition-transform text-xl"></i>
+               <i className="fas fa-book-journal-whills text-parchment-400 group-hover:text-parchment-200 transition-colors text-lg"></i>
                <div className="flex flex-col items-start">
-                   <span className="text-lg font-bold text-parchment-100 group-hover:text-white tracking-wide font-display">Thư Viện Thiên Mệnh</span>
-                   <span className="text-[10px] text-ink-400 uppercase tracking-widest group-hover:text-arcane-300 transition-colors">Tiếp tục hành trình ({sessions.length})</span>
+                   <span className="text-base font-light text-parchment-200 group-hover:text-white tracking-widest font-serif uppercase">Thư Viện Thiên Mệnh</span>
+                   <span className="text-[10px] text-ink-400 uppercase tracking-[0.2em] group-hover:text-parchment-400 transition-colors mt-1 font-sans">Tiếp tục hành trình ({sessions.length})</span>
                </div>
             </div>
           </button>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
               <button 
                 onClick={handleLoadClick}
-                className="flex-1 group relative py-3 px-6 bg-ink-900/60 hover:bg-spirit-900/20 border border-spirit-500/30 hover:border-spirit-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+                className="flex-1 group relative py-3 px-6 bg-ink-900/40 hover:bg-ink-800/60 border border-white/10 hover:border-white/30 rounded-lg backdrop-blur-xl transition-all duration-500 overflow-hidden shadow-lg"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-spirit-500/0 via-spirit-500/10 to-spirit-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <div className="flex items-center justify-center gap-2">
-                   <i className="fas fa-file-import text-spirit-400 group-hover:scale-110 transition-transform"></i>
-                   <span className="text-xs font-bold text-parchment-300 group-hover:text-white tracking-wide">Nhập Save</span>
+                <div className="flex items-center justify-center gap-3">
+                   <i className="fas fa-file-import text-parchment-400 group-hover:text-parchment-200 transition-colors text-sm"></i>
+                   <span className="text-xs font-light text-parchment-300 group-hover:text-white tracking-widest font-serif uppercase">Nhập Save</span>
                 </div>
               </button>
 
               <button 
                 onClick={() => setShowGalleryModal(true)}
-                className="flex-1 group relative py-3 px-6 bg-ink-900/60 hover:bg-pink-900/20 border border-pink-500/30 hover:border-pink-400 rounded-xl backdrop-blur-md transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_20px_rgba(244,114,182,0.2)]"
+                className="flex-1 group relative py-3 px-6 bg-ink-900/40 hover:bg-ink-800/60 border border-white/10 hover:border-white/30 rounded-lg backdrop-blur-xl transition-all duration-500 overflow-hidden shadow-lg"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-pink-500/10 to-pink-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <div className="flex items-center justify-center gap-2">
-                   <i className="fas fa-images text-pink-400 group-hover:scale-110 transition-transform"></i>
-                   <span className="text-xs font-bold text-parchment-300 group-hover:text-white tracking-wide">Kho Ảnh</span>
+                <div className="flex items-center justify-center gap-3">
+                   <i className="fas fa-images text-parchment-400 group-hover:text-parchment-200 transition-colors text-sm"></i>
+                   <span className="text-xs font-light text-parchment-300 group-hover:text-white tracking-widest font-serif uppercase">Kho Ảnh</span>
                 </div>
               </button>
           </div>
@@ -1336,10 +1334,10 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       {/* LIBRARY MODAL */}
       {showLibrary && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in" onClick={() => setShowLibrary(false)}>
-          <div className="bg-ink-900 border border-arcane-500/30 rounded-xl w-full max-w-5xl h-[85vh] flex flex-col shadow-2xl relative overflow-hidden" onClick={e => e.stopPropagation()}>
+          <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-5xl h-[85vh] flex flex-col shadow-2xl relative overflow-hidden" onClick={e => e.stopPropagation()}>
              {/* Header */}
              <div className="p-6 border-b border-white/10 bg-ink-950/50 flex justify-between items-center">
-                 <h3 className="text-xl font-display font-bold text-arcane-400 flex items-center gap-2">
+                 <h3 className="text-xl font-display font-bold text-gold-400 flex items-center gap-2">
                      <i className="fas fa-book-journal-whills"></i> Thư Viện Thiên Mệnh
                  </h3>
                  <button onClick={() => setShowLibrary(false)} className="text-ink-500 hover:text-white"><i className="fas fa-times"></i></button>
@@ -1352,22 +1350,22 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                     placeholder="Tìm kiếm đạo hiệu..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="bg-ink-900 border border-ink-700 rounded px-4 py-2 text-sm text-parchment-200 outline-none focus:border-arcane-500 flex-1"
+                    className="bg-ink-900/40 border border-white/10 rounded px-4 py-2 text-sm text-parchment-200 outline-none focus:border-gold-500/50 flex-1 font-serif"
                  />
                  <select
                     value={filterGenre}
                     onChange={(e) => setFilterGenre(e.target.value)}
-                    className="bg-ink-900 border border-ink-700 rounded px-4 py-2 text-sm text-ink-400 outline-none"
+                    className="bg-ink-900/40 border border-white/10 rounded px-4 py-2 text-sm text-parchment-400 outline-none font-serif"
                  >
                      <option value="ALL">Tất cả thể loại</option>
                      {Object.values(GameGenre).map(g => <option key={g} value={g}>{g}</option>)}
                  </select>
-                 <div className="flex gap-1 bg-ink-900 rounded p-1 border border-ink-700">
+                 <div className="flex gap-1 bg-ink-900/40 rounded p-1 border border-white/10">
                      {(['RECENT', 'PROGRESS', 'OLDEST'] as SortOption[]).map(opt => (
                          <button
                             key={opt}
                             onClick={() => setSortBy(opt)}
-                            className={`px-3 py-1 rounded text-xs font-bold ${sortBy === opt ? 'bg-arcane-600 text-white' : 'text-ink-500 hover:text-ink-300'}`}
+                            className={`px-3 py-1 rounded text-xs font-bold ${sortBy === opt ? 'bg-gold-600 text-ink-950' : 'text-parchment-500 hover:text-gold-400'}`}
                          >
                              {opt === 'RECENT' ? 'Mới' : opt === 'PROGRESS' ? 'Tiến độ' : 'Cũ'}
                          </button>
@@ -1376,12 +1374,12 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
              </div>
 
              {/* Session Grid */}
-             <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-ink-700 bg-black/20">
+             <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-ink-700 bg-black/40">
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                      {filteredSessions.map(session => {
                          const meta = sessionMetas[session.id!] || { realm: '...', turnCount: 0, lastActive: '...' };
                          return (
-                             <div key={session.id} onClick={() => handleCardClick(session.id!)} className="group bg-ink-900/80 border border-ink-700 hover:border-arcane-500 rounded-xl p-4 cursor-pointer transition-all hover:bg-ink-800 relative overflow-hidden shadow-lg">
+                             <div key={session.id} onClick={() => handleCardClick(session.id!)} className="group bg-ink-900/60 border border-white/10 hover:border-gold-500/50 rounded-xl p-4 cursor-pointer transition-all hover:bg-ink-800/80 relative overflow-hidden shadow-lg backdrop-blur-sm">
                                  {/* Background Image Overlay */}
                                  {session.backgroundImageUrl && (
                                      <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -1403,18 +1401,18 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                                         type="text"
                                                         value={tempTitle}
                                                         onChange={e => setTempTitle(e.target.value)}
-                                                        className="bg-ink-950 border border-gold-500 rounded px-1 py-0.5 text-xs text-parchment-100 outline-none w-32"
+                                                        className="bg-ink-950 border border-gold-500 rounded px-1 py-0.5 text-xs text-parchment-100 outline-none w-32 font-serif"
                                                      />
-                                                     <button onClick={(e) => saveTitle(e, session.id!)} className="text-green-500 hover:text-green-400"><i className="fas fa-check"></i></button>
-                                                     <button onClick={cancelEditingTitle} className="text-red-500 hover:text-red-400"><i className="fas fa-times"></i></button>
+                                                     <button onClick={(e) => saveTitle(e, session.id!)} className="text-jade-500 hover:text-jade-400"><i className="fas fa-check"></i></button>
+                                                     <button onClick={cancelEditingTitle} className="text-crimson-500 hover:text-crimson-400"><i className="fas fa-times"></i></button>
                                                  </div>
                                              ) : (
-                                                 <h4 className="font-bold text-parchment-100 group-hover:text-gold-400 transition-colors truncate max-w-[180px] flex items-center gap-2">
+                                                 <h4 className="font-bold text-parchment-100 group-hover:text-gold-400 transition-colors truncate max-w-[180px] flex items-center gap-2 font-serif">
                                                      {session.customTitle || session.heroName}
                                                      <button onClick={(e) => startEditingTitle(e, session)} className="text-ink-600 hover:text-ink-400 opacity-0 group-hover:opacity-100 transition-opacity"><i className="fas fa-pen text-[10px]"></i></button>
                                                  </h4>
                                              )}
-                                             <div className="text-[10px] text-ink-500 uppercase font-bold tracking-wider">{session.genre}</div>
+                                             <div className="text-[10px] text-parchment-500 uppercase font-bold tracking-wider">{session.genre}</div>
                                          </div>
                                          {deleteConfirmId === session.id ? (
                                              <div className="flex gap-2 bg-ink-950 p-1 rounded border border-crimson-500/50" onClick={e => e.stopPropagation()}>
@@ -1428,27 +1426,27 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                      </div>
 
                                      <div className="space-y-1 mb-4">
-                                         <div className="flex justify-between text-xs text-ink-400">
-                                             <span><i className="fas fa-scroll mr-1"></i> {meta.turnCount} lượt</span>
-                                             <span><i className="far fa-clock mr-1"></i> {meta.lastActive}</span>
+                                         <div className="flex justify-between text-xs text-parchment-400">
+                                             <span><i className="fas fa-scroll mr-1 text-gold-500/50"></i> {meta.turnCount} lượt</span>
+                                             <span><i className="far fa-clock mr-1 text-gold-500/50"></i> {meta.lastActive}</span>
                                          </div>
-                                         <div className="text-xs text-arcane-400 font-bold"><i className="fas fa-crown mr-1"></i> {meta.realm}</div>
+                                         <div className="text-xs text-spirit-400 font-bold"><i className="fas fa-crown mr-1"></i> {meta.realm}</div>
                                      </div>
 
                                      <div className="flex gap-2 border-t border-white/5 pt-3" onClick={e => e.stopPropagation()}>
-                                         <button onClick={() => onContinueSession(session.id!)} className="flex-1 bg-ink-800 hover:bg-arcane-600 text-ink-300 hover:text-white py-1.5 rounded text-[10px] font-bold uppercase transition-colors border border-ink-700 hover:border-arcane-500">
+                                         <button onClick={() => onContinueSession(session.id!)} className="flex-1 bg-ink-900/50 hover:bg-gold-600/20 text-parchment-300 hover:text-gold-400 py-1.5 rounded text-[10px] font-bold uppercase transition-colors border border-white/10 hover:border-gold-500/50">
                                              Tiếp Tục
                                          </button>
-                                         <button onClick={(e) => handleTemplateClick(e, session)} className="px-2 bg-ink-800 hover:bg-gold-600 text-ink-400 hover:text-black rounded border border-ink-700 hover:border-gold-500 transition-colors" title="Dùng làm mẫu (Clone)">
+                                         <button onClick={(e) => handleTemplateClick(e, session)} className="px-2 bg-ink-900/50 hover:bg-gold-600/20 text-parchment-400 hover:text-gold-400 rounded border border-white/10 hover:border-gold-500/50 transition-colors" title="Dùng làm mẫu (Clone)">
                                              <i className="fas fa-copy"></i>
                                          </button>
-                                         <button onClick={(e) => handleExportSession(e, session)} className="px-2 bg-ink-800 hover:bg-blue-600 text-ink-400 hover:text-white rounded border border-ink-700 hover:border-blue-500 transition-colors" title="Xuất file">
+                                         <button onClick={(e) => handleExportSession(e, session)} className="px-2 bg-ink-900/50 hover:bg-gold-600/20 text-parchment-400 hover:text-gold-400 rounded border border-white/10 hover:border-gold-500/50 transition-colors" title="Xuất file">
                                              <i className="fas fa-file-export"></i>
                                          </button>
-                                         <button onClick={(e) => handleDuplicateSession(e, session)} className="px-2 bg-ink-800 hover:bg-emerald-600 text-ink-400 hover:text-white rounded border border-ink-700 hover:border-emerald-500 transition-colors" title="Nhân bản Save (Tạo Copy)">
+                                         <button onClick={(e) => handleDuplicateSession(e, session)} className="px-2 bg-ink-900/50 hover:bg-gold-600/20 text-parchment-400 hover:text-gold-400 rounded border border-white/10 hover:border-gold-500/50 transition-colors" title="Nhân bản Save (Tạo Copy)">
                                              <i className="fas fa-clone"></i>
                                          </button>
-                                         <button onClick={(e) => handleQuickUndo(e, session.id!)} className="px-2 bg-ink-800 hover:bg-crimson-600 text-ink-400 hover:text-white rounded border border-ink-700 hover:border-crimson-500 transition-colors" title="Sửa lỗi kẹt (Xóa turn cuối)">
+                                         <button onClick={(e) => handleQuickUndo(e, session.id!)} className="px-2 bg-ink-900/50 hover:bg-crimson-600/20 text-parchment-400 hover:text-crimson-400 rounded border border-white/10 hover:border-crimson-500/50 transition-colors" title="Sửa lỗi kẹt (Xóa turn cuối)">
                                              <i className="fas fa-wrench"></i>
                                          </button>
                                      </div>
@@ -1471,24 +1469,24 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       {/* TECH SPECS MODAL */}
       {showTechSpecsModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in" onClick={() => setShowTechSpecsModal(false)}>
-              <div className="bg-ink-900 border border-blue-500/30 rounded-xl w-full max-w-lg shadow-2xl overflow-hidden relative" onClick={e => e.stopPropagation()}>
+              <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-lg shadow-2xl overflow-hidden relative" onClick={e => e.stopPropagation()}>
                   <div className="p-6 border-b border-white/10 bg-ink-950/50 flex justify-between items-center">
-                      <h3 className="text-xl font-display font-bold text-blue-400 flex items-center gap-2">
+                      <h3 className="text-xl font-display font-bold text-gold-400 flex items-center gap-2">
                           <i className="fas fa-microchip"></i> Thông Số Kỹ Thuật (Tech Specs)
                       </h3>
                       <button onClick={() => setShowTechSpecsModal(false)} className="text-ink-500 hover:text-white"><i className="fas fa-times"></i></button>
                   </div>
 
-                  <div className="p-6 overflow-y-auto max-h-[70vh] space-y-4 bg-ink-900/80">
+                  <div className="p-6 overflow-y-auto max-h-[70vh] space-y-4 bg-ink-900/80 scrollbar-thin scrollbar-thumb-ink-700">
                       {TECH_SPECS.map((spec, index) => (
-                          <div key={index} className="bg-ink-950/50 p-4 rounded-lg border border-white/5 hover:border-blue-500/20 transition-colors">
+                          <div key={index} className="bg-ink-950/50 p-4 rounded-lg border border-white/5 hover:border-gold-500/20 transition-colors">
                               <div className="flex justify-between items-center mb-2">
                                   <span className="text-sm font-bold text-parchment-100">{spec.label}</span>
-                                  <span className="text-xs font-mono font-bold text-blue-300 bg-blue-900/20 px-2 py-1 rounded border border-blue-500/30">
+                                  <span className="text-xs font-mono font-bold text-gold-300 bg-gold-900/20 px-2 py-1 rounded border border-gold-500/30">
                                       {spec.value}
                                   </span>
                               </div>
-                              <p className="text-xs text-ink-400 leading-relaxed">{spec.desc}</p>
+                              <p className="text-xs text-parchment-500 leading-relaxed">{spec.desc}</p>
                           </div>
                       ))}
                   </div>
@@ -1499,21 +1497,21 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       {/* UPDATES MODAL */}
       {showUpdatesModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in" onClick={() => setShowUpdatesModal(false)}>
-              <div className="bg-ink-900 border border-jade-500/30 rounded-xl w-full max-w-lg shadow-2xl overflow-hidden relative" onClick={e => e.stopPropagation()}>
+              <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-lg shadow-2xl overflow-hidden relative" onClick={e => e.stopPropagation()}>
                   <div className="p-6 border-b border-white/10 bg-ink-950/50 flex justify-between items-center">
-                      <h3 className="text-xl font-display font-bold text-jade-400 flex items-center gap-2">
+                      <h3 className="text-xl font-display font-bold text-gold-400 flex items-center gap-2">
                           <i className="fas fa-scroll"></i> Thông Số Phiên Bản
                       </h3>
                       <button onClick={() => setShowUpdatesModal(false)} className="text-ink-500 hover:text-white"><i className="fas fa-times"></i></button>
                   </div>
                   
-                  <div className="p-6 overflow-y-auto max-h-[70vh] space-y-6 bg-ink-900/80">
+                  <div className="p-6 overflow-y-auto max-h-[70vh] space-y-6 bg-ink-900/80 scrollbar-thin scrollbar-thumb-ink-700">
                       {UPDATE_LOGS.map((log, index) => (
-                          <div key={index} className="relative pl-6 border-l-2 border-ink-700">
-                              <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 ${index === 0 ? 'bg-jade-500 border-jade-300 animate-pulse' : 'bg-ink-800 border-ink-600'}`}></div>
+                          <div key={index} className="relative pl-6 border-l-2 border-white/10">
+                              <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 ${index === 0 ? 'bg-gold-500 border-gold-300 animate-pulse' : 'bg-ink-800 border-ink-600'}`}></div>
                               <div className="mb-2">
-                                  <span className={`text-sm font-bold ${index === 0 ? 'text-jade-400' : 'text-parchment-200'}`}>{log.version}</span>
-                                  <span className="text-[10px] text-ink-500 ml-2">({log.date})</span>
+                                  <span className={`text-sm font-bold ${index === 0 ? 'text-gold-400' : 'text-parchment-200'}`}>{log.version}</span>
+                                  <span className="text-[10px] text-parchment-500 ml-2">({log.date})</span>
                               </div>
                               <div className="bg-ink-950/50 p-3 rounded-lg border border-white/5">
                                   <div className="text-[10px] font-bold text-gold-500 uppercase mb-2 tracking-wider flex items-center gap-1">
@@ -1521,7 +1519,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                   </div>
                                   <ul className="list-disc list-inside space-y-1">
                                       {log.details.map((d, i) => (
-                                          <li key={i} className="text-xs text-ink-300 leading-relaxed">{d}</li>
+                                          <li key={i} className="text-xs text-parchment-400 leading-relaxed">{d}</li>
                                       ))}
                                   </ul>
                               </div>
@@ -1534,40 +1532,60 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
 
       {/* GLOBAL SETTINGS MODAL */}
       {showGlobalSettingsModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in">
-             <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-md shadow-2xl p-6">
-                 <div className="flex justify-between items-center mb-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in" onClick={() => setShowGlobalSettingsModal(false)}>
+             <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-md shadow-2xl p-6 relative" onClick={e => e.stopPropagation()}>
+                 <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
                     <h3 className="text-xl font-display font-bold text-gold-400 flex items-center gap-2">
                         <i className="fas fa-tools"></i> Cài đặt Giao Diện
                     </h3>
-                    <button onClick={() => setShowGlobalSettingsModal(false)} className="text-ink-500 hover:text-white"><i className="fas fa-times"></i></button>
+                    <button onClick={() => setShowGlobalSettingsModal(false)} className="text-ink-500 hover:text-white transition-colors"><i className="fas fa-times"></i></button>
                  </div>
                  
                  <div className="space-y-6 mb-6">
-                     <div>
-                        <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-2">Hình Nền Menu Chính</label>
-                        <div className="flex gap-2">
-                            <input type="text" value={globalBgUrl} onChange={(e) => setGlobalBgUrl(e.target.value)} placeholder="URL..." className="flex-1 w-full bg-ink-950 border border-ink-700 rounded p-2 text-sm text-parchment-200" />
-                            <button onClick={() => globalBgInputRef.current?.click()} className="bg-ink-800 border border-ink-600 px-3 rounded"><i className="fas fa-upload text-ink-400"></i></button>
+                     <div className="bg-ink-950/50 p-4 rounded-lg border border-white/5">
+                        <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider block mb-3 flex items-center gap-2">
+                            <i className="fas fa-image text-gold-500/50"></i> Hình Nền Menu Chính
+                        </label>
+                        <div className="flex gap-2 mb-3">
+                            <input type="text" value={globalBgUrl} onChange={(e) => setGlobalBgUrl(e.target.value)} placeholder="URL..." className="flex-1 w-full bg-ink-900 border border-white/10 rounded-lg p-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all" />
+                            <button onClick={() => globalBgInputRef.current?.click()} className="bg-ink-800 hover:bg-ink-700 border border-white/10 hover:border-gold-500/50 px-4 rounded-lg transition-colors"><i className="fas fa-upload text-gold-400"></i></button>
                             <input type="file" ref={globalBgInputRef} onChange={handleGlobalBgFileChange} accept="image/*,video/*" className="hidden" />
                         </div>
-                        <div className="mt-2 flex gap-2">
-                             <button onClick={() => setGlobalBgType('image')} className={`text-[10px] px-2 py-1 rounded ${globalBgType === 'image' ? 'bg-gold-600 text-black' : 'bg-ink-800 text-ink-500'}`}>Ảnh</button>
-                             <button onClick={() => setGlobalBgType('video')} className={`text-[10px] px-2 py-1 rounded ${globalBgType === 'video' ? 'bg-gold-600 text-black' : 'bg-ink-800 text-ink-500'}`}>Video</button>
+                        <div className="flex gap-3">
+                             <label className="flex items-center gap-2 cursor-pointer group">
+                                 <input 
+                                     type="radio" 
+                                     checked={globalBgType === 'image'} 
+                                     onChange={() => setGlobalBgType('image')}
+                                     className="text-gold-500 bg-ink-950 border-white/10 focus:ring-gold-500"
+                                 />
+                                 <span className="text-sm text-parchment-300 group-hover:text-gold-400 transition-colors">Ảnh tĩnh</span>
+                             </label>
+                             <label className="flex items-center gap-2 cursor-pointer group">
+                                 <input 
+                                     type="radio" 
+                                     checked={globalBgType === 'video'} 
+                                     onChange={() => setGlobalBgType('video')}
+                                     className="text-gold-500 bg-ink-950 border-white/10 focus:ring-gold-500"
+                                 />
+                                 <span className="text-sm text-parchment-300 group-hover:text-gold-400 transition-colors">Video</span>
+                             </label>
                         </div>
                      </div>
-                     <div>
-                        <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-2">Logo Ứng Dụng</label>
+                     <div className="bg-ink-950/50 p-4 rounded-lg border border-white/5">
+                        <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider block mb-3 flex items-center gap-2">
+                            <i className="fas fa-crown text-gold-500/50"></i> Logo Ứng Dụng
+                        </label>
                         <div className="flex gap-2">
-                            <input type="text" value={globalLogoUrl} onChange={(e) => setGlobalLogoUrl(e.target.value)} placeholder="URL..." className="flex-1 w-full bg-ink-950 border border-ink-700 rounded p-2 text-sm text-parchment-200" />
-                            <button onClick={() => logoInputRef.current?.click()} className="bg-ink-800 border border-ink-600 px-3 rounded"><i className="fas fa-upload text-ink-400"></i></button>
+                            <input type="text" value={globalLogoUrl} onChange={(e) => setGlobalLogoUrl(e.target.value)} placeholder="URL..." className="flex-1 w-full bg-ink-900 border border-white/10 rounded-lg p-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all" />
+                            <button onClick={() => logoInputRef.current?.click()} className="bg-ink-800 hover:bg-ink-700 border border-white/10 hover:border-gold-500/50 px-4 rounded-lg transition-colors"><i className="fas fa-upload text-gold-400"></i></button>
                             <input type="file" ref={logoInputRef} onChange={handleLogoFileChange} accept="image/*" className="hidden" />
                         </div>
                      </div>
                  </div>
-                 <div className="flex justify-end gap-3 pt-4 border-t border-white/5">
-                     <button onClick={() => setShowGlobalSettingsModal(false)} className="px-4 py-2 rounded text-xs font-bold text-ink-400">Hủy</button>
-                     <button onClick={saveGlobalSettings} className="px-4 py-2 rounded bg-gold-600 text-black text-xs font-bold shadow-lg">Lưu Cài Đặt</button>
+                 <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+                     <button onClick={() => setShowGlobalSettingsModal(false)} className="px-5 py-2 rounded-lg text-sm font-bold text-parchment-400 hover:text-white hover:bg-ink-800 transition-colors">Hủy</button>
+                     <button onClick={saveGlobalSettings} className="px-6 py-2 rounded-lg bg-gold-600 hover:bg-gold-500 text-ink-950 text-sm font-bold shadow-lg shadow-gold-900/20 transition-all">Lưu Cài Đặt</button>
                  </div>
              </div>
           </div>
@@ -1575,24 +1593,24 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
 
       {/* PROXY SETTINGS MODAL */}
       {showProxySettingsModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in">
-              <div className="bg-ink-900 border border-emerald-500/30 rounded-xl w-full max-w-md shadow-2xl p-6">
-                  <div className="flex justify-between items-center mb-6">
-                     <h3 className="text-xl font-display font-bold text-emerald-400 flex items-center gap-2">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in" onClick={() => setShowProxySettingsModal(false)}>
+              <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-md shadow-2xl p-6 relative flex flex-col max-h-[90vh]" onClick={e => e.stopPropagation()}>
+                  <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4 shrink-0">
+                     <h3 className="text-xl font-display font-bold text-gold-400 flex items-center gap-2">
                          <i className="fas fa-network-wired"></i> Cấu Hình API & Proxy
                      </h3>
-                     <button onClick={() => setShowProxySettingsModal(false)} className="text-ink-500 hover:text-white"><i className="fas fa-times"></i></button>
+                     <button onClick={() => setShowProxySettingsModal(false)} className="text-ink-500 hover:text-white transition-colors"><i className="fas fa-times"></i></button>
                   </div>
                   
-                  <div className="space-y-6 mb-6 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-                       <div className="flex items-center justify-between border-t border-white/5 pt-4">
+                  <div className="space-y-6 mb-6 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-ink-700 flex-1">
+                       <div className="flex items-center justify-between bg-ink-950/50 p-4 rounded-lg border border-white/5">
                            <div>
-                               <div className="text-sm font-bold text-parchment-200">Bật Proxy</div>
-                               <div className="text-[10px] text-ink-500 mt-1">Sử dụng Proxy Server để bảo mật API Key hoặc vượt rào cản địa lý.</div>
+                               <div className="text-sm font-bold text-parchment-100">Bật Proxy</div>
+                               <div className="text-[10px] text-parchment-500 mt-1">Sử dụng Proxy Server để bảo mật API Key hoặc vượt rào cản địa lý.</div>
                            </div>
                            <button
                                onClick={() => setUseProxy(!useProxy)}
-                               className={`w-12 h-6 rounded-full relative transition-colors ${useProxy ? 'bg-emerald-500' : 'bg-ink-700'}`}
+                               className={`w-12 h-6 rounded-full relative transition-colors ${useProxy ? 'bg-gold-500' : 'bg-ink-700'}`}
                            >
                                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${useProxy ? 'translate-x-7' : 'translate-x-1'}`}></div>
                            </button>
@@ -1601,99 +1619,73 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                        {useProxy && (
                            <div className="space-y-4 animate-fade-in">
                                {/* Proxy Selector Tabs */}
-                               <div className="flex bg-ink-950 rounded-lg p-1 border border-ink-800 mb-4">
+                               <div className="flex bg-ink-950/50 rounded-lg p-1 border border-white/5 mb-4">
                                    <button
                                        onClick={() => setActiveProxy(1)}
-                                       className={`flex-1 py-1.5 rounded-md text-[10px] font-bold transition-all ${activeProxy === 1 ? 'bg-emerald-600 text-white shadow-md' : 'text-ink-500 hover:text-ink-300'}`}
+                                       className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${activeProxy === 1 ? 'bg-gold-600 text-ink-950 shadow-md shadow-gold-900/20' : 'text-parchment-400 hover:text-parchment-200 hover:bg-ink-800/50'}`}
                                    >
                                        Proxy 1
                                    </button>
                                    <button
                                        onClick={() => setActiveProxy(2)}
-                                       className={`flex-1 py-1.5 rounded-md text-[10px] font-bold transition-all ${activeProxy === 2 ? 'bg-emerald-600 text-white shadow-md' : 'text-ink-500 hover:text-ink-300'}`}
+                                       className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${activeProxy === 2 ? 'bg-gold-600 text-ink-950 shadow-md shadow-gold-900/20' : 'text-parchment-400 hover:text-parchment-200 hover:bg-ink-800/50'}`}
                                    >
                                        Proxy 2
                                    </button>
                                </div>
 
-                               <div className="space-y-1">
-                                   <label className="text-[10px] font-bold text-ink-500 uppercase">Proxy URL ({activeProxy})</label>
-                                   <input 
-                                       type="text"
-                                       value={activeProxy === 1 ? proxyUrl : proxyUrl2}
-                                       onChange={(e) => activeProxy === 1 ? setProxyUrl(e.target.value) : setProxyUrl2(e.target.value)}
-                                       placeholder="https://your-proxy.com/api/gemini"
-                                       className="w-full bg-ink-950 border border-ink-800 rounded-lg px-3 py-2 text-xs text-parchment-200 focus:border-emerald-500/50 outline-none"
-                                   />
-                               </div>
-                               <div className="space-y-1">
-                                   <label className="text-[10px] font-bold text-ink-500 uppercase">Proxy Password / Key ({activeProxy})</label>
-                                   <input 
-                                       type="password"
-                                       value={activeProxy === 1 ? proxyKey : proxyKey2}
-                                       onChange={(e) => activeProxy === 1 ? setProxyKey(e.target.value) : setProxyKey2(e.target.value)}
-                                       placeholder="Nhập mật khẩu proxy (nếu có)"
-                                       className="w-full bg-ink-950 border border-ink-800 rounded-lg px-3 py-2 text-xs text-parchment-200 focus:border-emerald-500/50 outline-none"
-                                   />
-                               </div>
-                               <div className="space-y-1">
-                                   <label className="text-[10px] font-bold text-ink-500 uppercase">Model Chính (Cốt truyện) - {activeProxy}</label>
-                                   <input 
-                                       type="text"
-                                       list="proxy-models"
-                                       value={activeProxy === 1 ? proxyModelMain : proxyModelMain2}
-                                       onChange={(e) => activeProxy === 1 ? setProxyModelMain(e.target.value) : setProxyModelMain2(e.target.value)}
-                                       placeholder="Vd: gemini-3.1-pro-preview"
-                                       className="w-full bg-ink-950 border border-ink-800 rounded-lg px-3 py-2 text-xs text-parchment-200 focus:border-emerald-500/50 outline-none"
-                                   />
-                               </div>
+                               <div className="bg-ink-950/30 p-4 rounded-lg border border-white/5 space-y-4">
+                                   <div className="space-y-1.5">
+                                       <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider">Proxy URL ({activeProxy})</label>
+                                       <input 
+                                           type="text"
+                                           value={activeProxy === 1 ? proxyUrl : proxyUrl2}
+                                           onChange={(e) => activeProxy === 1 ? setProxyUrl(e.target.value) : setProxyUrl2(e.target.value)}
+                                           placeholder="https://your-proxy.com/api/gemini"
+                                           className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
+                                       />
+                                   </div>
+                                   <div className="space-y-1.5">
+                                       <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider">Proxy Password / Key ({activeProxy})</label>
+                                       <input 
+                                           type="password"
+                                           value={activeProxy === 1 ? proxyKey : proxyKey2}
+                                           onChange={(e) => activeProxy === 1 ? setProxyKey(e.target.value) : setProxyKey2(e.target.value)}
+                                           placeholder="Nhập mật khẩu proxy (nếu có)"
+                                           className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
+                                       />
+                                   </div>
+                                   
+                                   <div className="pt-2 border-t border-white/5 space-y-4">
+                                       <div className="space-y-1.5">
+                                           <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider">Model Chính (Cốt truyện) - {activeProxy}</label>
+                                           <input 
+                                               type="text"
+                                               list="proxy-models"
+                                               value={activeProxy === 1 ? proxyModelMain : proxyModelMain2}
+                                               onChange={(e) => activeProxy === 1 ? setProxyModelMain(e.target.value) : setProxyModelMain2(e.target.value)}
+                                               placeholder="Vd: gemini-3.1-pro-preview"
+                                               className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
+                                           />
+                                       </div>
 
-                               <div className="space-y-1">
-                                   <label className="text-[10px] font-bold text-ink-500 uppercase">Model Thời Gian (Chronos) - {activeProxy}</label>
-                                   <input 
-                                       type="text"
-                                       list="proxy-models"
-                                       value={activeProxy === 1 ? proxyModelChronos : proxyModelChronos2}
-                                       onChange={(e) => activeProxy === 1 ? setProxyModelChronos(e.target.value) : setProxyModelChronos2(e.target.value)}
-                                       placeholder="Vd: gemini-3-flash-preview"
-                                       className="w-full bg-ink-950 border border-ink-800 rounded-lg px-3 py-2 text-xs text-parchment-200 focus:border-emerald-500/50 outline-none"
-                                   />
-                               </div>
-
-                               <div className="space-y-1">
-                                   <label className="text-[10px] font-bold text-ink-500 uppercase">Model Tóm Tắt (Archivist) - {activeProxy}</label>
-                                   <input 
-                                       type="text"
-                                       list="proxy-models"
-                                       value={activeProxy === 1 ? proxyModelArchivist : proxyModelArchivist2}
-                                       onChange={(e) => activeProxy === 1 ? setProxyModelArchivist(e.target.value) : setProxyModelArchivist2(e.target.value)}
-                                       placeholder="Vd: gemini-3-flash-preview"
-                                       className="w-full bg-ink-950 border border-ink-800 rounded-lg px-3 py-2 text-xs text-parchment-200 focus:border-emerald-500/50 outline-none"
-                                   />
-                               </div>
-
-                               <div className="space-y-1">
-                                   <label className="text-[10px] font-bold text-ink-500 uppercase">Model Tạo Ảnh (Image) - {activeProxy}</label>
-                                   <input 
-                                       type="text"
-                                       list="proxy-models"
-                                       value={activeProxy === 1 ? proxyModelImage : proxyModelImage2}
-                                       onChange={(e) => activeProxy === 1 ? setProxyModelImage(e.target.value) : setProxyModelImage2(e.target.value)}
-                                       placeholder="Vd: gemini-3.1-flash-image"
-                                       className="w-full bg-ink-950 border border-ink-800 rounded-lg px-3 py-2 text-xs text-parchment-200 focus:border-emerald-500/50 outline-none"
-                                   />
-                                   <datalist id="proxy-models">
-                                       {availableModels.map(m => (
-                                           <option key={m} value={m} />
-                                       ))}
-                                   </datalist>
-                               </div>
-                               
-                               <div className="pt-2 flex flex-col items-center gap-2">
+                                       <div className="space-y-1.5">
+                                           <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider">Model Thời Gian (Chronos) - {activeProxy}</label>
+                                           <input 
+                                               type="text"
+                                               list="proxy-models"
+                                               value={activeProxy === 1 ? proxyModelChronos : proxyModelChronos2}
+                                               onChange={(e) => activeProxy === 1 ? setProxyModelChronos(e.target.value) : setProxyModelChronos2(e.target.value)}
+                                               placeholder="Vd: gemini-3-flash-preview"
+                                               className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
+                                           />
+                                       </div>
+                                       
+                                       <div className="pt-2 flex flex-col items-center gap-2">
                                    <button 
                                        onClick={testProxyConnection}
                                        disabled={testStatus === 'testing' || !(activeProxy === 1 ? proxyUrl : proxyUrl2)}
-                                       className="w-full py-2 rounded bg-ink-800 hover:bg-ink-700 text-ink-300 text-xs font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                       className="w-full py-2.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-parchment-300 text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-white/10 hover:border-gold-500/30"
                                    >
                                        {testStatus === 'testing' ? (
                                            <><i className="fas fa-spinner fa-spin"></i> Đang tải danh sách...</>
@@ -1703,43 +1695,45 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                    </button>
                                    
                                    {testStatus !== 'idle' && (
-                                       <div className={`text-[10px] text-center ${testStatus === 'success' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                       <div className={`text-xs font-bold px-3 py-1.5 rounded-lg border ${testStatus === 'success' ? 'bg-jade-900/30 text-jade-400 border-jade-500/30' : 'bg-crimson-900/30 text-crimson-400 border-crimson-500/30'}`}>
                                            {testMessage}
                                        </div>
                                    )}
+                               </div>
+                                   </div>
                                </div>
                            </div>
                        )}
                   </div>
                   
-                  <div className="flex justify-end gap-3 pt-4 border-t border-white/5">
-                     <button onClick={() => setShowProxySettingsModal(false)} className="px-4 py-2 rounded text-xs font-bold text-ink-400">Hủy</button>
-                     <button onClick={saveProxySettings} className="px-4 py-2 rounded bg-emerald-600 text-black text-xs font-bold shadow-lg">Lưu Cài Đặt</button>
+                  <div className="flex justify-end gap-3 pt-4 border-t border-white/10 shrink-0">
+                     <button onClick={() => setShowProxySettingsModal(false)} className="px-5 py-2 rounded-lg text-sm font-bold text-parchment-400 hover:text-white hover:bg-ink-800 transition-colors">Hủy</button>
+                     <button onClick={saveProxySettings} className="px-6 py-2 rounded-lg bg-gold-600 hover:bg-gold-500 text-ink-950 text-sm font-bold shadow-lg shadow-gold-900/20 transition-all">Lưu Cài Đặt</button>
                   </div>
-             </div>
+              </div>
           </div>
       )}
 
       {/* GALLERY / BULK UPDATE MODAL */}
       {showGalleryModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in">
-             <div className="bg-ink-900 border border-pink-500/30 rounded-xl w-full max-w-4xl h-[85vh] flex flex-col shadow-2xl relative overflow-hidden">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in" onClick={() => { setShowGalleryModal(false); setSelectedImage(null); }}>
+             <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-4xl h-[85vh] flex flex-col shadow-2xl relative overflow-hidden" onClick={e => e.stopPropagation()}>
                  {/* Header */}
-                 <div className="flex justify-between items-center p-6 border-b border-white/5 bg-ink-950/50">
-                     <h3 className="text-xl font-display font-bold text-pink-400 flex items-center gap-2"><i className="fas fa-images"></i> Kho Ảnh (Global Gallery)</h3>
-                     <button onClick={() => { setShowGalleryModal(false); setSelectedImage(null); }} className="text-ink-500 hover:text-white"><i className="fas fa-times"></i></button>
+                 <div className="flex justify-between items-center p-6 border-b border-white/10 bg-ink-950/50 shrink-0">
+                     <h3 className="text-xl font-display font-bold text-gold-400 flex items-center gap-2"><i className="fas fa-images"></i> Kho Ảnh (Global Gallery)</h3>
+                     <button onClick={() => { setShowGalleryModal(false); setSelectedImage(null); }} className="text-ink-500 hover:text-white transition-colors"><i className="fas fa-times"></i></button>
                  </div>
 
                  {/* Filters Bar */}
-                 <div className="p-4 bg-ink-950/30 border-b border-white/5 flex flex-col gap-4">
+                 <div className="p-4 bg-ink-950/30 border-b border-white/10 flex flex-col gap-4 shrink-0">
                      <div className="flex justify-between items-center">
                          {/* Tabs */}
-                         <div className="flex bg-ink-900 rounded-lg p-1 border border-ink-700">
+                         <div className="flex bg-ink-950/50 rounded-lg p-1 border border-white/5">
                              {(['IMAGE', 'VIDEO'] as const).map(tab => (
                                  <button
                                      key={tab}
                                      onClick={() => setGalleryTab(tab)}
-                                     className={`px-4 py-1.5 rounded-md text-[10px] font-bold transition-all ${galleryTab === tab ? 'bg-pink-600 text-white shadow-md' : 'text-ink-500 hover:text-ink-300'}`}
+                                     className={`px-6 py-2 rounded-md text-xs font-bold transition-all ${galleryTab === tab ? 'bg-gold-600 text-ink-950 shadow-md shadow-gold-900/20' : 'text-parchment-400 hover:text-parchment-200 hover:bg-ink-800/50'}`}
                                  >
                                      {tab === 'IMAGE' ? 'Ảnh' : 'Video'}
                                  </button>
@@ -1749,7 +1743,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                          {/* Sort */}
                          <button
                              onClick={() => setGallerySort(prev => prev === 'NEWEST' ? 'OLDEST' : 'NEWEST')}
-                             className="flex items-center gap-2 text-[10px] font-bold text-ink-400 hover:text-pink-400 transition-colors"
+                             className="flex items-center gap-2 text-xs font-bold text-parchment-400 hover:text-gold-400 transition-colors px-3 py-2 rounded-lg hover:bg-ink-800/50"
                          >
                              <i className={`fas ${gallerySort === 'NEWEST' ? 'fa-sort-amount-down' : 'fa-sort-amount-up'}`}></i>
                              {gallerySort === 'NEWEST' ? 'Mới nhất' : 'Cũ nhất'}
@@ -1758,42 +1752,44 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
 
                      {/* Search */}
                      <div className="relative">
-                         <i className="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-ink-500 text-xs"></i>
+                         <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-ink-500"></i>
                          <input
                              type="text"
                              value={gallerySearch}
                              onChange={(e) => setGallerySearch(e.target.value)}
                              placeholder="Tìm kiếm theo tag hoặc URL..."
-                             className="w-full bg-ink-900 border border-ink-700 rounded-lg pl-9 pr-3 py-2 text-xs text-parchment-200 outline-none focus:border-pink-500"
+                             className="w-full bg-ink-900 border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-parchment-100 placeholder-ink-600 outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                          />
                      </div>
                  </div>
 
-                 <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-ink-700 flex flex-col gap-6">
+                 <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-ink-700 flex flex-col gap-6 bg-ink-900/80">
                      {/* Upload Section */}
-                     <div className="bg-ink-950/50 p-4 rounded-lg border border-ink-800 space-y-4">
-                          <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-2">Thêm Mới</label>
-                          <div className="flex gap-2 flex-col md:flex-row">
+                     <div className="bg-ink-950/50 p-5 rounded-lg border border-white/5 space-y-4">
+                          <label className="text-xs font-bold text-parchment-400 uppercase tracking-wider block mb-2 flex items-center gap-2">
+                              <i className="fas fa-cloud-upload-alt text-gold-500/50"></i> Thêm Mới
+                          </label>
+                          <div className="flex gap-3 flex-col md:flex-row">
                               <div className="flex-1 flex gap-2">
                                   <input 
                                       type="text" 
                                       value={newImageUrl} 
                                       onChange={(e) => setNewImageUrl(e.target.value)} 
                                       placeholder="Dán URL ảnh/video..." 
-                                      className="flex-1 bg-ink-900 border border-ink-700 rounded p-2 text-sm text-parchment-200 outline-none focus:border-pink-500" 
+                                      className="flex-1 bg-ink-900 border border-white/10 rounded-lg p-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all" 
                                   />
                                   <input 
                                       type="text"
                                       value={inputTags}
                                       onChange={(e) => setInputTags(e.target.value)}
                                       placeholder="Tags (vd: bg, dark)..."
-                                      className="w-1/3 bg-ink-900 border border-ink-700 rounded p-2 text-sm text-parchment-200 outline-none focus:border-pink-500"
+                                      className="w-1/3 bg-ink-900 border border-white/10 rounded-lg p-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
                                   />
                               </div>
                               <div className="flex gap-2 justify-end">
                                   <button 
                                       onClick={() => galleryFileInputRef.current?.click()}
-                                      className="bg-ink-800 border border-ink-600 px-3 rounded text-ink-400 hover:text-pink-400"
+                                      className="bg-ink-800 hover:bg-ink-700 border border-white/10 hover:border-gold-500/50 px-4 rounded-lg text-gold-400 transition-colors"
                                       title="Tải lên từ thiết bị (Hỗ trợ chọn nhiều)"
                                   >
                                       <i className="fas fa-upload"></i>
@@ -1806,7 +1802,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                       multiple 
                                       className="hidden" 
                                   />
-                                  <button onClick={handleAddUrlToGallery} className="bg-pink-600 hover:bg-pink-500 text-white px-3 rounded text-xs font-bold whitespace-nowrap">
+                                  <button onClick={handleAddUrlToGallery} className="bg-gold-600 hover:bg-gold-500 text-ink-950 px-4 rounded-lg text-sm font-bold whitespace-nowrap shadow-lg shadow-gold-900/20 transition-all">
                                       <i className="fas fa-plus mr-1"></i> Thêm
                                   </button>
                               </div>
@@ -1814,80 +1810,83 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                      </div>
 
                      {/* Grid */}
-                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {processedGalleryImages.map(img => (
                               <div 
                                   key={img.id} 
-                                  className={`group relative aspect-video bg-ink-950 rounded-lg overflow-hidden border transition-all cursor-pointer shadow-lg ${selectedImage?.id === img.id ? 'border-pink-500 ring-2 ring-pink-500/30' : 'border-ink-800 hover:border-pink-500/50'}`} 
+                                  className={`group relative aspect-video bg-ink-950 rounded-xl overflow-hidden border transition-all cursor-pointer shadow-lg ${selectedImage?.id === img.id ? 'border-gold-500 ring-2 ring-gold-500/30 shadow-gold-900/20' : 'border-white/5 hover:border-gold-500/50'}`} 
                                   onClick={() => setSelectedImage(img)}
                               >
                                   {img.type === 'image' ? (
-                                      <img src={img.url} alt="Gallery" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                      <img src={img.url} alt="Gallery" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                   ) : (
                                       <video src={img.url} className="w-full h-full object-cover opacity-80" muted />
                                   )}
                                   
                                   {/* Tags Overlay */}
-                                  <div className="absolute bottom-0 left-0 right-0 bg-black/70 p-1 transform translate-y-full group-hover:translate-y-0 transition-transform flex flex-wrap gap-1">
+                                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink-950 via-ink-950/80 to-transparent p-3 pt-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-wrap gap-1.5">
                                       {img.tags?.map((t, i) => (
-                                          <span key={i} className="text-[8px] bg-ink-700 text-ink-300 px-1 rounded">{t}</span>
+                                          <span key={i} className="text-[10px] font-medium bg-ink-800/80 border border-white/10 text-parchment-300 px-2 py-0.5 rounded-md backdrop-blur-sm">{t}</span>
                                       ))}
                                   </div>
 
                                   {/* Selection Overlay */}
                                   {selectedImage?.id === img.id && (
-                                      <div className="absolute inset-0 bg-pink-500/20 flex items-center justify-center">
-                                          <div className="bg-pink-600 text-white rounded-full p-2 shadow-lg animate-bounce">
-                                              <i className="fas fa-check"></i>
+                                      <div className="absolute inset-0 bg-gold-500/10 flex items-center justify-center backdrop-blur-[1px]">
+                                          <div className="bg-gold-600 text-ink-950 rounded-full w-10 h-10 flex items-center justify-center shadow-lg shadow-gold-900/50 animate-bounce">
+                                              <i className="fas fa-check text-lg"></i>
                                           </div>
                                       </div>
                                   )}
                               </div>
                           ))}
                           {processedGalleryImages.length === 0 && (
-                              <div className="col-span-full text-center text-ink-600 text-xs italic py-8">
-                                  {galleryImages.length === 0 ? "Chưa có ảnh nào trong kho." : "Không tìm thấy kết quả phù hợp."}
+                              <div className="col-span-full flex flex-col items-center justify-center text-ink-500 py-16 space-y-4">
+                                  <i className="fas fa-images text-4xl opacity-50"></i>
+                                  <p className="text-sm font-medium">
+                                      {galleryImages.length === 0 ? "Chưa có ảnh nào trong kho." : "Không tìm thấy kết quả phù hợp."}
+                                  </p>
                               </div>
                           )}
                      </div>
                  </div>
 
                  {/* Action Bar */}
-                 <div className="p-4 border-t border-white/10 bg-ink-950/50 flex justify-between items-center">
+                 <div className="p-4 border-t border-white/10 bg-ink-950/80 backdrop-blur-md flex justify-between items-center shrink-0">
                      {selectedImage ? (
-                         <div className="flex gap-2 w-full justify-end animate-slide-up">
+                         <div className="flex gap-3 w-full justify-end animate-fade-in">
                              <button 
                                  onClick={() => handleDeleteGalleryImage(selectedImage.id!)} 
-                                 className="px-4 py-2 bg-ink-900 border border-ink-700 text-crimson-400 hover:bg-crimson-900/20 hover:border-crimson-500 rounded text-xs font-bold transition-all"
+                                 className="px-5 py-2.5 bg-ink-900/50 border border-crimson-900/50 text-crimson-400 hover:bg-crimson-900/20 hover:border-crimson-500 hover:text-crimson-300 rounded-lg text-sm font-bold transition-all flex items-center gap-2"
                              >
-                                 <i className="fas fa-trash-alt mr-1"></i> Xóa
+                                 <i className="fas fa-trash-alt"></i> Xóa
                              </button>
-                             <div className="h-8 w-px bg-white/10 mx-2"></div>
+                             <div className="h-10 w-px bg-white/10 mx-1"></div>
                              
                              {/* NEW BUTTON: SET LOGO */}
                              <button 
                                  onClick={handleSetGlobalLogo} 
-                                 className="px-4 py-2 bg-ink-900 border border-ink-700 text-jade-400 hover:bg-jade-900/20 hover:border-jade-500 rounded text-xs font-bold transition-all"
+                                 className="px-5 py-2.5 bg-ink-900/50 border border-jade-900/50 text-jade-400 hover:bg-jade-900/20 hover:border-jade-500 hover:text-jade-300 rounded-lg text-sm font-bold transition-all flex items-center gap-2"
                              >
-                                 <i className="fas fa-dragon mr-1"></i> Đặt làm Logo
+                                 <i className="fas fa-dragon"></i> Đặt làm Logo
                              </button>
 
                              <button 
                                  onClick={handleSetGlobalBg} 
-                                 className="px-4 py-2 bg-ink-900 border border-ink-700 text-gold-400 hover:bg-gold-900/20 hover:border-gold-500 rounded text-xs font-bold transition-all"
+                                 className="px-5 py-2.5 bg-ink-900/50 border border-gold-900/50 text-gold-400 hover:bg-gold-900/20 hover:border-gold-500 hover:text-gold-300 rounded-lg text-sm font-bold transition-all flex items-center gap-2"
                              >
-                                 <i className="fas fa-desktop mr-1"></i> Đặt nền Menu Chính
+                                 <i className="fas fa-desktop"></i> Đặt nền Menu Chính
                              </button>
                              <button 
                                  onClick={handleApplyBulkBg} 
                                  disabled={isBulkUpdating}
-                                 className="px-4 py-2 bg-pink-600 hover:bg-pink-500 text-white rounded text-xs font-bold shadow-lg transition-all"
+                                 className="px-5 py-2.5 bg-gold-600 hover:bg-gold-500 text-ink-950 rounded-lg text-sm font-bold shadow-lg shadow-gold-900/20 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                              >
-                                 <i className="fas fa-layer-group mr-1"></i> Áp dụng cho MỌI Save ({isBulkUpdating ? '...' : 'Bulk'})
+                                 <i className="fas fa-layer-group"></i> Áp dụng cho MỌI Save ({isBulkUpdating ? '...' : 'Bulk'})
                              </button>
                          </div>
                      ) : (
-                         <div className="text-xs text-ink-500 italic w-full text-center">Chọn một ảnh để thao tác</div>
+                         <div className="text-sm font-medium text-ink-500 italic w-full text-center py-2">Chọn một ảnh để thao tác</div>
                      )}
                  </div>
              </div>
@@ -1898,18 +1897,18 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       {confirmation.isOpen && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in" onClick={() => setConfirmation({ ...confirmation, isOpen: false })}>
               <div className="bg-ink-900 border border-gold-500/30 rounded-xl w-full max-w-sm shadow-2xl p-6 relative animate-slide-up" onClick={e => e.stopPropagation()}>
-                  <h3 className="text-lg font-bold text-gold-400 mb-4 text-center border-b border-white/5 pb-2">{confirmation.title}</h3>
-                  <div className="text-parchment-200 text-center mb-6 text-sm leading-relaxed">{confirmation.message}</div>
+                  <h3 className="text-xl font-display font-bold text-gold-400 mb-4 text-center border-b border-white/10 pb-3">{confirmation.title}</h3>
+                  <div className="text-parchment-200 text-center mb-8 text-sm leading-relaxed">{confirmation.message}</div>
                   <div className="flex justify-center gap-4">
                       <button 
                           onClick={() => setConfirmation({ ...confirmation, isOpen: false })} 
-                          className="px-5 py-2 rounded bg-ink-800 text-ink-400 hover:text-white text-xs font-bold border border-ink-700 hover:border-ink-500 transition-all"
+                          className="px-6 py-2.5 rounded-lg bg-ink-800 text-parchment-400 hover:text-white hover:bg-ink-700 text-sm font-bold border border-white/10 hover:border-white/20 transition-all"
                       >
                           Hủy
                       </button>
                       <button 
                           onClick={confirmation.onConfirm} 
-                          className="px-5 py-2 rounded bg-crimson-600 hover:bg-crimson-500 text-white text-xs font-bold shadow-lg border border-crimson-400 transition-all"
+                          className="px-6 py-2.5 rounded-lg bg-crimson-600 hover:bg-crimson-500 text-white text-sm font-bold shadow-lg shadow-crimson-900/20 border border-crimson-500/50 transition-all"
                       >
                           Xác Nhận
                       </button>
