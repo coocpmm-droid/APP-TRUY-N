@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nguyễn Hoàng</title>
-    <meta name="theme-color" content="#020617" />
-    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/96/fantasy.png" />
-    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/180/fantasy.png" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/96/black-hole.png" />
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/180/black-hole.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
@@ -20,44 +20,47 @@
         theme: {
           extend: {
             colors: {
-              // Deep Space / Midnight Palette (Darker, richer bases)
+              // Deep Space / Void Palette
               ink: {
-                950: '#020617', // Deepest background
-                900: '#0f172a', // Card background (Deep Blue)
-                800: '#1e293b', // Lighter background
-                700: '#334155', // Borders
-                600: '#475569', // Muted text
+                950: '#000000', // Absolute Void
+                900: '#020617', // Deepest Blue-Black
+                800: '#0f172a', // Dark Navy
+                700: '#1e293b', // Muted Gray-Blue
+                600: '#334155', 
+                500: '#475569',
+              },
+              // Accretion Disk Glows
+              event: {
+                horizon: '#fbbf24', // Event Horizon Gold
+                glow: '#f59e0b',
+                void: '#000000',
               },
               // Text colors - Warm off-whites
               parchment: {
-                100: '#fffbeb', // Warmer white
-                200: '#fef3c7', // Pale yellow-white
-                300: '#e2e8f0', // Cool gray for contrast
+                50: '#fffdf5',
+                100: '#fffbeb', 
+                200: '#fef3c7', 
+                300: '#e2e8f0', 
                 400: '#94a3b8',
+                500: '#64748b',
               },
-              // "Spirit" - Vivid Cyan/Electric Blue (Qi/Magic)
+              // Neon Accents for contrast
               spirit: {
-                50: '#ecfeff',
                 100: '#cffafe',
                 200: '#a5f3fc',
                 300: '#67e8f9',
                 400: '#22d3ee',
-                500: '#06b6d4', // Main Neon Cyan
+                500: '#06b6d4', // Neon Cyan
                 600: '#0891b2',
-                700: '#0e7490',
-                800: '#155e75',
-                900: '#164e63',
               },
-              // "Arcane" - Vivid Violet/Neon Purple (Mystery/Dao)
               arcane: {
+                100: '#f3e8ff',
+                200: '#e9d5ff',
                 300: '#d8b4fe',
                 400: '#c084fc',
-                500: '#a855f7', // Main Neon Purple
+                500: '#a855f7', // Neon Purple
                 600: '#9333ea',
-                700: '#7e22ce',
-                900: '#581c87',
               },
-              // "Gold" - Vivid Amber/Gold (Royalty/Divine/Success)
               gold: {
                 100: '#fef9c3',
                 200: '#fde047',
@@ -65,24 +68,22 @@
                 400: '#eab308',
                 500: '#e1b303', // Rich Gold
                 600: '#ca8a04',
-                700: '#a16207',
-                800: '#854d0e',
-                900: '#713f12',
               },
-              // "Crimson" - Vivid Red/Pink (Danger/Combat/Risk)
               crimson: {
+                100: '#ffe4e6',
+                200: '#fecdd3',
+                300: '#fda4af',
                 400: '#fb7185',
                 500: '#f43f5e', // Neon Rose
                 600: '#e11d48',
-                700: '#be123c',
-                900: '#881337',
               },
-              // "Jade" - Vivid Green (Safety/Growth)
               jade: {
+                100: '#dcfce7',
+                200: '#bbf7d0',
+                300: '#86efac',
                 400: '#4ade80',
                 500: '#22c55e', // Neon Green
                 600: '#16a34a',
-                900: '#064e3b',
               }
             },
             fontFamily: {
@@ -101,6 +102,7 @@
               'glow': 'glow 2s ease-in-out infinite alternate',
               'shimmer': 'shimmer 3s linear infinite',
               'page-enter': 'pageEnter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'orbit': 'orbit 20s linear infinite',
             },
             keyframes: {
               fadeIn: {
@@ -116,8 +118,8 @@
                 '50%': { transform: 'translateY(-10px)' },
               },
               glow: {
-                '0%': { boxShadow: '0 0 5px rgba(6, 182, 212, 0.2)' },
-                '100%': { boxShadow: '0 0 20px rgba(6, 182, 212, 0.6), 0 0 10px rgba(6, 182, 212, 0.4)' }
+                '0%': { boxShadow: '0 0 5px rgba(245, 158, 11, 0.2)' },
+                '100%': { boxShadow: '0 0 20px rgba(245, 158, 11, 0.6), 0 0 10px rgba(245, 158, 11, 0.4)' }
               },
               shimmer: {
                 '0%': { backgroundPosition: '200% 0' },
@@ -126,6 +128,10 @@
               pageEnter: {
                 '0%': { opacity: '0', transform: 'translateY(15px) scale(0.98)' },
                 '100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
+              },
+              orbit: {
+                'from': { transform: 'rotate(0deg) translateX(10px) rotate(0deg)' },
+                'to': { transform: 'rotate(360deg) translateX(10px) rotate(-360deg)' }
               }
             }
           }
@@ -134,13 +140,37 @@
     </script>
     <style>
       body {
-        /* Nebula Gradient: Deep Navy -> Purple -> Black */
-        background: radial-gradient(circle at 50% -20%, #2e1065 0%, #1e1b4b 30%, #020617 80%);
+        /* Black Hole Accretion Disk Gradient - Deepened and Sharpened */
+        background: radial-gradient(circle at 50% 50%, #000000 0%, #020617 20%, #0f172a 50%, #000000 100%);
         background-attachment: fixed;
         color: #e2e8f0;
         font-family: 'Merriweather', serif;
         min-height: 100vh;
         -webkit-font-smoothing: antialiased;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Subtle Starfield Overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+          radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+          radial-gradient(1px 1px at 50px 160px, #fff, rgba(0,0,0,0)),
+          radial-gradient(1px 1px at 80px 120px, #fff, rgba(0,0,0,0)),
+          radial-gradient(1px 1px at 110px 10px, #fff, rgba(0,0,0,0)),
+          radial-gradient(1px 1px at 150px 150px, #fff, rgba(0,0,0,0));
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        opacity: 0.15;
+        pointer-events: none;
+        z-index: -1;
       }
       
       p {
@@ -148,61 +178,59 @@
         line-height: 1.8;
       }
 
-      /* Custom scrollbar - Auto hide on inactive */
+      /* Custom scrollbar - Sharper and Thematic */
       ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+        width: 4px;
+        height: 4px;
       }
       ::-webkit-scrollbar-track {
-        background: transparent; 
+        background: rgba(0, 0, 0, 0.3); 
       }
-      /* Default state: Transparent/Hidden */
       ::-webkit-scrollbar-thumb {
-        background: transparent; 
-        border-radius: 3px;
-        transition: background-color 0.2s;
+        background: rgba(245, 158, 11, 0.2); 
+        border-radius: 2px;
+        transition: all 0.3s ease;
       }
-      /* Show on Hover of the container */
       *:hover::-webkit-scrollbar-thumb {
-        background: rgba(51, 65, 85, 0.5); /* ink-700 with opacity */
+        background: rgba(245, 158, 11, 0.4);
       }
-      /* Active Hover on Thumb */
       ::-webkit-scrollbar-thumb:hover {
-        background: #eab308 !important; /* Gold Hover */
+        background: #f59e0b !important;
+        box-shadow: 0 0 10px #f59e0b;
       }
 
-      /* Glassmorphism utilities */
+      /* Glassmorphism utilities - Sharper for Black Hole theme */
       .glass {
-        background: rgba(15, 23, 42, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(234, 179, 8, 0.1); /* Gold tint border */
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(245, 158, 11, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
       }
       
       .glass-panel {
-        background: rgba(2, 6, 23, 0.5);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        background: rgba(2, 6, 23, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
       }
 
       .text-glow {
-        text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+        text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
       }
       .text-glow-gold {
-        text-shadow: 0 0 15px rgba(234, 179, 8, 0.6);
+        text-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
       }
       .text-glow-crimson {
-        text-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
+        text-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
       }
       .text-glow-purple {
-        text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
       }
       
       .prose-content {
         font-size: 1.05rem;
-        /* Color and Font Family will be controlled by inline styles in GameUI */
       }
       @media (min-width: 768px) {
         .prose-content {
@@ -210,13 +238,27 @@
         }
       }
 
-      /* Page Enter Helper Class */
       .page-enter-active {
         animation: pageEnter 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+
+      /* Accretion Disk Ring Effect */
+      .accretion-ring {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80vw;
+        height: 80vw;
+        background: radial-gradient(circle, transparent 40%, rgba(245, 158, 11, 0.05) 50%, transparent 70%);
+        pointer-events: none;
+        z-index: -2;
+        animation: pulse 10s ease-in-out infinite;
       }
     </style>
   </head>
   <body>
+    <div class="accretion-ring"></div>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
