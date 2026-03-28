@@ -255,76 +255,6 @@
         z-index: -2;
         animation: pulse 10s ease-in-out infinite;
       }
-
-      /* Global Button Animated Border & Aura */
-      button {
-        position: relative;
-        isolation: isolate; /* Giữ hào quang không bị lẹm ra sau background cha */
-      }
-      
-      /* Glowing Aura (Hào quang tỏa ra xung quanh) */
-      button::before {
-        content: "";
-        position: absolute;
-        inset: -6px;
-        border-radius: inherit;
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #3b82f6);
-        background-size: 300% 100%;
-        animation: border-flow 3s ease-in-out infinite;
-        z-index: -1;
-        filter: blur(6px);
-        -webkit-mask: 
-          linear-gradient(#fff 0 0) content-box, 
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        padding: 6px; /* Khoét rỗng phần ruột để không lẹm vào nền nút */
-        opacity: 0.4; /* Hào quang nhẹ mặc định */
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-      }
-
-      /* Sharp Border (Viền sắc nét bên ngoài) */
-      button::after {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        border-radius: inherit;
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #3b82f6);
-        background-size: 300% 100%;
-        animation: border-flow 3s ease-in-out infinite;
-        z-index: 10;
-        -webkit-mask: 
-          linear-gradient(#fff 0 0) content-box, 
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        padding: 2px;
-        opacity: 0.35; /* Hiệu ứng nhẹ mặc định */
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-      }
-
-      button:hover:not(:disabled)::after,
-      button:focus-visible:not(:disabled)::after {
-        opacity: 1;
-      }
-
-      button:hover:not(:disabled)::before,
-      button:focus-visible:not(:disabled)::before {
-        opacity: 0.85; /* Hào quang rực sáng khi hover */
-      }
-
-      button:disabled::after,
-      button:disabled::before {
-        display: none;
-      }
-
-      @keyframes border-flow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
     </style>
   </head>
   <body>
@@ -332,4 +262,4 @@
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
-</html>
+</html> 
