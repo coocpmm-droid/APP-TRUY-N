@@ -271,8 +271,12 @@ const NarrativeDisplay: React.FC<{
 
   const parseText = (content: string) => {
     const parseFormatting = (text: string) => {
+        // Strip literal tags if AI sent them (to avoid double tagging)
+        let processedText = text.replace(/<\/?dialogue>/gi, '');
+        processedText = processedText.replace(/<\/?thought>/gi, '');
+
         // Strip "Dialogue:" or "Dialogue :" (case insensitive)
-        let processedText = text.replace(/Dialogue\s*:\s*/gi, '');
+        processedText = processedText.replace(/Dialogue\s*:\s*/gi, '');
 
         // Replace ".." with "..."
         processedText = processedText.replace(/\.\./g, '...');
