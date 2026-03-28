@@ -270,19 +270,25 @@ const NarrativeDisplay: React.FC<{
   }, [wikiEntries]);
 
   const parseText = (content: string) => {
-    const parseThoughts = (text: string) => {
-        const thoughtParts = text.split(/(\*\*.*?\*\*)/g);
-        return thoughtParts.map((tPart, tIndex) => {
-            if (tPart.startsWith('**') && tPart.endsWith('**')) {
-                const innerText = tPart.slice(2, -2);
-                return <span key={tIndex} className="font-bold italic text-spirit-200">{innerText}</span>;
+    const parseFormatting = (text: string) => {
+        // Handle bold italics (thoughts) and single italics (dialogue)
+        const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+        return parts.map((part, index) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+                const innerText = part.slice(2, -2);
+                return <span key={index} className="font-bold italic text-spirit-200">{innerText}</span>;
             }
-            return tPart;
+            if (part.startsWith('*') && part.endsWith('*')) {
+                const innerText = part.slice(1, -1);
+                // Dialogue color: soft amber/gold for spoken words
+                return <span key={index} className="italic text-gold-300/90 drop-shadow-[0_0_1px_rgba(234,179,8,0.2)]">{innerText}</span>;
+            }
+            return part;
         });
     };
 
     if (!content) return content;
-    if (validEntries.length === 0) return parseThoughts(content);
+    if (validEntries.length === 0) return parseFormatting(content);
     
     try {
         const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -310,11 +316,11 @@ const NarrativeDisplay: React.FC<{
                     </span>
                 );
             }
-            return <React.Fragment key={index}>{parseThoughts(part)}</React.Fragment>;
+            return <React.Fragment key={index}>{parseFormatting(part)}</React.Fragment>;
         });
     } catch (e) {
         console.warn("Narrative parse failed, rendering raw text", e);
-        return parseThoughts(content);
+        return parseFormatting(content);
     }
   };
 

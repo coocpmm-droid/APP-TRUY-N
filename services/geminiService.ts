@@ -494,12 +494,13 @@ class GeminiService {
       3. **MIÊU TẢ TỰ NHIÊN**: Chỉ được phép miêu tả thời gian thông qua bối cảnh môi trường (Ví dụ: "Mặt trời đã lên cao", "Sương đêm lạnh lẽo", "Bóng tối bao trùm"). Mọi con số về thời gian phải được giữ kín trong đối tượng 'stats'.
 
       === [FORMATTING PROTOCOL] ===
-      1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép ("..."). KHÔNG dùng dấu ngoặc kép đơn ('...').
+      1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép VÀ in nghiêng (Ví dụ: *"Chào anh"*). TUYỆT ĐỐI KHÔNG dùng chữ thẳng cho lời thoại.
       2. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật (dù dùng ngoặc kép "" hay nháy đơn '') đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
       3. **PARAGRAPHS (QUAN TRỌNG)**: BẮT BUỘC phải chia nhỏ văn bản thành nhiều đoạn ngắn (paragraphs) bằng cách xuống dòng (sử dụng ký tự \`\\n\\n\`). 
          - TUYỆT ĐỐI KHÔNG viết một cục văn bản dài liền mạch gây khó đọc. Phải làm cho văn bản thật THOÁNG.
-         - Mỗi đoạn văn luôn luôn có 2 câu văn(CỐ ĐỊNH 2 CÂU). Hết 2 câu là PHẢI XUỐNG DÒNG ngay lập tức.
+         - Mỗi đoạn văn luôn luôn có 2 câu văn (CỐ ĐỊNH 2 CÂU). Hết 2 câu là PHẢI XUỐNG DÒNG ngay lập tức.
          - Đặc biệt trong các cảnh miêu tả chi tiết (như cảnh nóng, chiến đấu), việc ngắt đoạn liên tục là bắt buộc để tạo nhịp điệu và dễ đọc.
+         - Quy tắc 2 câu/đoạn giúp tạo điểm nhấn và nhịp điệu như một thước phim.
 
       === [PRONOUN PROTOCOL] ===
       QUY TẮC XƯNG HÔ: ${pronounRules || "ADAPTIVE PRONOUNS (STRICTLY 2 MODES):\\n1. TU TIÊN / KIẾM HIỆP (Wuxia/Xianxia): Sử dụng xưng hô cổ trang đậm chất tu tiên: 'Ngươi - Ta', 'Tại hạ', 'Đạo hữu', 'Tiền bối', 'Vãn bối', 'Bổn tọa'.\\n2. ANIME / MANGA: BẮT BUỘC giữ văn hóa xưng hô Nhật Bản. KHÔNG DÙNG 'anh', 'chị', 'chú', 'bác' thuần Việt (CẤM viết 'chị Fern', 'chú Stark'). BẮT BUỘC dùng hậu tố: '-san', '-kun', '-chan', '-sama', 'Sensei', 'Senpai' (VD: 'Fern-san', 'Frieren-sama'). Nếu gọi anh/chị, dùng 'Onii-chan', 'Onee-san'. Xưng hô cơ bản: 'Cậu - Tớ', 'Tôi - Cậu', hoặc xưng bằng Tên. Chú ý tuổi tác (VD: Player 6 tuổi thì NPC gọi là [Tên]-chan/kun)."}
