@@ -662,7 +662,8 @@ function App() {
         undefined,
         calculatedCurrency, // Pass the clean currency
         baseTime, // Pass the base time for now
-        currentSession.abilities // Pass abilities
+        currentSession.abilities, // Pass abilities
+        currentSession.dialogueStyle // Pass dialogue style
       );
 
       // --- STEP 3: CHRONOS (REVERSE SYNCHRONIZATION) ---

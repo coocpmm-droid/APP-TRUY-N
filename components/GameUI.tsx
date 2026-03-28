@@ -260,7 +260,9 @@ const NarrativeDisplay: React.FC<{
     lineHeight?: string;
     turnsLength: number;
     imageUrl?: string;
-}> = ({ text, worldEvents, wikiEntries, onWikiClick, style, isLivingWorldEnabled, fontSize, lineHeight, turnsLength, imageUrl }) => {
+    dialogueColor?: string;
+    dialogueStyle?: string;
+}> = ({ text, worldEvents, wikiEntries, onWikiClick, style, isLivingWorldEnabled, fontSize, lineHeight, turnsLength, imageUrl, dialogueColor, dialogueStyle }) => {
   const [isEventsExpanded, setIsEventsExpanded] = useState(true);
 
   const validEntries = useMemo(() => {
@@ -270,19 +272,54 @@ const NarrativeDisplay: React.FC<{
   }, [wikiEntries]);
 
   const parseText = (content: string) => {
-    const parseThoughts = (text: string) => {
+    const parseFormatting = (text: string) => {
         const thoughtParts = text.split(/(\*\*.*?\*\*)/g);
         return thoughtParts.map((tPart, tIndex) => {
             if (tPart.startsWith('**') && tPart.endsWith('**')) {
                 const innerText = tPart.slice(2, -2);
                 return <span key={tIndex} className="font-bold italic text-spirit-200">{innerText}</span>;
             }
-            return tPart;
+            
+            // Parse dialogue based on style
+            let dialogueRegex = /(".*?"|“.*?”|«.*?»)/g;
+            if (dialogueStyle === 'brackets') {
+                dialogueRegex = /(\[.*?\])/g;
+            } else if (dialogueStyle === 'parentheses') {
+                dialogueRegex = /(\(.*?\))/g;
+            } else if (dialogueStyle === 'asterisks') {
+                dialogueRegex = /(\*.*?\*)/g;
+            }
+
+            const dialogueParts = tPart.split(dialogueRegex);
+            return dialogueParts.map((dPart, dIndex) => {
+                const isDialogue = dialogueStyle === 'brackets' ? (dPart.startsWith('[') && dPart.endsWith(']')) :
+                                   dialogueStyle === 'parentheses' ? (dPart.startsWith('(') && dPart.endsWith(')')) :
+                                   dialogueStyle === 'asterisks' ? (dPart.startsWith('*') && dPart.endsWith('*') && !dPart.startsWith('**')) :
+                                   ((dPart.startsWith('"') && dPart.endsWith('"')) ||
+                                    (dPart.startsWith('“') && dPart.endsWith('”')) ||
+                                    (dPart.startsWith('«') && dPart.endsWith('»')));
+
+                if (isDialogue) {
+                    const colorClass = dialogueColor || '#fde047'; // Default yellow-300
+                    // If it's a hex code, use inline style, otherwise assume it's a tailwind class
+                    const isHex = colorClass.startsWith('#');
+                    return (
+                        <span 
+                            key={`${tIndex}-${dIndex}`} 
+                            className={`font-medium ${!isHex ? colorClass : ''}`}
+                            style={isHex ? { color: colorClass, textShadow: `0 0 5px ${colorClass}66` } : { textShadow: '0 0 5px rgba(253,224,71,0.4)' }}
+                        >
+                            {dPart}
+                        </span>
+                    );
+                }
+                return dPart;
+            });
         });
     };
 
     if (!content) return content;
-    if (validEntries.length === 0) return parseThoughts(content);
+    if (validEntries.length === 0) return parseFormatting(content);
     
     try {
         const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -310,11 +347,11 @@ const NarrativeDisplay: React.FC<{
                     </span>
                 );
             }
-            return <React.Fragment key={index}>{parseThoughts(part)}</React.Fragment>;
+            return <React.Fragment key={index}>{parseFormatting(part)}</React.Fragment>;
         });
     } catch (e) {
         console.warn("Narrative parse failed, rendering raw text", e);
-        return parseThoughts(content);
+        return parseFormatting(content);
     }
   };
 
@@ -455,6 +492,8 @@ export const GameUI: React.FC<GameUIProps> = ({
   const [tempBgType, setTempBgType] = useState<'image' | 'video'>('image'); 
   const [tempFont, setTempFont] = useState(session.fontFamily || "'Merriweather', serif");
   const [tempColor, setTempColor] = useState(session.textColor || "#fffbeb");
+  const [tempDialogueColor, setTempDialogueColor] = useState(session.dialogueColor || "#fde047"); // Default yellow-300
+  const [tempDialogueStyle, setTempDialogueStyle] = useState(session.dialogueStyle || "quotes");
   const [tempAiModel, setTempAiModel] = useState(session.aiModel || 'gemini-3.1-pro-preview');
   
   const [tempFontSize, setTempFontSize] = useState(session.fontSize || 'text-lg');
@@ -871,6 +910,8 @@ export const GameUI: React.FC<GameUIProps> = ({
           }
           onUpdateSession('fontFamily', tempFont);
           onUpdateSession('textColor', tempColor);
+          onUpdateSession('dialogueColor', tempDialogueColor);
+          onUpdateSession('dialogueStyle', tempDialogueStyle);
           onUpdateSession('aiModel', tempAiModel);
           onUpdateSession('fontSize', tempFontSize);
           onUpdateSession('lineHeight', tempLineHeight);
@@ -1384,6 +1425,45 @@ export const GameUI: React.FC<GameUIProps> = ({
                                               title={c.name}
                                           />
                                       ))}
+                                  </div>
+                              </div>
+
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                  <div>
+                                      <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-2">
+                                          <i className="fas fa-pen mr-1"></i> Màu Chữ Hội Thoại
+                                      </label>
+                                      <div className="flex items-center gap-3">
+                                          <input 
+                                              type="color" 
+                                              value={tempDialogueColor.startsWith('#') ? tempDialogueColor : '#fde047'} 
+                                              onChange={(e) => setTempDialogueColor(e.target.value)} 
+                                              className="w-10 h-10 rounded cursor-pointer bg-transparent border-0 p-0"
+                                              title="Chọn màu tùy ý"
+                                          />
+                                          <span className="text-xs text-ink-400">Nhấp vào ô màu để chọn màu pha tùy ý</span>
+                                      </div>
+                                  </div>
+                                  <div>
+                                      <label className="text-[10px] font-bold text-ink-500 uppercase tracking-wider block mb-2">
+                                          <i className="fas fa-quote-left mr-1"></i> Kiểu Bọc Hội Thoại
+                                      </label>
+                                      <div className="grid grid-cols-2 gap-2">
+                                          {[
+                                              { value: 'quotes', label: '"..." (Ngoặc kép)' },
+                                              { value: 'brackets', label: '[...] (Ngoặc vuông)' },
+                                              { value: 'parentheses', label: '(...) (Ngoặc đơn)' },
+                                              { value: 'asterisks', label: '*...* (Dấu sao)' }
+                                          ].map(style => (
+                                              <button
+                                                  key={style.value}
+                                                  onClick={() => setTempDialogueStyle(style.value)}
+                                                  className={`p-2 rounded border text-[10px] font-bold transition-all text-left ${tempDialogueStyle === style.value ? 'bg-gold-900/30 border-gold-500 text-gold-300' : 'bg-ink-950 border-ink-700 text-ink-400'}`}
+                                              >
+                                                  {style.label}
+                                              </button>
+                                          ))}
+                                      </div>
                                   </div>
                               </div>
                           </div>
@@ -1927,6 +2007,8 @@ export const GameUI: React.FC<GameUIProps> = ({
                             lineHeight={session.lineHeight}
                             turnsLength={turns.length}
                             imageUrl={turn.imageUrl}
+                            dialogueColor={session.dialogueColor}
+                            dialogueStyle={session.dialogueStyle}
                           />
                           {!turn.imageUrl && (
                               <div className="mt-4 flex justify-center">

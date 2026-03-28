@@ -172,6 +172,8 @@ export interface GameSession {
   backgroundType?: 'image' | 'video'; 
   fontFamily?: string; 
   textColor?: string;
+  dialogueColor?: string; // NEW: Custom color for dialogue
+  dialogueStyle?: string; // NEW: Wrapper style for dialogue (e.g. quotes, brackets)
   // NEW DISPLAY SETTINGS
   fontSize?: string; // e.g. 'text-lg'
   lineHeight?: string; // e.g. 'leading-loose'

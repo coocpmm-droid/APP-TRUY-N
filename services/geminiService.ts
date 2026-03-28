@@ -35,26 +35,32 @@ try {
       const proxyUrl = localStorage.getItem(activeProxy === 2 ? 'td_proxy_url2' : 'td_proxy_url');
       const proxyKey = localStorage.getItem(activeProxy === 2 ? 'td_proxy_key2' : 'td_proxy_key');
 
-      // Intercept requests going to Google's API
-      if (useProxy && proxyUrl && url.includes('generativelanguage.googleapis.com')) {
-        const cleanProxy = proxyUrl.trim().replace(/\/+$/, '').replace(/\/v1beta$|\/v1$/, '');
+      const cleanProxy = proxyUrl ? proxyUrl.trim().replace(/\/+$/, '').replace(/\/v1beta$|\/v1alpha$|\/v1$/, '') : '';
+      const isGoogleApi = url.includes('generativelanguage.googleapis.com');
+      const isProxyApi = useProxy && cleanProxy && url.includes(cleanProxy);
+
+      // Intercept requests going to Google's API or the Proxy API
+      if (useProxy && proxyUrl && (isGoogleApi || isProxyApi)) {
         const originalUrlObj = new URL(url);
         
         // Remove the dummy 'key' query parameter that the SDK adds
         originalUrlObj.searchParams.delete("key");
         
-        const newUrl = `${cleanProxy}${originalUrlObj.pathname}${originalUrlObj.search}`;
+        // If it's going to Google, redirect to proxy. If it's already going to proxy, just use the cleaned URL.
+        const newUrl = isGoogleApi 
+          ? `${cleanProxy}${originalUrlObj.pathname}${originalUrlObj.search}`
+          : originalUrlObj.toString();
         
         if (resource instanceof Request) {
           // Create a new Request object with the new URL but same properties
           // This preserves method, body, headers, etc.
           const newRequest = new Request(newUrl, resource);
           
-          // Remove the dummy key headers that the SDK might add
           newRequest.headers.delete("x-goog-api-key");
           
           if (proxyKey) {
             newRequest.headers.set('Authorization', `Bearer ${proxyKey}`);
+            newRequest.headers.set('x-goog-api-key', proxyKey);
           }
           
           return originalFetch(newRequest);
@@ -62,11 +68,11 @@ try {
           const newConfig = { ...config };
           const headers = new Headers(newConfig.headers || {});
           
-          // Remove the dummy key headers that the SDK might add
           headers.delete("x-goog-api-key");
           
           if (proxyKey) {
             headers.set('Authorization', `Bearer ${proxyKey}`);
+            headers.set('x-goog-api-key', proxyKey);
           }
           newConfig.headers = headers;
           
@@ -348,7 +354,8 @@ class GeminiService {
     currentCurrency?: string,
     // preCalculatedTime là thời gian đã được Chronos tính xong
     preCalculatedTime?: string,
-    abilities?: Ability[]
+    abilities?: Ability[],
+    dialogueStyle?: string
   ): Promise<{ parsed: AIResponseSchema; raw: string; thoughtSignature?: string; isCutOff?: boolean }> {
     
     let nsfwBlock = "";
@@ -488,8 +495,11 @@ class GeminiService {
       3. **MIÊU TẢ TỰ NHIÊN**: Chỉ được phép miêu tả thời gian thông qua bối cảnh môi trường (Ví dụ: "Mặt trời đã lên cao", "Sương đêm lạnh lẽo", "Bóng tối bao trùm"). Mọi con số về thời gian phải được giữ kín trong đối tượng 'stats'.
 
       === [FORMATTING PROTOCOL] ===
-      1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép ("..."). KHÔNG dùng dấu ngoặc kép đơn ('...').
-      2. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật (dù dùng ngoặc kép "" hay nháy đơn '') đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
+      1. **DIALOGUE**: ${dialogueStyle === 'brackets' ? 'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc vuông ([...]). KHÔNG dùng dấu ngoặc kép ("...").' : 
+                          dialogueStyle === 'parentheses' ? 'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc đơn ((...)). KHÔNG dùng dấu ngoặc kép ("...").' :
+                          dialogueStyle === 'asterisks' ? 'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu sao (*...*). KHÔNG dùng dấu ngoặc kép ("...").' :
+                          'BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép ("..."). KHÔNG dùng dấu ngoặc kép đơn (\'...\').'}
+      2. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
       3. **PARAGRAPHS (QUAN TRỌNG)**: BẮT BUỘC phải chia nhỏ văn bản thành nhiều đoạn ngắn (paragraphs) bằng cách xuống dòng (sử dụng ký tự \`\\n\\n\`). 
          - TUYỆT ĐỐI KHÔNG viết một cục văn bản dài liền mạch gây khó đọc. Phải làm cho văn bản thật THOÁNG.
          - Mỗi đoạn văn luôn luôn có 2 câu văn(CỐ ĐỊNH 2 CÂU). Hết 2 câu là PHẢI XUỐNG DÒNG ngay lập tức.
