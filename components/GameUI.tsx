@@ -1882,7 +1882,7 @@ export const GameUI: React.FC<GameUIProps> = ({
           <div className="flex items-center gap-4">
              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-400 via-crimson-500 to-arcane-600 flex items-center justify-center text-ink-950 shadow-[0_0_15px_rgba(234,179,8,0.3)]"><i className="fas fa-yin-yang fa-spin-slow text-sm text-white"></i></div>
              <div className="flex flex-col">
-                 <h1 className="font-display font-bold text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-parchment-100 to-spirit-300 tracking-wide drop-shadow-sm truncate max-w-[200px] md:max-w-none">{currentStats?.name || "Nhập Vai Simulator"}</h1>
+                 <h1 className="font-display font-bold text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-parchment-100 to-spirit-300 tracking-wide drop-shadow-sm truncate max-w-[200px] md:max-w-none">The Infinity Tale</h1>
                  
                  {currentStats?.currentTime && (
                      <div className="flex items-center gap-2 text-xs md:text-sm text-gold-300/90 font-mono tracking-tight bg-ink-900/50 px-2 py-0.5 rounded border border-white/5 mt-0.5">
@@ -2063,18 +2063,6 @@ export const GameUI: React.FC<GameUIProps> = ({
         <button onClick={() => setShowStatsMobile(false)} className="md:hidden absolute top-4 left-4 text-parchment-300 hover:text-white p-2"><i className="fas fa-times text-xl"></i></button>
         {currentStats ? (
           <div className="h-full overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-ink-700 flex flex-col relative pb-[100px]">
-            <div className="flex flex-col items-center mb-8 relative">
-              <div className="relative group cursor-pointer animate-float">
-                <div className="w-24 h-24 rounded-full p-[2px] bg-gradient-to-tr from-gold-400 via-crimson-500 to-spirit-500 shadow-[0_0_30px_rgba(234,179,8,0.2)]">
-                   <div className="w-full h-full rounded-full overflow-hidden bg-ink-950 border-2 border-ink-900"><img src={avatarUrl || `https://ui-avatars.com/api/?name=${currentStats.name}&background=random`} alt="Avatar" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 hover:scale-110" /></div>
-                </div>
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-ink-900 border border-gold-500/50 px-3 py-1 rounded-full text-[9px] font-bold text-gold-300 uppercase whitespace-nowrap shadow-lg tracking-widest font-display">{currentStats.realm?.split(' ')[0] || 'Phàm Nhân'}</div>
-              </div>
-              <h2 className="mt-6 text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-parchment-100 to-parchment-300 text-center drop-shadow">{currentStats.name}</h2>
-              <div className="text-ink-500 text-[9px] uppercase tracking-[0.2em] mt-1 font-bold">Địa Vị</div>
-              <div className="text-gold-300 text-sm mt-0.5 font-bold drop-shadow-sm font-display">{currentStats.realm}</div>
-            </div>
-
             <div className="space-y-3">
               <div className="bg-ink-900/40 border border-ink-700/50 rounded-xl p-3 hover:border-crimson-500/30 transition-colors">
                 <div className="flex items-center gap-2 mb-1"><i className="fas fa-heart-pulse text-crimson-400 text-xs"></i><span className="text-[9px] font-bold text-ink-500 uppercase tracking-wide">Trạng Thái</span></div>
