@@ -1988,7 +1988,7 @@ export const GameUI: React.FC<GameUIProps> = ({
                               <i className="fas fa-pen absolute top-4 right-4 text-ink-600 text-xs"></i>
                               
                               <div className="text-[10px] font-bold mb-3 uppercase tracking-[0.2em] flex items-center gap-2 text-gold-500">
-                                <i className="fas fa-comment-alt"></i> Hành Động
+                                <i className="fas fa-comment-alt"></i> Mệnh Lệnh
                               </div>
                               <UserMessage text={turn.userPrompt?.startsWith('[TIẾP TỤC]') ? '[TIẾP TỤC]: Viết tiếp diễn biến...' : (turn.userPrompt || '')} />
                             </div>
@@ -2077,6 +2077,14 @@ export const GameUI: React.FC<GameUIProps> = ({
                    <div className="absolute top-0 right-0 p-1 opacity-10"><i className="fas fa-atom text-4xl"></i></div>
                    <div className="flex items-center gap-2 mb-2"><i className="fas fa-dna text-gold-400 text-xs"></i><span className="text-[9px] font-bold text-ink-500 uppercase tracking-wide">Gia Thế / Căn Cơ</span></div>
                    <div className="text-sm font-bold text-gold-400 mb-2">{currentStats.spiritualRoot || currentStats.realm}</div>
+                   
+                   {Array.isArray(currentStats.talents) && (
+                       <div className="flex flex-wrap gap-1.5">
+                           {currentStats.talents.map((t, i) => (
+                               <span key={i} className="text-[10px] bg-ink-950 border border-ink-700 px-2 py-0.5 rounded text-ink-400">{t}</span>
+                           ))}
+                       </div>
+                   )}
               </div>
               
               <div className="bg-ink-900/40 border border-ink-700/50 rounded-xl p-3 relative overflow-hidden">
@@ -2087,11 +2095,9 @@ export const GameUI: React.FC<GameUIProps> = ({
                      </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2 mb-3">
                       {Array.isArray(currentStats.attributes) && currentStats.attributes.length > 0 ? (
-                          currentStats.attributes
-                              .filter(attr => !['tài sản', 'thiên phú', 'địa vị', 'assets', 'talents', 'status'].includes(attr.key.toLowerCase()))
-                              .map((attr, idx) => (
+                          currentStats.attributes.map((attr, idx) => (
                               <div key={idx} className="bg-ink-950/50 border border-ink-800 rounded px-2 py-1.5 flex flex-col items-center justify-center">
                                   <span className="text-[8px] text-ink-500 uppercase font-bold">{attr.key}</span>
                                   <span className="text-xs font-bold text-parchment-100">{attr.value}</span>
@@ -2100,6 +2106,11 @@ export const GameUI: React.FC<GameUIProps> = ({
                       ) : (
                           <div className="col-span-2 text-[10px] text-ink-600 italic text-center py-2">Chưa có dữ liệu...</div>
                       )}
+                  </div>
+                  
+                  <div className="bg-ink-950/80 border border-gold-500/20 rounded px-3 py-2 flex items-center justify-between">
+                       <span className="text-[9px] text-gold-500 uppercase font-bold"><i className="fas fa-coins mr-1"></i> Tài Sản</span>
+                       <span className="text-xs font-bold text-gold-300">{currentStats.currency || "0"}</span>
                   </div>
               </div>
 
