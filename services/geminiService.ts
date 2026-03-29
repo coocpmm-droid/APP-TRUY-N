@@ -621,7 +621,7 @@ class GeminiService {
           topP: 0.9, // Thêm topP
           topK: 40, // Thêm topK
           safetySettings: SAFETY_SETTINGS as any,
-          maxOutputTokens: 8192, 
+          maxOutputTokens: 16384, 
           stopSequences: ["(End). (End).", "(End).(End)."],
           // Tắt Thinking Mode ở lượt 1 (Flash) để tối đa tốc độ, bật lại ở lượt 2 (Pro)
           ...(isFirstTurn ? {} : { thinkingConfig: { thinkingLevel: ThinkingLevel.HIGH } })
