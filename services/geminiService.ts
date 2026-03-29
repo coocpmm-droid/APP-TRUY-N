@@ -1065,8 +1065,11 @@ class GeminiService {
       - Thuộc tính: ${JSON.stringify(previousStats.attributes)}
       - Vị trí hiện tại: "${previousStats.currentLocation}"
       
-      QUY TẮC CẬP NHẬT:(Phải Tạo Ngay Khi Tạo Game)
-      1. **HÀNH TRANG (INVENTORY)**: 
+      QUY TẮC CẬP NHẬT:
+      1. **KHỞI TẠO (INITIALIZATION)**: 
+         - Nếu đây là lượt đầu tiên (Attributes trống, Realm là "Phàm nhân" hoặc "Khởi Nguyên"), hãy TỰ TẠO các chỉ số ban đầu (Sức mạnh, Linh lực, Máu, Mana...) và Cảnh giới phù hợp với bối cảnh thế giới và nhân vật.
+         - Các chỉ số này phải có giá trị số hoặc mô tả ngắn gọn.
+      2. **HÀNH TRANG (INVENTORY)**: 
          - Nếu nhân vật nhặt được đồ, mua đồ, hoặc được tặng đồ trong câu chuyện -> THÊM vào hành trang.
          - Nếu nhân vật làm mất, bán, hoặc sử dụng hết đồ -> XÓA khỏi hành trang.
          - Giữ nguyên nếu không có thay đổi.

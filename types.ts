@@ -65,6 +65,7 @@ export interface GameStats {
   spiritualRoot?: string;
   talents?: string[];
   currentTime?: string;
+  nextTime?: string; // NEW: Internal time for the next turn (handles silent skips)
   realTimestamp?: number; // NEW: Accurate time tracking (minutes from start)
   // NEW ATTRIBUTES & CURRENCY
   attributes?: { key: string; value: string | number }[]; // Sức mạnh, Tốc độ, v.v.

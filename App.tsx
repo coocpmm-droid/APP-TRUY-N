@@ -569,7 +569,7 @@ function App() {
 
       // Resolve Base State (Override > Current > Default)
       // This fixes the bug where Time/Money is carried over from previous session state in React
-      const baseTime = overrideStats?.currentTime ?? currentStats?.currentTime ?? "Ngày 1 - 08:00 - Sáng";
+      const baseTime = overrideStats?.currentTime ?? currentStats?.nextTime ?? currentStats?.currentTime ?? "Ngày 1 - 08:00 - Sáng";
       const baseCurrency = overrideStats?.currency ?? currentStats?.currency ?? "0";
 
       // --- RAG: LOCAL EMBEDDING & RETRIEVAL (ONLY FROM TURN 2) ---
@@ -633,10 +633,8 @@ function App() {
 
       // --- STEP 1.5: TREASURER (CALCULATE ECONOMY) ---
       let calculatedCurrency = baseCurrency;
-      if (history.length > 0) {
-          const recentNarrative = history.slice(-1)[0]?.narrative || "";
-          calculatedCurrency = await geminiService.calculateEconomy(baseCurrency, userPrompt, recentNarrative);
-      }
+      const recentNarrative = history.length > 0 ? history.slice(-1)[0]?.narrative || "" : "";
+      calculatedCurrency = await geminiService.calculateEconomy(baseCurrency, userPrompt, recentNarrative);
 
       // --- STEP 2: STORYTELLER AI (Writes narrative + Money + Inventory) ---
       const { parsed, raw, thoughtSignature, isCutOff } = await geminiService.generateTurn(
@@ -708,7 +706,21 @@ function App() {
 
       // Update parsed stats with the correct time and currency (which are pre-calculated)
       if (finalStats) {
-          finalStats.currentTime = calculatedTime;
+          // --- SILENT TIME SKIP LOGIC ---
+          // If the action is "Sleep" or "Time Skip", we show the STARTING time for this turn
+          // but the NEXT turn will use the CALCULATED morning time.
+          const isSilentSkip = userPrompt.toLowerCase().includes("ngủ") || 
+                               userPrompt.toLowerCase().includes("sleep") || 
+                               userPrompt.toLowerCase().includes("tua nhanh") ||
+                               userPrompt.toLowerCase().includes("skip");
+
+          if (isSilentSkip) {
+              finalStats.currentTime = baseTime; // Show pre-sleep time
+          } else {
+              finalStats.currentTime = calculatedTime; // Normal progression
+          }
+          
+          finalStats.nextTime = calculatedTime; // Always pass the actual time to next turn
           finalStats.currency = calculatedCurrency;
           finalStats.realTimestamp = newTimestamp;
       }
