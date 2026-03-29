@@ -1988,7 +1988,7 @@ export const GameUI: React.FC<GameUIProps> = ({
                               <i className="fas fa-pen absolute top-4 right-4 text-ink-600 text-xs"></i>
                               
                               <div className="text-[10px] font-bold mb-3 uppercase tracking-[0.2em] flex items-center gap-2 text-gold-500">
-                                <i className="fas fa-comment-alt"></i> Mệnh Lệnh
+                                <i className="fas fa-comment-alt"></i> Hành Động
                               </div>
                               <UserMessage text={turn.userPrompt?.startsWith('[TIẾP TỤC]') ? '[TIẾP TỤC]: Viết tiếp diễn biến...' : (turn.userPrompt || '')} />
                             </div>
