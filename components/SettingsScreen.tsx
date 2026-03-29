@@ -480,7 +480,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
          }
          if (initialTemplate.worldSettings) setSettings(initialTemplate.worldSettings);
          if (initialTemplate.characterTraits) {
-             setCurrentRoot({ name: initialTemplate.characterTraits.spiritualRoot, color: 'text-white', rarity: 'Unknown', weight: 0 });
+             setCurrentRoot({ name: initialTemplate.characterTraits.spiritualRoot, color: 'text-white', rarity: 'Phổ Thông', weight: 0 });
              setCurrentTalents(initialTemplate.characterTraits.talents);
              setCurrentPersonality(initialTemplate.characterTraits.personality || "Bình thường");
          }
@@ -520,7 +520,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
           }
           if (data.worldSettings) setSettings(data.worldSettings);
           if (data.characterTraits) {
-             setCurrentRoot({ name: data.characterTraits.spiritualRoot, color: 'text-white', rarity: 'Unknown', weight: 0 });
+             setCurrentRoot({ name: data.characterTraits.spiritualRoot, color: 'text-white', rarity: 'Phổ Thông', weight: 0 });
              setCurrentTalents(data.characterTraits.talents);
              setCurrentPersonality(data.characterTraits.personality || "Bình thường");
          }
@@ -663,7 +663,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onConfirm, onBac
                  }
                  if(data.worldSettings) setSettings(data.worldSettings);
                  if(data.characterTraits) {
-                     setCurrentRoot({ name: data.characterTraits.spiritualRoot, color: 'text-white', rarity: 'Unknown', weight: 0 });
+                     setCurrentRoot({ name: data.characterTraits.spiritualRoot, color: 'text-white', rarity: 'Phổ Thông', weight: 0 });
                      setCurrentTalents(data.characterTraits.talents);
                      setCurrentPersonality(data.characterTraits.personality || "Bình thường");
                  }

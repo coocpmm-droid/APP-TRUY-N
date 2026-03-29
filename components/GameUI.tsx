@@ -143,7 +143,6 @@ const WikiQuickCard: React.FC<{ entry: RegistryEntry; onClose: () => void; onDel
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30"></div>
                     <div className="absolute -bottom-10 left-8 flex items-end">
                         <div className="w-24 h-24 rounded-xl bg-ink-950 border-2 border-gold-500 shadow-xl flex items-center justify-center text-gold-500 text-4xl overflow-hidden relative">
-                             {entry.type === 'NPC' && <i className="fas fa-user-circle"></i>}
                              {entry.type === 'LOCATION' && <i className="fas fa-map-marked-alt"></i>}
                              {entry.type === 'FACTION' && <i className="fas fa-users"></i>}
                              {entry.type === 'ITEM' && <i className="fas fa-khanda"></i>}

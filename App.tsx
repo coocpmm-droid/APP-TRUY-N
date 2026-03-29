@@ -468,7 +468,7 @@ function App() {
             // Ensure Arrays
             if (!Array.isArray(newStats.inventory)) newStats.inventory = [];
             if (!Array.isArray(newStats.attributes)) newStats.attributes = [];
-            if (!newStats.name) newStats.name = "Unknown";
+            if (!newStats.name) newStats.name = "Vô Danh";
             
             setCurrentStats(newStats);
             setCurrentOptions(parsed.options);
@@ -686,24 +686,40 @@ function App() {
           console.error("Chronos failed, falling back to old time", chronoErr);
       }
 
+      // --- STEP 4: STEWARD (CALCULATE STATE) ---
+      // This AI specifically manages Inventory, Stats, Realm, and Location based on the narrative
+      let finalStats = { ...currentStats };
+      try {
+          const stewardResult = await geminiService.calculateState(
+              currentStats || { name: currentSession.heroName, realm: "Phàm nhân", status: "Bình thường", inventory: [], attributes: [], currentTime: baseTime, currency: baseCurrency, currentLocation: "Không rõ" },
+              parsed.narrative,
+              userPrompt,
+              currentSession.genre,
+              currentSession.worldSettings.worldContext
+          );
+          finalStats = stewardResult;
+      } catch (stewardErr) {
+          console.error("Steward failed, falling back to Storyteller's stats", stewardErr);
+          finalStats = parsed.stats;
+      }
+
       // Calculate new total minutes
       const newTimestamp = currentTimestamp + timePassed;
 
-      // Update parsed stats with the correct time
-      if (parsed.stats) {
-          parsed.stats.currentTime = calculatedTime;
+      // Update parsed stats with the correct time and currency (which are pre-calculated)
+      if (finalStats) {
+          finalStats.currentTime = calculatedTime;
+          finalStats.currency = calculatedCurrency;
+          finalStats.realTimestamp = newTimestamp;
       }
+      
+      // Sync back to parsed object for DB storage
+      parsed.stats = finalStats;
       parsed.timePassed = timePassed;
 
-      // --- LOGIC: TIME CALCULATION SYNC ---
-      // Force update stats with computed values to be safe
-      parsed.stats.realTimestamp = newTimestamp;
-      parsed.stats.currentTime = calculatedTime;
-      parsed.timePassed = timePassed;
-      
       // Persist Location if AI didn't return it
-      const currentLocationName = parsed.stats.currentLocation || parsed.stats.mapData?.locationName || currentStats?.currentLocation || "Không rõ";
-      if (!parsed.stats.currentLocation) parsed.stats.currentLocation = currentLocationName;
+      const currentLocationName = finalStats.currentLocation || finalStats.mapData?.locationName || currentStats?.currentLocation || "Không rõ";
+      if (!finalStats.currentLocation) finalStats.currentLocation = currentLocationName;
 
       // Generate Embedding for the narrative (for future RAG)
       let embedding: number[] = [];

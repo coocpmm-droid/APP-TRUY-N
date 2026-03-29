@@ -605,7 +605,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
 
                     statsSnapshot = {
                         name: mappedSession.heroName,
-                        realm: "Unknown", 
+                        realm: "Phàm Nhân", 
                         status: "Active",
                         inventory: inventory,
                         attributes: attributes,
@@ -1221,7 +1221,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             </h2>
 
             {/* VERSION DISPLAY */}
-            <div className="text-sm md:text-base font-display italic font-medium text-gold-400/80 mt-4 mb-4 tracking-[0.3em] cursor-pointer hover:text-gold-200 transition-all duration-300 text-glow-gold" onClick={() => setShowUpdatesModal(true)}>
+            <div className="text-sm md:text-base font-serif italic font-medium text-gold-400/80 mt-4 mb-4 tracking-[0.3em] cursor-pointer hover:text-gold-200 transition-all duration-300 text-glow-gold font-serif" onClick={() => setShowUpdatesModal(true)}>
                 v5.1 — Có Bản Mới Rồi Đấy
             </div>
 
@@ -1285,7 +1285,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="text-[10px] text-ink-500 uppercase tracking-widest font-bold flex flex-wrap justify-center gap-4 mt-auto font-display italic">
+        <div className="text-[10px] text-ink-500 uppercase tracking-widest font-bold flex flex-wrap justify-center gap-4 mt-auto font-serif italic font-serif">
            <span>v5.1 — Có Bản Mới Rồi Đấy</span>
            <span className="text-gold-500/50 hidden md:inline">•</span>
            <span>Powered by Gemini 3.0</span>
@@ -1368,10 +1368,10 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                                      <button onClick={cancelEditingTitle} className="text-crimson-500 hover:text-crimson-400"><i className="fas fa-times"></i></button>
                                                  </div>
                                              ) : (
-                                                 <h4 className="font-bold text-parchment-100 group-hover:text-gold-400 transition-colors truncate max-w-[180px] flex items-center gap-2 font-serif">
+                                                 <div className="flex items-center gap-2">
                                                      {session.customTitle || session.heroName}
                                                      <button onClick={(e) => startEditingTitle(e, session)} className="text-ink-600 hover:text-ink-400 opacity-0 group-hover:opacity-100 transition-opacity"><i className="fas fa-pen text-[10px]"></i></button>
-                                                 </h4>
+                                                 </div>
                                              )}
                                              <div className="text-[10px] text-parchment-500 uppercase font-bold tracking-wider">{session.genre}</div>
                                          </div>
@@ -1391,7 +1391,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                              <span><i className="fas fa-scroll mr-1 text-gold-500/50"></i> {meta.turnCount} lượt</span>
                                              <span><i className="far fa-clock mr-1 text-gold-500/50"></i> {meta.lastActive}</span>
                                          </div>
-                                         <div className="text-xs text-spirit-400 font-bold"><i className="fas fa-crown mr-1"></i> {meta.realm}</div>
+                                         <div className="text-xs text-spirit-400 font-bold"></div>
                                      </div>
 
                                      <div className="flex gap-2 border-t border-white/5 pt-3" onClick={e => e.stopPropagation()}>
@@ -1470,7 +1470,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                       {UPDATE_LOGS.map((log, index) => (
                           <div key={index} className="relative pl-6 border-l-2 border-white/10">
                               <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 ${index === 0 ? 'bg-gold-500 border-gold-300 animate-pulse' : 'bg-ink-800 border-ink-600'}`}></div>
-                              <div className="mb-2">
+                              <div className="mb-2 font-serif">
                                   <span className={`text-sm font-bold ${index === 0 ? 'text-gold-400' : 'text-parchment-200'}`}>{log.version}</span>
                                   <span className="text-[10px] text-parchment-500 ml-2">({log.date})</span>
                               </div>

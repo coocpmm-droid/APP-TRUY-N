@@ -456,7 +456,7 @@ class GeminiService {
       ${abilitiesBlock}
       
       DATA INPUT:
-      - PRE-CALCULATED TIME: "${preCalculatedTime || 'Unknown'}"
+      - PRE-CALCULATED TIME: "${preCalculatedTime || 'N/A'}"
       - CURRENT WALLET: "${currentCurrency || '0'}"
       - SUMMARY OF PAST EVENTS: "${summary || 'Chưa có tóm tắt.'}"
 
@@ -464,7 +464,12 @@ class GeminiService {
       1. Viết tiếp diễn biến câu chuyện (Narrative).
       2. Cập nhật Thời Gian (Dùng giá trị được cung cấp).
       3. Cập nhật Tiền bạc (Dùng giá trị được cung cấp).
-      4. Quản lý Hành Trang (Inventory) và Chỉ Số (Stats).
+      
+      === [STATE MANAGEMENT DELEGATION (QUAN TRỌNG)] ===
+      - Bạn KHÔNG CẦN phải tính toán chi tiết sự thay đổi của Hành trang (Inventory), Thuộc tính (Attributes), hay Cảnh giới (Realm).
+      - Một AI khác (Quản Gia) sẽ đảm nhận việc trích xuất các thay đổi này từ văn bản của bạn.
+      - Tuy nhiên, bạn VẪN PHẢI miêu tả các thay đổi này một cách tự nhiên trong Narrative (ví dụ: "Bạn nhặt lấy thanh kiếm gỉ sét", "Cảm giác sức mạnh tràn trề khi đột phá").
+      - Trong object 'stats' trả về, hãy giữ nguyên các giá trị cũ hoặc cập nhật sơ bộ nếu bạn muốn, nhưng tập trung chính vào 'narrative'.
       
       === [TIME UPDATE PROTOCOL (PASSIVE & SILENT)] ===
       1. **SOURCE OF TRUTH**: Time calculation is handled by an EXTERNAL AI (Chronos).
@@ -515,11 +520,7 @@ class GeminiService {
         "thoughtProcess": "Suy nghĩ logic về hướng đi cốt truyện, sử dụng thời gian được cung cấp...",
         "timePassed": 0, // Giá trị này chỉ để tham khảo, lấy từ input
         "stats": {
-            "inventory": ["Item A", "Item B"], 
-            "attributes": [{"key": "Sức khỏe", "value": "Bình thường"}],
-            "status": "Trạng thái nhân vật",
             "name": "${heroName}",
-            "realm": "Cảnh giới",
             "currency": "String (Updated Money)",
             "currentTime": "String (The Provided Time)"
         },
@@ -680,8 +681,8 @@ class GeminiService {
                     timePassed: 0,
                     stats: {
                         name: heroName,
-                        realm: "Unknown",
-                        status: "Unknown",
+                        realm: "Phàm Nhân",
+                        status: "Bình thường",
                         inventory: [],
                         attributes: [],
                         currency: currentCurrency || "",
@@ -704,7 +705,7 @@ class GeminiService {
               timePassed: 0,
               stats: {
                   name: heroName,
-                  realm: "Unknown",
+                  realm: "Phàm Nhân",
                   status: "Error",
                   inventory: [],
                   attributes: [],
@@ -1031,6 +1032,100 @@ class GeminiService {
           return parseJSONResponse(response.text || "{}");
       } catch (e) {
           return { description: "Lỗi tạo thông tin." };
+      }
+  }
+
+  async calculateState(
+    previousStats: GameStats,
+    narrative: string,
+    userAction: string,
+    genre: string,
+    worldContext: string
+  ): Promise<GameStats> {
+      const systemPrompt = `
+      ROLE: Steward (Quản Gia AI).
+      GENRE: ${genre}
+      WORLD CONTEXT: "${worldContext}"
+      
+      NHIỆM VỤ:
+      Bạn là người quản lý bảng trạng thái và hành trang của nhân vật. Bạn phải đọc diễn biến câu chuyện vừa xảy ra và cập nhật các chỉ số một cách chính xác nhất.
+      
+      DỮ LIỆU HIỆN TẠI:
+      - Tên: "${previousStats.name}"
+      - Cảnh giới/Địa vị: "${previousStats.realm}"
+      - Trạng thái: "${previousStats.status}"
+      - Hành trang: ${JSON.stringify(previousStats.inventory)}
+      - Thuộc tính: ${JSON.stringify(previousStats.attributes)}
+      - Vị trí hiện tại: "${previousStats.currentLocation}"
+      
+      QUY TẮC CẬP NHẬT:
+      1. **HÀNH TRANG (INVENTORY)**: 
+         - Nếu nhân vật nhặt được đồ, mua đồ, hoặc được tặng đồ trong câu chuyện -> THÊM vào hành trang.
+         - Nếu nhân vật làm mất, bán, hoặc sử dụng hết đồ -> XÓA khỏi hành trang.
+         - Giữ nguyên nếu không có thay đổi.
+      2. **THUỘC TÍNH (ATTRIBUTES)**:
+         -Giữ nguyên nếu không có thay đổi.
+         - Cập nhật các chỉ số như Sức mạnh, Linh lực, Máu, Mana... nếu câu chuyện có nhắc đến việc tăng/giảm (ví dụ: "Bạn cảm thấy linh lực tràn đầy", "Vết thương khiến bạn yếu đi").
+      3. **CẢNH GIỚI/ĐỊA VỊ (REALM)**:
+         - Chỉ cập nhật khi có sự kiện đột phá hoặc thăng chức rõ ràng.
+         - Giữ nguyên nếu không có thay đổi.
+      4. **TRẠNG THÁI (STATUS)**:
+         - Cập nhật tình trạng sức khỏe/tâm lý (ví dụ: "Bình thường", "Trọng thương", "Kiệt sức", "Hưng phấn").
+         - Giữ nguyên nếu không có thay đổi.
+      5. **VỊ TRÍ (LOCATION)**:
+         - Cập nhật nếu nhân vật di chuyển đến nơi mới.
+      6. **TÍNH NHẤT QUÁN**: Tuyệt đối không được tự bịa ra vật phẩm hay chỉ số nếu câu chuyện không nhắc tới. Bạn là một "Kế toán" nghiêm túc.
+      
+      TRẢ VỀ JSON:
+      {
+        "name": "Tên nhân vật",
+        "realm": "Cảnh giới mới",
+        "status": "Trạng thái mới",
+        "inventory": ["Item 1", "Item 2"],
+        "attributes": [{"key": "Tên chỉ số", "value": "Giá trị"}],
+        "currentLocation": "Vị trí mới"
+      }
+      `;
+
+      const schema: Schema = {
+          type: Type.OBJECT,
+          properties: {
+              name: { type: Type.STRING },
+              realm: { type: Type.STRING },
+              status: { type: Type.STRING },
+              inventory: { type: Type.ARRAY, items: { type: Type.STRING } },
+              attributes: { type: Type.ARRAY, items: { type: Type.OBJECT, properties: { key: { type: Type.STRING }, value: { type: Type.STRING } } } },
+              currentLocation: { type: Type.STRING }
+          },
+          required: ["name", "realm", "status", "inventory", "attributes", "currentLocation"]
+      };
+
+      try {
+          const response = await this.generateContentWithRetry({
+              model: this.getModel('archivist', ARCHIVIST_MODEL), 
+              contents: { 
+                  role: 'user', 
+                  parts: [{ text: `HÀNH ĐỘNG NGƯỜI CHƠI: ${userAction}\n\nDIỄN BIẾN CÂU CHUYỆN:\n${narrative}` }] 
+              },
+              config: {
+                  systemInstruction: systemPrompt,
+                  responseMimeType: 'application/json',
+                  responseSchema: schema,
+                  temperature: 0.1,
+                  safetySettings: SAFETY_SETTINGS as any,
+                  thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
+              }
+          });
+          const text = response.text || "{}";
+          const updatedStats = parseJSONResponse(text);
+          
+          return {
+              ...previousStats,
+              ...updatedStats
+          };
+      } catch (e) {
+          console.error("Steward Error:", e);
+          return previousStats;
       }
   }
 
