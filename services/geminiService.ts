@@ -232,7 +232,7 @@ class GeminiService {
        5. **FORMAT REQUIREMENT**: You MUST output 'currentTime' EXACTLY in this format:
            "[Thứ] - [Ngày]/[Tháng]/[Năm]/[Giờ] - [Buổi/Mùa]"
            Example: "Chủ Nhật - 15/08/1024/14:23 - Buổi chiều/Mùa thu"
-       6. **INITIALIZATION**: If starting a new game (Current Time is empty or initializing), generate a logical starting time based on the World Context. Avoid generic dates like 01/01/1000.
+       6. **INITIALIZATION**: If starting a new game (Current Time is empty or initializing), generate a logical starting time based on the World Context. Avoid generic dates like 01/01/1000.Create a context that matches the setting. The Hour-Day/Month/Year must be created to match the context set by the player.
        7. **SILENT EXECUTION**: Time calculation must remain strictly in the background.
        8. **"CRITICAL RULE FOR TIME: Never explicitly state the exact time or use clock formats (e.g., avoid writing 'It is currently 13:05' or 'At 2:00 PM'). Instead, seamlessly weave the time of day into the narrative through environmental storytelling. Show the passage of time by describing the position of the sun, the quality of light, the length of shadows, the weather, or the ambient atmosphere.
        9. **NO CLOCK PHRASES**: STRICTLY PROHIBITED from using phrases like "Đồng hồ chỉ...", "Bây giờ là...", "Lúc này là...", or writing out time in words like "mười giờ ba mươi phút". If you must imply time, use natural descriptions like "Mặt trời đã lên đến đỉnh đầu", "Bóng tối bắt đầu bao trùm", "Tiếng gà gáy báo hiệu bình minh"."
@@ -296,7 +296,7 @@ class GeminiService {
       3. Nếu KHÔNG CÓ giao dịch: Giữ nguyên SỐ TIỀN HIỆN TẠI.
       4. KHÔNG BAO GIỜ tự bịa ra giao dịch nếu không được nhắc đến.
       5. Giữ nguyên đơn vị tiền tệ (ví dụ: Vàng, Bạc, Đồng, VND, USD...).
-      6. Nếu SỐ TIỀN HIỆN TẠI là "0" hoặc trống ở LƯỢT ĐẦU TIÊN, hãy tự tạo một số tiền khởi điểm hợp lý dựa trên bối cảnh (ví dụ: "100 Đồng", "50 Vàng").Đồng tiền phải phù hợp với bối cảnh thế giới(Nhật Bản - Yên ).
+      6. Nếu SỐ TIỀN HIỆN TẠI là "0" hoặc trống ở LƯỢT ĐẦU TIÊN, hãy tự tạo một số tiền khởi điểm hợp lý dựa trên bối cảnh (ví dụ: "100 Đồng", "50 Vàng").Đồng tiền phải phù hợp với bối cảnh thế giới,bối cảnh nhân vật.Không được không tạo
       
       TRẢ VỀ KẾT QUẢ DƯỚI DẠNG JSON:
       {
@@ -453,7 +453,7 @@ class GeminiService {
 
     // System Instruction
     let systemInstruction = `
-      ROLE: Storyteller & Game Master (Người Kể Chuyện & Quản Lý Hệ Thống).
+      ROLE: Storyteller & Game Master (Người Kể Chuyện & Quản Lý Hệ Thống).Bạn là 1 người kể chuyện đỉnh cao ,chuyên sâu ,chi tiết ,thông minh..Hãy tuân thủ 2 trạng thái rõ rệt. 
       CTX: ${genre} | Hero: ${heroName} (${gender}) | World: ${worldSettings.worldContext}
       ${worldSettings.referenceContext ? `LORE: ${worldSettings.referenceContext.substring(0, 2000)}...` : ''}
       ${worldLawsBlock}
@@ -504,15 +504,13 @@ class GeminiService {
 
       === [FORMATTING PROTOCOL] ===
       1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép (Ví dụ: "Chào anh"). TUYỆT ĐỐI KHÔNG dùng dấu sao (*) bên ngoài dấu ngoặc kép.
-      2. **THOUGHTS**: BẮT BUỘC bọc tất cả suy nghĩ thầm kín của nhân vật trong dấu ngoặc vuông (Ví dụ: [Hắn đang nghĩ gì vậy?]).
-         - TUYỆT ĐỐI CẤM tự ý tạo ra suy nghĩ nội tâm cho nhân vật chính (người chơi) trừ khi người chơi trực tiếp ra lệnh (ví dụ: "Tôi thầm nghĩ..."). Bạn chỉ được phép miêu tả hành động, lời nói và cảm xúc bề ngoài của người chơi, hoặc suy nghĩ của các NPC khác.
-      3. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
+      2. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
       3. **PARAGRAPHS (QUAN TRỌNG)**: BẮT BUỘC phải chia nhỏ văn bản thành nhiều đoạn ngắn (paragraphs) bằng cách xuống dòng (sử dụng ký tự \`\\n\\n\`). 
          - TUYỆT ĐỐI KHÔNG viết một cục văn bản dài liền mạch gây khó đọc. Phải làm cho văn bản thật THOÁNG.
          - Mỗi đoạn văn luôn luôn có 2 câu văn (CỐ ĐỊNH 2 CÂU). Hết 2 câu là PHẢI XUỐNG DÒNG ngay lập tức.
          - Đặc biệt trong các cảnh miêu tả chi tiết (như cảnh nóng, chiến đấu), việc ngắt đoạn liên tục là bắt buộc để tạo nhịp điệu và dễ đọc.
          - Quy tắc 2 câu/đoạn giúp tạo điểm nhấn và nhịp điệu như một thước phim.
-         5. Lời thoại và suy nghĩ in nghiêng giúp người đọc phân biệt rõ ràng giữa hành động và lời nói.
+      4. Lời thoại và suy nghĩ in nghiêng giúp người đọc phân biệt rõ ràng giữa hành động và lời nói.
 
       === [PRONOUN PROTOCOL] ===
       QUY TẮC XƯNG HÔ: ${pronounRules || "ADAPTIVE PRONOUNS (STRICTLY 2 MODES):\\n1. TU TIÊN / KIẾM HIỆP (Wuxia/Xianxia): Sử dụng xưng hô cổ trang đậm chất tu tiên: 'Ngươi - Ta', 'Tại hạ', 'Đạo hữu', 'Tiền bối', 'Vãn bối', 'Bổn tọa'.\\n2. ANIME / MANGA: BẮT BUỘC giữ văn hóa xưng hô Nhật Bản. KHÔNG DÙNG 'anh', 'chị', 'chú', 'bác' thuần Việt (CẤM viết 'chị Fern', 'chú Stark'). BẮT BUỘC dùng hậu tố: '-san', '-kun', '-chan', '-sama', 'Sensei', 'Senpai' (VD: 'Fern-san', 'Frieren-sama'). Nếu gọi anh/chị, dùng 'Onii-chan', 'Onee-san'. Xưng hô cơ bản: 'Cậu - Tớ', 'Tôi - Cậu', hoặc xưng bằng Tên. Chú ý tuổi tác (VD: Player 6 tuổi thì NPC gọi là [Tên]-chan/kun)."}
@@ -1057,13 +1055,12 @@ class GeminiService {
       
       DỮ LIỆU HIỆN TẠI:
       - Tên: "${previousStats.name}"
-      - Cảnh giới/Địa vị: "${previousStats.realm}"
+      - Cảnh giới: "${previousStats.realm}"
       - Trạng thái: "${previousStats.status}"
-      - Hành trang: ${JSON.stringify(previousStats.inventory)}
       - Thuộc tính: ${JSON.stringify(previousStats.attributes)}
       - Vị trí hiện tại: "${previousStats.currentLocation}"
       
-      QUY TẮC CẬP NHẬT:
+      QUY TẮC CẬP NHẬT:(Phải Tạo Ngay Khi Tạo Game)
       1. **HÀNH TRANG (INVENTORY)**: 
          - Nếu nhân vật nhặt được đồ, mua đồ, hoặc được tặng đồ trong câu chuyện -> THÊM vào hành trang.
          - Nếu nhân vật làm mất, bán, hoặc sử dụng hết đồ -> XÓA khỏi hành trang.
@@ -1087,7 +1084,6 @@ class GeminiService {
         "name": "Tên nhân vật",
         "realm": "Cảnh giới mới",
         "status": "Trạng thái mới",
-        "inventory": ["Item 1", "Item 2"],
         "attributes": [{"key": "Tên chỉ số", "value": "Giá trị"}],
         "currentLocation": "Vị trí mới"
       }
