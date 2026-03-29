@@ -271,33 +271,39 @@ const NarrativeDisplay: React.FC<{
 
   const parseText = (content: string) => {
     const parseFormatting = (text: string) => {
-        // Strip literal tags if AI sent them (to avoid double tagging)
-        let processedText = text.replace(/<\/?dialogue>/gi, '');
-        processedText = processedText.replace(/<\/?thought>/gi, '');
+        // 1. Strip literal tags if AI sent them (to avoid double tagging or raw tag display)
+        let processedText = text.replace(/(<|&lt;|\\<|\[)\s*\/?\s*dialogue\s*(>|&gt;|\\>|\])/gi, '');
+        processedText = processedText.replace(/(<|&lt;|\\<|\[)\s*\/?\s*thought\s*(>|&gt;|\\>|\])/gi, '');
 
-        // Strip "Dialogue:" or "Dialogue :" (case insensitive)
+        // 2. Strip "Dialogue:" or "Dialogue :" (case insensitive)
         processedText = processedText.replace(/Dialogue\s*:\s*/gi, '');
 
-        // Replace ".." with "..."
-        processedText = processedText.replace(/\.\./g, '...');
-        
-        // Handle thoughts [thought] -> italicized and bracketed
-        processedText = processedText.replace(/\[(.*?)\]/g, '<thought>[$1]</thought>');
-        
-        // Handle dialogue "dialogue" -> italicized
-        processedText = processedText.replace(/"(.*?)"/g, '<dialogue>"$1"</dialogue>');
+        // 3. Strip stars around quotes (e.g., *"Hello"* -> "Hello")
+        // This handles cases like *"text"*, * "text" *, **"text"**, etc.
+        processedText = processedText.replace(/\*+\s*"(.*?)"\s*\*+/g, '"$1"');
 
-        // Handle bold italics and single italics
-        const parts = processedText.split(/(<thought>.*?<\/thought>|<dialogue>.*?<\/dialogue>|\*\*.*?\*\*|\*.*?\*|_.*?_)/g);
+        // 4. Standardize punctuation (Replace ".." with "...")
+        processedText = processedText.replace(/\.\.\./g, '___ELLIPSIS___');
+        processedText = processedText.replace(/\.\./g, '...');
+        processedText = processedText.replace(/___ELLIPSIS___/g, '...');
+        
+        // 5. Wrap thoughts and dialogue in internal markers for splitting
+        // Thoughts [thought] -> italicized and bracketed
+        processedText = processedText.replace(/\[(.*?)\]/g, '___THOUGHT_START___$1___THOUGHT_END___');
+        
+        // Dialogue "dialogue" -> italicized
+        processedText = processedText.replace(/"(.*?)"/g, '___DIALOGUE_START___"$1"___DIALOGUE_END___');
+
+        // 6. Split by our internal markers and other markdown-like formatting
+        const parts = processedText.split(/(___THOUGHT_START___.*?___THOUGHT_END___|___DIALOGUE_START___.*?___DIALOGUE_END___|\*\*.*?\*\*|\*.*?\*|_.*?_)/g);
         
         return parts.map((part, index) => {
-            if (part.startsWith('<thought>') && part.endsWith('</thought>')) {
-                const innerText = part.slice(9, -10);
-                return <span key={index} className="italic text-spirit-300 drop-shadow-sm font-medium">{innerText}</span>;
+            if (part.startsWith('___THOUGHT_START___') && part.endsWith('___THOUGHT_END___')) {
+                const innerText = part.slice(19, -17);
+                return <span key={index} className="italic text-spirit-300 drop-shadow-sm font-medium">[{innerText}]</span>;
             }
-            if (part.startsWith('<dialogue>') && part.endsWith('</dialogue>')) {
-                const innerText = part.slice(10, -11);
-                // Dialogue color: more intense amber, medium font weight, italic
+            if (part.startsWith('___DIALOGUE_START___') && part.endsWith('___DIALOGUE_END___')) {
+                const innerText = part.slice(20, -18);
                 return <span key={index} className="italic font-medium text-amber-200 drop-shadow-md">{innerText}</span>;
             }
             if (part.startsWith('**') && part.endsWith('**')) {
@@ -306,7 +312,6 @@ const NarrativeDisplay: React.FC<{
             }
             if ((part.startsWith('*') && part.endsWith('*')) || (part.startsWith('_') && part.endsWith('_'))) {
                 const innerText = part.slice(1, -1);
-                // Dialogue color: more intense amber, medium font weight, italic
                 return <span key={index} className="italic font-medium text-amber-200 drop-shadow-md">{innerText}</span>;
             }
             return part;

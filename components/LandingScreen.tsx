@@ -62,7 +62,7 @@ const TECH_SPECS = [
 
 const UPDATE_LOGS = [
     {
-        version: "v5.1 -Hoàng Đẹp Trai",
+        version: "v5.1 — Có Bản Mới Rồi Đấy",
         date: "Mới nhất",
         author: "Nguyễn Hoàng",
         details: [
@@ -1156,7 +1156,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             title="Nhật Ký Cập Nhật / Thông Tin Phiên Bản"
           >
               <i className="fas fa-bell text-xl animate-pulse-slow group-hover:animate-none"></i>
-              <span className="hidden group-hover:inline text-xs font-bold text-jade-300 animate-slide-up">
+              <span className="hidden group-hover:inline text-xs font-bold text-jade-300 animate-slide-up font-display italic">
                   v5.1 Info
               </span>
           </button>
@@ -1221,7 +1221,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             </h2>
 
             {/* VERSION DISPLAY */}
-            <div className="text-sm md:text-base font-sans font-medium text-parchment-300 mt-4 mb-4 tracking-widest cursor-pointer hover:text-gold-400 transition-colors" onClick={() => setShowUpdatesModal(true)}>
+            <div className="text-sm md:text-base font-display italic font-medium text-gold-400/80 mt-4 mb-4 tracking-[0.3em] cursor-pointer hover:text-gold-200 transition-all duration-300 text-glow-gold" onClick={() => setShowUpdatesModal(true)}>
                 v5.1 — Có Bản Mới Rồi Đấy
             </div>
 
@@ -1285,8 +1285,8 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="text-[10px] text-ink-500 uppercase tracking-widest font-bold flex flex-wrap justify-center gap-4 mt-auto">
-           <span>v5.1 Pronoun Sync</span>
+        <div className="text-[10px] text-ink-500 uppercase tracking-widest font-bold flex flex-wrap justify-center gap-4 mt-auto font-display italic">
+           <span>v5.1 — Có Bản Mới Rồi Đấy</span>
            <span className="text-gold-500/50 hidden md:inline">•</span>
            <span>Powered by Gemini 3.0</span>
         </div>
