@@ -712,7 +712,9 @@ function App() {
           const isSilentSkip = userPrompt.toLowerCase().includes("ngủ") || 
                                userPrompt.toLowerCase().includes("sleep") || 
                                userPrompt.toLowerCase().includes("tua nhanh") ||
-                               userPrompt.toLowerCase().includes("skip");
+                               userPrompt.toLowerCase().includes("skip") ||
+                               userPrompt.toLowerCase().includes("tới sáng") ||
+                               userPrompt.toLowerCase().includes("qua đêm");
 
           if (isSilentSkip) {
               finalStats.currentTime = baseTime; // Show pre-sleep time

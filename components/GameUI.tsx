@@ -286,32 +286,20 @@ const NarrativeDisplay: React.FC<{
         processedText = processedText.replace(/\.\./g, '...');
         processedText = processedText.replace(/___ELLIPSIS___/g, '...');
         
-        // 5. Wrap thoughts and dialogue in internal markers for splitting
-        // Thoughts [thought] -> italicized and bracketed
-        processedText = processedText.replace(/\[(.*?)\]/g, '___THOUGHT_START___$1___THOUGHT_END___');
-        
-        // Dialogue "dialogue" -> italicized
-        processedText = processedText.replace(/"(.*?)"/g, '___DIALOGUE_START___"$1"___DIALOGUE_END___');
+        // 5. Remove NPC thoughts if they appear in brackets (as requested: "Bỏ luôn cái vụ hiện suy nghĩ nhân vật khác")
+        processedText = processedText.replace(/\[.*?\]/g, '');
 
-        // 6. Split by our internal markers and other markdown-like formatting
-        const parts = processedText.split(/(___THOUGHT_START___.*?___THOUGHT_END___|___DIALOGUE_START___.*?___DIALOGUE_END___|\*\*.*?\*\*|\*.*?\*|_.*?_)/g);
+        // 6. Split by markdown-like formatting
+        const parts = processedText.split(/(\*\*.*?\*\*|\*.*?\*|_.*?_)/g);
         
         return parts.map((part, index) => {
-            if (part.startsWith('___THOUGHT_START___') && part.endsWith('___THOUGHT_END___')) {
-                const innerText = part.slice(19, -17);
-                return <span key={index} className="italic text-spirit-300 drop-shadow-sm font-medium">[{innerText}]</span>;
-            }
-            if (part.startsWith('___DIALOGUE_START___') && part.endsWith('___DIALOGUE_END___')) {
-                const innerText = part.slice(20, -18);
-                return <span key={index} className="italic font-medium text-amber-200 drop-shadow-md">{innerText}</span>;
-            }
             if (part.startsWith('**') && part.endsWith('**')) {
                 const innerText = part.slice(2, -2);
-                return <span key={index} className="font-bold italic text-spirit-200">{innerText}</span>;
+                return <span key={index} className="font-bold text-parchment-100">{innerText}</span>;
             }
             if ((part.startsWith('*') && part.endsWith('*')) || (part.startsWith('_') && part.endsWith('_'))) {
                 const innerText = part.slice(1, -1);
-                return <span key={index} className="italic font-medium text-amber-200 drop-shadow-md">{innerText}</span>;
+                return <span key={index} className="italic text-parchment-200">{innerText}</span>;
             }
             return part;
         });

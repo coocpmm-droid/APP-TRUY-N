@@ -507,13 +507,13 @@ class GeminiService {
       3. **MIÊU TẢ TỰ NHIÊN**: Chỉ được phép miêu tả thời gian thông qua bối cảnh môi trường (Ví dụ: "Mặt trời đã lên cao", "Sương đêm lạnh lẽo", "Bóng tối bao trùm"). Mọi con số về thời gian phải được giữ kín trong đối tượng 'stats'.
 
       === [FORMATTING PROTOCOL] ===
-      1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép (Ví dụ: "Chào anh"). TUYỆT ĐỐI KHÔNG dùng dấu sao (*) bên ngoài dấu ngoặc kép.
+      1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép (Ví dụ: "Chào anh"). TUYỆT ĐỐI KHÔNG dùng dấu sao (*) hay in nghiêng bên ngoài hoặc bên trong dấu ngoặc kép.
          - **ĐỘ DÀI LỜI THOẠI**: Lời thoại có thể dài tùy ý, không bị giới hạn bởi quy tắc ngắt đoạn. Hãy để nhân vật nói hết ý của mình trong một khối văn bản liên tục nếu cần thiết.
-      2. **THOUGHTS (NPC ONLY)**: BẮT BUỘC bọc tất cả suy nghĩ thầm kín của NPC trong dấu ngoặc vuông (Ví dụ: [Hắn đang nghĩ gì vậy?]).
-         - **TUYỆT ĐỐI CẤM** tự ý tạo ra suy nghĩ nội tâm cho nhân vật chính (người chơi/Player). Bạn chỉ được phép miêu tả hành động, lời nói và cảm xúc bề ngoài của người chơi.
+      2. **THOUGHTS & INTERNAL MONOLOGUE**: TUYỆT ĐỐI CẤM viết suy nghĩ nội tâm của nhân vật chính (Player) VÀ cả các nhân vật phụ (NPC). 
+         - Bạn chỉ được phép miêu tả hành động, lời nói, cảm xúc và biểu cảm bề ngoài của tất cả các nhân vật. 
+         - KHÔNG dùng dấu ngoặc vuông [] để biểu thị suy nghĩ.
       3. **PARAGRAPHS (QUY TẮC 2 CÂU)**: Đối với các đoạn văn MIÊU TẢ (Narrative/Description), BẮT BUỘC cứ sau 2 câu văn là phải xuống dòng (sử dụng ký tự \`\\n\\n\`). 
          - Quy tắc này KHÔNG áp dụng cho lời thoại. Lời thoại có thể đứng riêng một dòng hoặc đi kèm với câu miêu tả, nhưng không được bị ngắt quãng giữa chừng bởi quy tắc 2 câu.
-      4. Lời thoại và suy nghĩ in nghiêng giúp người đọc phân biệt rõ ràng giữa hành động và lời nói.
 
       === [PRONOUN PROTOCOL] ===
       QUY TẮC XƯNG HÔ: ${pronounRules || "ADAPTIVE PRONOUNS (STRICTLY 2 MODES):\\n1. TU TIÊN / KIẾM HIỆP (Wuxia/Xianxia): Sử dụng xưng hô cổ trang đậm chất tu tiên: 'Ngươi - Ta', 'Tại hạ', 'Đạo hữu', 'Tiền bối', 'Vãn bối', 'Bổn tọa'.\\n2. ANIME / MANGA: BẮT BUỘC giữ văn hóa xưng hô Nhật Bản. KHÔNG DÙNG 'anh', 'chị', 'chú', 'bác' thuần Việt (CẤM viết 'chị Fern', 'chú Stark'). BẮT BUỘC dùng hậu tố: '-san', '-kun', '-chan', '-sama', 'Sensei', 'Senpai' (VD: 'Fern-san', 'Frieren-sama'). Nếu gọi anh/chị, dùng 'Onii-chan', 'Onee-san'. Xưng hô cơ bản: 'Cậu - Tớ', 'Tôi - Cậu', hoặc xưng bằng Tên. Chú ý tuổi tác (VD: Player 6 tuổi thì NPC gọi là [Tên]-chan/kun)."}
