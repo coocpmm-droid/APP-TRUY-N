@@ -587,21 +587,23 @@ function App() {
           }
 
           if (userPromptEmbedding.length > 0) {
-              const relevantWiki = await findRelevantWiki(currentSession.id!, userPromptEmbedding, textToEmbed, 3, 0.4);
+              const relevantWiki = await findRelevantWiki(currentSession.id!, userPromptEmbedding, textToEmbed, 10, 0.25);
               
-              // Find relevant past turns (excluding the ones already in the recent history window)
+              // Find relevant past turns (global scope enabled in db.ts)
               const recentTurnIds = history.map(t => t.id!).filter(id => id !== undefined);
-              const relevantTurns = await findRelevantTurns(currentSession.id!, userPromptEmbedding, 3, 0.4, recentTurnIds);
+              const relevantTurns = await findRelevantTurns(currentSession.id!, userPromptEmbedding, 12, 0.25, recentTurnIds);
 
               if (relevantWiki.length > 0 || relevantTurns.length > 0) {
-                  ragContextString = "\n\n[HỆ THỐNG TRÍ NHỚ (RAG CONTEXT - KÝ ỨC DÀI HẠN)]:\n";
+                  ragContextString = "\n\n=== [HỆ THỐNG SIÊU TRÍ NHỚ TOÀN CẦU (GLOBAL RAG)] ===\n";
+                  ragContextString += "Dưới đây là các dữ liệu quan trọng được truy xuất từ TOÀN BỘ lịch sử và bách khoa toàn thư (bao gồm cả các phiên chơi khác nếu có). Bạn PHẢI sử dụng chúng để đảm bảo tính nhất quán tuyệt đối:\n";
+                  
                   if (relevantWiki.length > 0) {
-                      ragContextString += "- THÔNG TIN BÁCH KHOA TOÀN THƯ (WIKI):\n" + relevantWiki.map(w => `  + ${w.name} (${w.type}): ${w.description}`).join("\n") + "\n";
+                      ragContextString += "\n[DỮ LIỆU WIKI/THẾ GIỚI]:\n" + relevantWiki.map(w => `  • ${w.name} (${w.type}): ${w.description}`).join("\n") + "\n";
                   }
                   if (relevantTurns.length > 0) {
-                      ragContextString += "- KÝ ỨC TRONG QUÁ KHỨ (CÁC SỰ KIỆN ĐÃ XẢY RA):\n" + relevantTurns.map(t => `  + Người chơi: "${t.userPrompt}"\n    Diễn biến: "${t.narrative.substring(0, 300)}..."`).join("\n") + "\n";
+                      ragContextString += "\n[KÝ ỨC QUÁ KHỨ LIÊN QUAN]:\n" + relevantTurns.map(t => `  • Hành động: "${t.userPrompt}"\n    Kết quả: "${t.narrative.substring(0, 400)}..."`).join("\n") + "\n";
                   }
-                  ragContextString += "(Sử dụng các thông tin trên để duy trì sự nhất quán của cốt truyện nếu phù hợp với ngữ cảnh hiện tại).";
+                  ragContextString += "\n(Lưu ý: Nếu thông tin trên mâu thuẫn với diễn biến hiện tại, hãy ưu tiên sự nhất quán với quá khứ đã được xác lập).\n============================================";
               }
           }
       }
@@ -733,10 +735,12 @@ function App() {
       const currentLocationName = finalStats.currentLocation || finalStats.mapData?.locationName || currentStats?.currentLocation || "Không rõ";
       if (!finalStats.currentLocation) finalStats.currentLocation = currentLocationName;
 
-      // Generate Embedding for the narrative (for future RAG)
+      // Generate Embedding for the narrative + user prompt (for future RAG)
       let embedding: number[] = [];
       try {
-          embedding = await localEmbeddingService.embedTextLocal(parsed.narrative);
+          // Combining user prompt and narrative provides a much richer context for retrieval
+          const fullTurnText = `${userPrompt}\n${parsed.narrative}`;
+          embedding = await localEmbeddingService.embedTextLocal(fullTurnText);
       } catch (embErr) {
           console.warn("Failed to generate embedding for turn, continuing...", embErr);
       }

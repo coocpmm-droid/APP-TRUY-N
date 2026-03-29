@@ -283,14 +283,12 @@ export async function findRelevantWiki(
     sessionId: number, 
     queryVector: number[], 
     text: string, 
-    topK: number = 4, 
-    minScore: number = 0.65
+    topK: number = 8, 
+    minScore: number = 0.3
 ): Promise<RegistryEntry[]> {
     
-    const allEntries = await db.encyclopedia
-        .where('sessionId')
-        .equals(sessionId)
-        .toArray();
+    // Expand scope to ENTIRE encyclopedia (global knowledge)
+    const allEntries = await db.encyclopedia.toArray();
     
     if (allEntries.length === 0) return [];
 
@@ -337,14 +335,12 @@ export async function findRelevantWiki(
 export async function findRelevantTurns(
     sessionId: number,
     queryVector: number[],
-    topK: number = 3,
-    minScore: number = 0.4,
+    topK: number = 10,
+    minScore: number = 0.3,
     excludeTurnIds: number[] = []
 ): Promise<Turn[]> {
-    const allTurns = await db.turns
-        .where('sessionId')
-        .equals(sessionId)
-        .toArray();
+    // Expand scope to ENTIRE history (global memory across all sessions)
+    const allTurns = await db.turns.toArray();
 
     if (allTurns.length === 0) return [];
 
