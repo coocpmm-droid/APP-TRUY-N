@@ -238,7 +238,11 @@ class GeminiService {
        9. **NO CLOCK PHRASES**: STRICTLY PROHIBITED from using phrases like "Đồng hồ chỉ...", "Bây giờ là...", "Lúc này là...", or writing out time in words like "mười giờ ba mươi phút". If you must imply time, use natural descriptions like "Mặt trời đã lên đến đỉnh đầu", "Bóng tối bắt đầu bao trùm", "Tiếng gà gáy báo hiệu bình minh"."
        10. === [TIME SKIP PROTOCOL (CRITICAL)] ===
            - MANDATORY HOUR SHIFT: When the player requests to "fast forward", "skip this part", or when the plot logically requires a time jump, you are STRICTLY PROHIBITED from only changing the date while keeping the exact same hour. You MUST add a logical number of HOURS ,Day,...to the current time.
-           - BREAK THE "NEXT MORNING" BIAS: AI models have a strong bias to always start a new scene the "next morning" (e.g., 07:00 AM). THIS IS ABSOLUTELY FORBIDDEN! Depending on the upcoming event, the new scene MUST occur at diverse times of the day.
+           - BREAK THE "NEXT MORNING" BIAS: AI models have a strong bias to always start a new scene the "next morning" (e.g., 07:00 AM). THIS IS ABSOLUTELY FORBIDDEN! 
+            - **REALISTIC WAKE-UP TIMES**: If the character sleeps, do NOT always wake them up at a round hour. Use realistic, "messy" minutes based on the context (e.g., 06:42, 08:19, 09:37, 10:21). The wake-up time should depend on:
+                *   Exhaustion level (if they were very tired, they sleep longer).
+                *   Environment (noise, light, temperature).
+                *   Character habits (early bird vs. late sleeper).
            - ENVIRONMENT MATCHES THE NEW TIME: When the time shifts to a new hour, the environmental descriptions (lighting, sky, NPC activities, atmosphere) MUST accurately reflect that specific time of day so the player truly feels the passage of time.
       
       INPUT ACTION: "${userAction}"
