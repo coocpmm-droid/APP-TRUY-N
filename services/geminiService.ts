@@ -458,7 +458,7 @@ class GeminiService {
 
     // System Instruction
     let systemInstruction = `
-      ROLE: Storyteller & Game Master (Người Kể Chuyện & Quản Lý Hệ Thống).Bạn là 1 người kể chuyện đỉnh cao ,chuyên sâu ,chi tiết ,thông minh..Hãy tuân thủ 2 trạng thái rõ rệt. 
+      ROLE: Storyteller & Game Master (Người Kể Chuyện & Quản Lý Hệ Thống).
       CTX: ${genre} | Hero: ${heroName} (${gender}) | World: ${worldSettings.worldContext}
       ${worldSettings.referenceContext ? `LORE: ${worldSettings.referenceContext.substring(0, 2000)}...` : ''}
       ${worldLawsBlock}
