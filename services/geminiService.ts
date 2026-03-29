@@ -12,7 +12,8 @@ import {
   NSFWFocus, 
   AIResponseSchema,
   RegistryEntry,
-  Ability
+  Ability,
+  GameStats
 } from '../types';
 
 import { getAiClient } from './aiClient';
@@ -163,7 +164,7 @@ class GeminiService {
     }
   }
 
-  private getModel(taskType: 'main' | 'chronos' | 'archivist' | 'image', defaultModel: string): string {
+  private getModel(taskType: 'main' | 'chronos' | 'archivist' | 'image' | 'steward', defaultModel: string): string {
     const useProxy = localStorage.getItem('td_use_proxy') === 'true';
     const activeProxy = localStorage.getItem('td_active_proxy') === '2' ? 2 : 1;
     const suffix = activeProxy === 2 ? '2' : '';
@@ -180,6 +181,9 @@ class GeminiService {
       }
       if (taskType === 'image') {
         return localStorage.getItem(`td_proxy_model_image${suffix}`) || localStorage.getItem('td_proxy_model_image') || defaultModel;
+      }
+      if (taskType === 'steward') {
+        return localStorage.getItem(`td_proxy_model_steward${suffix}`) || localStorage.getItem(`td_proxy_model_main${suffix}`) || localStorage.getItem(`td_proxy_model${suffix}`) || localStorage.getItem('td_proxy_model_steward') || defaultModel;
       }
     }
     return defaultModel;
@@ -1102,7 +1106,7 @@ class GeminiService {
 
       try {
           const response = await this.generateContentWithRetry({
-              model: this.getModel('archivist', ARCHIVIST_MODEL), 
+              model: this.getModel('steward', ARCHIVIST_MODEL), 
               contents: { 
                   role: 'user', 
                   parts: [{ text: `HÀNH ĐỘNG NGƯỜI CHƠI: ${userAction}\n\nDIỄN BIẾN CÂU CHUYỆN:\n${narrative}` }] 

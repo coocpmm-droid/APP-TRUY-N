@@ -327,11 +327,13 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
   const [proxyModelChronos, setProxyModelChronos] = useState(localStorage.getItem('td_proxy_model_chronos') || '');
   const [proxyModelArchivist, setProxyModelArchivist] = useState(localStorage.getItem('td_proxy_model_archivist') || '');
   const [proxyModelImage, setProxyModelImage] = useState(localStorage.getItem('td_proxy_model_image') || '');
+  const [proxyModelSteward, setProxyModelSteward] = useState(localStorage.getItem('td_proxy_model_steward') || '');
 
   const [proxyModelMain2, setProxyModelMain2] = useState(localStorage.getItem('td_proxy_model_main2') || '');
   const [proxyModelChronos2, setProxyModelChronos2] = useState(localStorage.getItem('td_proxy_model_chronos2') || '');
   const [proxyModelArchivist2, setProxyModelArchivist2] = useState(localStorage.getItem('td_proxy_model_archivist2') || '');
   const [proxyModelImage2, setProxyModelImage2] = useState(localStorage.getItem('td_proxy_model_image2') || '');
+  const [proxyModelSteward2, setProxyModelSteward2] = useState(localStorage.getItem('td_proxy_model_steward2') || '');
   const [testStatus, setTestStatus] = useState<'idle' | 'testing' | 'success' | 'error'>('idle');
   const [testMessage, setTestMessage] = useState('');
   const [availableModels, setAvailableModels] = useState<string[]>([]);
@@ -1007,6 +1009,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       localStorage.setItem('td_proxy_model_chronos', proxyModelChronos);
       localStorage.setItem('td_proxy_model_archivist', proxyModelArchivist);
       localStorage.setItem('td_proxy_model_image', proxyModelImage);
+      localStorage.setItem('td_proxy_model_steward', proxyModelSteward);
 
       localStorage.setItem('td_proxy_url2', proxyUrl2);
       localStorage.setItem('td_proxy_key2', proxyKey2);
@@ -1014,6 +1017,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
       localStorage.setItem('td_proxy_model_chronos2', proxyModelChronos2);
       localStorage.setItem('td_proxy_model_archivist2', proxyModelArchivist2);
       localStorage.setItem('td_proxy_model_image2', proxyModelImage2);
+      localStorage.setItem('td_proxy_model_steward2', proxyModelSteward2);
 
       setShowProxySettingsModal(false);
       window.location.reload();
@@ -1628,6 +1632,42 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                                value={activeProxy === 1 ? proxyModelChronos : proxyModelChronos2}
                                                onChange={(e) => activeProxy === 1 ? setProxyModelChronos(e.target.value) : setProxyModelChronos2(e.target.value)}
                                                placeholder="Vd: gemini-3-flash-preview"
+                                               className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
+                                           />
+                                       </div>
+
+                                       <div className="space-y-1.5">
+                                           <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider">Model Quản Gia (Trạng thái) - {activeProxy}</label>
+                                           <input 
+                                               type="text"
+                                               list="proxy-models"
+                                               value={activeProxy === 1 ? proxyModelSteward : proxyModelSteward2}
+                                               onChange={(e) => activeProxy === 1 ? setProxyModelSteward(e.target.value) : setProxyModelSteward2(e.target.value)}
+                                               placeholder="Vd: gemini-3.1-pro-preview"
+                                               className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
+                                           />
+                                       </div>
+
+                                       <div className="space-y-1.5">
+                                           <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider">Model Lưu Trữ (Archivist) - {activeProxy}</label>
+                                           <input 
+                                               type="text"
+                                               list="proxy-models"
+                                               value={activeProxy === 1 ? proxyModelArchivist : proxyModelArchivist2}
+                                               onChange={(e) => activeProxy === 1 ? setProxyModelArchivist(e.target.value) : setProxyModelArchivist2(e.target.value)}
+                                               placeholder="Vd: gemini-3.1-pro-preview"
+                                               className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
+                                           />
+                                       </div>
+
+                                       <div className="space-y-1.5">
+                                           <label className="text-[10px] font-bold text-parchment-400 uppercase tracking-wider">Model Hình Ảnh (Image) - {activeProxy}</label>
+                                           <input 
+                                               type="text"
+                                               list="proxy-models"
+                                               value={activeProxy === 1 ? proxyModelImage : proxyModelImage2}
+                                               onChange={(e) => activeProxy === 1 ? setProxyModelImage(e.target.value) : setProxyModelImage2(e.target.value)}
+                                               placeholder="Vd: gemini-2.5-flash-image"
                                                className="w-full bg-ink-900 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-parchment-100 placeholder-ink-600 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all"
                                            />
                                        </div>
