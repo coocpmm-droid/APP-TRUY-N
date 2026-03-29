@@ -707,14 +707,12 @@ function App() {
       // Update parsed stats with the correct time and currency (which are pre-calculated)
       if (finalStats) {
           // --- SILENT TIME SKIP LOGIC ---
-          // If the action is "Sleep" or "Time Skip", we show the STARTING time for this turn
-          // but the NEXT turn will use the CALCULATED morning time.
+          // Only apply "Silent Skip" to sleeping/resting actions where the turn describes the START of the rest.
+          // General "Time Skip" or "Fast Forward" should show the NEW time immediately because they describe the ARRIVAL.
           const isSilentSkip = userPrompt.toLowerCase().includes("ngủ") || 
                                userPrompt.toLowerCase().includes("sleep") || 
-                               userPrompt.toLowerCase().includes("tua nhanh") ||
-                               userPrompt.toLowerCase().includes("skip") ||
-                               userPrompt.toLowerCase().includes("tới sáng") ||
-                               userPrompt.toLowerCase().includes("qua đêm");
+                               userPrompt.toLowerCase().includes("nghỉ ngơi") ||
+                               userPrompt.toLowerCase().includes("đi nghỉ");
 
           if (isSilentSkip) {
               finalStats.currentTime = baseTime; // Show pre-sleep time
