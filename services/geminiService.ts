@@ -428,7 +428,8 @@ class GeminiService {
       1. **NO VIOLENCE / NON-CON (KHÔNG BẠO LỰC)**: Tuyệt đối không có cưỡng bức (Rape), không bạo dâm đẫm máu (Gore), không đánh đập tàn nhẫn. Mọi quan hệ phải dựa trên sự đồng thuận hoặc tình huống lãng mạn/quyến rũ.
       2. **STRICT CHARACTER (NO OOC)**: 
          - **QUAN TRỌNG**: Giữ đúng tính cách nhân vật ngay cả khi đang làm tình. 
-         - Giống đời thực, chỉ rên khẽ, không nói dâm.
+         - Giống đời thực, chỉ rên khẽ, không nói dâm,không cầu xin,không yếu tố nô lệ.
+         - Tuân thủ 2 trạng thái ,không tự ý kích hoạt.
          - Mọi nhân vật đều giữ được lý trí khi quan hệ, không trợn ngược mắt, không nói lời dâm dục rẻ tiền, không biến thành kẻ khát tình dục vô tri. Không Ahegao, không mất kiểm soát hoàn toàn.
       3. **ANTI-PREMATURE**: Không cho nhân vật ra (xuất tinh/lên đỉnh) quá sớm. Hãy kéo dài màn dạo đầu và quá trình giao hợp đến khi Player nhập hành động "Ra","bắn",..thì mới được xuất tinh. Miêu tả chi tiết diễn biến tâm lý.
       - FOCUS: ${nsfwFocus.join(', ') || "Action, Sensation"}.
