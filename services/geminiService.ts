@@ -504,12 +504,11 @@ class GeminiService {
 
       === [FORMATTING PROTOCOL] ===
       1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép (Ví dụ: "Chào anh"). TUYỆT ĐỐI KHÔNG dùng dấu sao (*) bên ngoài dấu ngoặc kép.
-      2. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
-      3. **PARAGRAPHS (QUAN TRỌNG)**: BẮT BUỘC phải chia nhỏ văn bản thành nhiều đoạn ngắn (paragraphs) bằng cách xuống dòng (sử dụng ký tự \`\\n\\n\`). 
-         - TUYỆT ĐỐI KHÔNG viết một cục văn bản dài liền mạch gây khó đọc. Phải làm cho văn bản thật THOÁNG.
-         - Mỗi đoạn văn luôn luôn có 2 câu văn (CỐ ĐỊNH 2 CÂU). Hết 2 câu là PHẢI XUỐNG DÒNG ngay lập tức.
-         - Đặc biệt trong các cảnh miêu tả chi tiết (như cảnh nóng, chiến đấu), việc ngắt đoạn liên tục là bắt buộc để tạo nhịp điệu và dễ đọc.
-         - Quy tắc 2 câu/đoạn giúp tạo điểm nhấn và nhịp điệu như một thước phim.
+         - **ĐỘ DÀI LỜI THOẠI**: Lời thoại có thể dài tùy ý, không bị giới hạn bởi quy tắc ngắt đoạn. Hãy để nhân vật nói hết ý của mình trong một khối văn bản liên tục nếu cần thiết.
+      2. **THOUGHTS (NPC ONLY)**: BẮT BUỘC bọc tất cả suy nghĩ thầm kín của NPC trong dấu ngoặc vuông (Ví dụ: [Hắn đang nghĩ gì vậy?]).
+         - **TUYỆT ĐỐI CẤM** tự ý tạo ra suy nghĩ nội tâm cho nhân vật chính (người chơi/Player). Bạn chỉ được phép miêu tả hành động, lời nói và cảm xúc bề ngoài của người chơi.
+      3. **PARAGRAPHS (QUY TẮC 2 CÂU)**: Đối với các đoạn văn MIÊU TẢ (Narrative/Description), BẮT BUỘC cứ sau 2 câu văn là phải xuống dòng (sử dụng ký tự \`\\n\\n\`). 
+         - Quy tắc này KHÔNG áp dụng cho lời thoại. Lời thoại có thể đứng riêng một dòng hoặc đi kèm với câu miêu tả, nhưng không được bị ngắt quãng giữa chừng bởi quy tắc 2 câu.
       4. Lời thoại và suy nghĩ in nghiêng giúp người đọc phân biệt rõ ràng giữa hành động và lời nói.
 
       === [PRONOUN PROTOCOL] ===
@@ -641,9 +640,15 @@ class GeminiService {
           
           for (const sentence of sentences) {
               currentParagraph += sentence;
-              sentenceCount++;
               
-              // Break paragraph after exactly 2 sentences as requested
+              // Check if sentence is dialogue (contains quotes)
+              const isDialogue = /["'“”]/.test(sentence);
+              
+              if (!isDialogue) {
+                  sentenceCount++;
+              }
+              
+              // Break paragraph after 2 narrative sentences, or if it's dialogue and we already have narrative
               if (sentenceCount >= 2) {
                   formatted += currentParagraph.trim() + "\n\n";
                   currentParagraph = "";
