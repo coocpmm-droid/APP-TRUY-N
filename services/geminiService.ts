@@ -505,6 +505,7 @@ class GeminiService {
       === [FORMATTING PROTOCOL] ===
       1. **DIALOGUE**: BẮT BUỘC bọc tất cả các câu thoại của nhân vật trong dấu ngoặc kép (Ví dụ: "Chào anh"). TUYỆT ĐỐI KHÔNG dùng dấu sao (*) bên ngoài dấu ngoặc kép.
       2. **THOUGHTS**: BẮT BUỘC bọc tất cả suy nghĩ thầm kín của nhân vật trong dấu ngoặc vuông (Ví dụ: [Hắn đang nghĩ gì vậy?]).
+         - TUYỆT ĐỐI CẤM tự ý tạo ra suy nghĩ nội tâm cho nhân vật chính (người chơi) trừ khi người chơi trực tiếp ra lệnh (ví dụ: "Tôi thầm nghĩ..."). Bạn chỉ được phép miêu tả hành động, lời nói và cảm xúc bề ngoài của người chơi, hoặc suy nghĩ của các NPC khác.
       3. **NEW LINE FOR DIALOGUE/THOUGHTS**: BẮT BUỘC: Mọi lời thoại hoặc suy nghĩ của nhân vật đều phải được viết tách riêng thành một dòng mới. TUYỆT ĐỐI KHÔNG viết lời thoại nối tiếp ngay sau câu miêu tả trên cùng một dòng.
       3. **PARAGRAPHS (QUAN TRỌNG)**: BẮT BUỘC phải chia nhỏ văn bản thành nhiều đoạn ngắn (paragraphs) bằng cách xuống dòng (sử dụng ký tự \`\\n\\n\`). 
          - TUYỆT ĐỐI KHÔNG viết một cục văn bản dài liền mạch gây khó đọc. Phải làm cho văn bản thật THOÁNG.
@@ -1068,8 +1069,9 @@ class GeminiService {
          - Nếu nhân vật làm mất, bán, hoặc sử dụng hết đồ -> XÓA khỏi hành trang.
          - Giữ nguyên nếu không có thay đổi.
       2. **THUỘC TÍNH (ATTRIBUTES)**:
-         -Giữ nguyên nếu không có thay đổi.
-         - Cập nhật các chỉ số như Sức mạnh, Linh lực, Máu, Mana... nếu câu chuyện có nhắc đến việc tăng/giảm (ví dụ: "Bạn cảm thấy linh lực tràn đầy", "Vết thương khiến bạn yếu đi").
+         - Giữ nguyên nếu không có thay đổi.
+         - Cập nhật các chỉ số như Sức mạnh, Linh lực, Máu, Mana, Tốc độ, Trí tuệ... tùy theo bối cảnh thế giới nếu câu chuyện có nhắc đến việc tăng/giảm.
+         - TUYỆT ĐỐI KHÔNG đưa các thông tin như "Tài sản", "Thiên phú", "Tính cách", "Căn cơ", "Địa vị", "Gia thế" vào danh sách Thuộc tính (Attributes) vì chúng đã được quản lý riêng. Nếu có các mục này trong dữ liệu hiện tại, hãy XÓA chúng khỏi danh sách trả về.
       3. **CẢNH GIỚI/ĐỊA VỊ (REALM)**:
          - Chỉ cập nhật khi có sự kiện đột phá hoặc thăng chức rõ ràng.
          - Giữ nguyên nếu không có thay đổi.

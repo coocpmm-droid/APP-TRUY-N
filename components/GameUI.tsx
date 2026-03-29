@@ -2096,11 +2096,11 @@ export const GameUI: React.FC<GameUIProps> = ({
                   </div>
                   
                   <div className="grid grid-cols-2 gap-2 mb-3">
-                      {Array.isArray(currentStats.attributes) && currentStats.attributes.length > 0 ? (
-                          currentStats.attributes.map((attr, idx) => (
+                      {Array.isArray(currentStats.attributes) && currentStats.attributes.filter(attr => !['tài sản', 'thiên phú', 'tính cách', 'căn cơ', 'gia thế', 'địa vị'].includes(attr.key.toLowerCase())).length > 0 ? (
+                          currentStats.attributes.filter(attr => !['tài sản', 'thiên phú', 'tính cách', 'căn cơ', 'gia thế', 'địa vị'].includes(attr.key.toLowerCase())).map((attr, idx) => (
                               <div key={idx} className="bg-ink-950/50 border border-ink-800 rounded px-2 py-1.5 flex flex-col items-center justify-center">
-                                  <span className="text-[8px] text-ink-500 uppercase font-bold">{attr.key}</span>
-                                  <span className="text-xs font-bold text-parchment-100">{attr.value}</span>
+                                  <span className="text-[8px] text-ink-500 uppercase font-bold text-center">{attr.key}</span>
+                                  <span className="text-xs font-bold text-parchment-100 text-center">{attr.value}</span>
                               </div>
                           ))
                       ) : (
