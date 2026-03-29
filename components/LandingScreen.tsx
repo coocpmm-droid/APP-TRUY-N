@@ -1690,6 +1690,12 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                                            {testMessage}
                                        </div>
                                    )}
+                                   
+                                   <datalist id="proxy-models">
+                                       {availableModels.map((model, index) => (
+                                           <option key={index} value={model} />
+                                       ))}
+                                   </datalist>
                                </div>
                                    </div>
                                </div>
